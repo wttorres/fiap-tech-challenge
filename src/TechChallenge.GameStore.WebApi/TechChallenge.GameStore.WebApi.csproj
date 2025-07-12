@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>$(TargetFramework)</TargetFramework>
+        <LangVersion>$(LangVersion)</LangVersion>
+        <Nullable>$(Nullable)</Nullable>
+        <ImplicitUsings>$(ImplicitUsings)</ImplicitUsings>
+        <ManagePackageVersionsCentrally>$(ManagePackageVersionsCentrally)</ManagePackageVersionsCentrally>
+        <GenerateRuntimeConfigurationFiles>$(GenerateRuntimeConfigurationFiles)</GenerateRuntimeConfigurationFiles>
+    </PropertyGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\TechChallenge.GameStore.Application\TechChallenge.GameStore.Application.csproj" />
+    </ItemGroup>
+
+</Project>

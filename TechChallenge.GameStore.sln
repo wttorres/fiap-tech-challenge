@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F596C5D2-CCE8-4F92-8D85-10962755F245}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CAC914F1-11D0-4CAC-8097-19B9759D14A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallenge.GameStore.WebApi", "src\TechChallenge.GameStore.WebApi\TechChallenge.GameStore.WebApi.csproj", "{B48F9A4B-7860-419F-B0CC-A63735A6A982}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallenge.GameStore.Application", "src\TechChallenge.GameStore.Application\TechChallenge.GameStore.Application.csproj", "{F0A557B5-9388-4C5B-9D3E-81F662C9FE89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallenge.GameStore.Domain", "src\TechChallenge.GameStore.Domain\TechChallenge.GameStore.Domain.csproj", "{5A3FADF5-9820-4751-A4F5-91D9C0AEC83C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallenge.GameStore.Infrastructure", "src\TechChallenge.GameStore.Infrastructure\TechChallenge.GameStore.Infrastructure.csproj", "{280F4663-DF4E-4073-BEAB-EA20E807871F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallenge.GameStore.Unit.Test", "test\TechChallenge.GameStore.Unit.Test\TechChallenge.GameStore.Unit.Test.csproj", "{39274107-1E07-431F-AA46-FC958B03813B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B48F9A4B-7860-419F-B0CC-A63735A6A982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B48F9A4B-7860-419F-B0CC-A63735A6A982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B48F9A4B-7860-419F-B0CC-A63735A6A982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B48F9A4B-7860-419F-B0CC-A63735A6A982}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0A557B5-9388-4C5B-9D3E-81F662C9FE89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0A557B5-9388-4C5B-9D3E-81F662C9FE89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0A557B5-9388-4C5B-9D3E-81F662C9FE89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0A557B5-9388-4C5B-9D3E-81F662C9FE89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A3FADF5-9820-4751-A4F5-91D9C0AEC83C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A3FADF5-9820-4751-A4F5-91D9C0AEC83C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A3FADF5-9820-4751-A4F5-91D9C0AEC83C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A3FADF5-9820-4751-A4F5-91D9C0AEC83C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{280F4663-DF4E-4073-BEAB-EA20E807871F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{280F4663-DF4E-4073-BEAB-EA20E807871F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{280F4663-DF4E-4073-BEAB-EA20E807871F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{280F4663-DF4E-4073-BEAB-EA20E807871F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39274107-1E07-431F-AA46-FC958B03813B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39274107-1E07-431F-AA46-FC958B03813B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39274107-1E07-431F-AA46-FC958B03813B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39274107-1E07-431F-AA46-FC958B03813B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B48F9A4B-7860-419F-B0CC-A63735A6A982} = {F596C5D2-CCE8-4F92-8D85-10962755F245}
+		{F0A557B5-9388-4C5B-9D3E-81F662C9FE89} = {F596C5D2-CCE8-4F92-8D85-10962755F245}
+		{5A3FADF5-9820-4751-A4F5-91D9C0AEC83C} = {F596C5D2-CCE8-4F92-8D85-10962755F245}
+		{280F4663-DF4E-4073-BEAB-EA20E807871F} = {F596C5D2-CCE8-4F92-8D85-10962755F245}
+		{39274107-1E07-431F-AA46-FC958B03813B} = {CAC914F1-11D0-4CAC-8097-19B9759D14A4}
+	EndGlobalSection
+EndGlobal
