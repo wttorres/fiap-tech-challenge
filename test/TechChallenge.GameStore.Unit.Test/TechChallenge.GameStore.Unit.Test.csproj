@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>$(TargetFramework)</TargetFramework>
+        <LangVersion>$(LangVersion)</LangVersion>
+        <Nullable>$(Nullable)</Nullable>
+        <ImplicitUsings>$(ImplicitUsings)</ImplicitUsings>
+        <ManagePackageVersionsCentrally>$(ManagePackageVersionsCentrally)</ManagePackageVersionsCentrally>
+        <IsTestProject>$(IsTestProject)</IsTestProject>
+    </PropertyGroup>
+    <ItemGroup>
+      <Folder Include="WebApi\Agregado\CasoDeUso\Fakers\" />
+      <Folder Include="WebApi\Agregado\CasoDeUso\Fixtures\" />
+      <Folder Include="WebApi\Agregado\CasoDeUso\Mocks\" />
+    </ItemGroup>
+</Project>

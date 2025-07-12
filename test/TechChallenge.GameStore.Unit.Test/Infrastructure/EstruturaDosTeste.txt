@@ -1,0 +1,27 @@
+﻿# Orientações para Escrita de Testes no Projeto
+
+Vamos organizar e isolar os testes por caso de uso, garantindo independência, clareza e qualidade nos testes. 
+O objetivo é que cada teste valide exclusivamente o comportamento de um caso de uso, sem acoplamentos desnecessários 
+com outros testes, mantendo assim um alto grau de manutenção, leitura e confiança nos resultados.
+
+## Estrutura de Pastas
+
+Os testes devem seguir a mesma estrutura lógica da aplicação, respeitando a divisão por camada, agregado e caso de uso. 
+Abaixo, a estrutura sugerida:
+
+Tests/
+ └── [Camada] (WebApi, Application, Domain, Infrastructure)
+      └── [Agregado] (Usuario, Promocao, etc.)
+           └── [CasoDeUso] (Cadastrar, Atualizar, etc.)
+                ├── Fixtures/
+                ├── Fakers/
+                ├── Mocks/
+                └── [ClaseDeTeste].cs
+
+## Boas Práticas de Teste
+
+- Isolamento por caso de uso: Evite testar múltiplos comportamentos em um único teste. Cada teste deve validar um único cenário específico.
+- Mocks bem definidos: Utilize mocks para simular dependências externas e focar no comportamento da unidade testada. Preferencialmente crie classes mockadas reutilizáveis por cenário.
+- Fakers e Fixtures organizados: Use fakers para criar dados falsos e fixtures para preparar cenários comuns e reutilizáveis.
+- Triple A (Arrange, Act, Assert): Siga essa estrutura para manter clareza na intenção do teste.
+- Nomeclatura descritiva: Nomeie os testes de forma que o cenário e a expectativa fiquem claros. Ex: CadastrarUsuario_DeveRetornarErro_QuandoEmailJaExiste
