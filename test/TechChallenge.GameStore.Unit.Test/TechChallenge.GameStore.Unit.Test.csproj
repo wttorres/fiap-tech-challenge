@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>$(TargetFramework)</TargetFramework>
         <LangVersion>$(LangVersion)</LangVersion>
@@ -12,4 +12,12 @@
       <Folder Include="WebApi\Agregado\CasoDeUso\Fixtures\" />
       <Folder Include="WebApi\Agregado\CasoDeUso\Mocks\" />
     </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="coverlet.collector" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" />
+		<PackageReference Include="NUnit" />
+		<PackageReference Include="NUnit.Analyzers" />
+		<PackageReference Include="NUnit3TestAdapter" />
+	</ItemGroup>
 </Project>

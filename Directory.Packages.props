@@ -3,14 +3,14 @@
   <ItemGroup>
     <PackageVersion Include="MediatR" Version="12.4.1" />
     <PackageVersion Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4"/>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4"/>
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
 
     <!--Package Tests-->
     <PackageVersion Include="coverlet.collector" Version="6.0.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
-    <PackageReference Include="NUnit" Version="3.14.0"/>
-    <PackageReference Include="NUnit.Analyzers" Version="3.9.0"/>
-    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0"/>
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
+    <PackageVersion Include="NUnit" Version="3.14.0"/>
+    <PackageVersion Include="NUnit.Analyzers" Version="3.9.0"/>
+    <PackageVersion Include="NUnit3TestAdapter" Version="4.5.0"/>
   </ItemGroup>
 </Project>
