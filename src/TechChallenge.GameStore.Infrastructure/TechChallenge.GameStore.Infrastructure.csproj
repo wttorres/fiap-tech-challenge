@@ -9,5 +9,11 @@
     <ItemGroup>
       <ProjectReference Include="..\TechChallenge.GameStore.Domain\TechChallenge.GameStore.Domain.csproj" />
     </ItemGroup>
+    
+    <ItemGroup> 
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore"/>
+    </ItemGroup>
 
 </Project>
