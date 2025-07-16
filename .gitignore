@@ -7,6 +7,13 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/Dotnet.gitignore
 
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -56,3 +63,5 @@ nunit-*.xml
 # Logs e arquivos auxiliares de EF Core
 **/*.Designer.cs
 **/*ModelSnapshot.cs
+
+/.vs/TechChallenge.GameStore/FileContentIndex/4af95a41-ee79-4fb9-8fb8-64a7971619a0.vsidx
