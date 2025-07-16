@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TechChallenge.GameStore.Domain.Repositories;
 using TechChallenge.GameStore.Domain.Usuarios;
 using TechChallenge.GameStore.Infrastructure._Shared;
+using TechChallenge.GameStore.Infrastructure.Repositories;
 using TechChallenge.GameStore.Infrastructure.Usuarios;
 
 namespace TechChallenge.GameStore.Infrastructure;
@@ -25,6 +27,7 @@ public static class Module
     private static void AddRepositories(IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
     }
 
 }
