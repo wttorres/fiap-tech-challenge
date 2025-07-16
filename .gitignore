@@ -52,3 +52,7 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Logs e arquivos auxiliares de EF Core
+**/*.Designer.cs
+**/*ModelSnapshot.cs

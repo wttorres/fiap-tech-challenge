@@ -13,4 +13,16 @@
       <ProjectReference Include="..\TechChallenge.GameStore.Application\TechChallenge.GameStore.Application.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\TechChallenge.GameStore.Application\TechChallenge.GameStore.Application.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MediatR"/>
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
+        <PackageReference Include="Swashbuckle.AspNetCore"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" />
+    </ItemGroup>
+
 </Project>

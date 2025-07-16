@@ -11,4 +11,11 @@
       <ProjectReference Include="..\TechChallenge.GameStore.Infrastructure\TechChallenge.GameStore.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <PackageReference Include="MediatR" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    </ItemGroup>
+
+
 </Project>
