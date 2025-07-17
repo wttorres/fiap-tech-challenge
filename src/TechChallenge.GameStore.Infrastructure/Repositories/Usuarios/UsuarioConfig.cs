@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TechChallenge.GameStore.Domain.Usuarios;
+using TechChallenge.GameStore.Domain.Repositories.Usuarios;
 
-namespace TechChallenge.GameStore.Infrastructure.Usuarios;
+namespace TechChallenge.GameStore.Infrastructure.Repositories.Usuarios;
 
 public class UsuarioConfig : IEntityTypeConfiguration<Usuario>
 {

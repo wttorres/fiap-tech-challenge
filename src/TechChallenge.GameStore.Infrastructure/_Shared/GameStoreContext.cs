@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TechChallenge.GameStore.Domain.Usuarios;
+using TechChallenge.GameStore.Domain.Repositories.Usuarios;
 
 namespace TechChallenge.GameStore.Infrastructure._Shared;
 

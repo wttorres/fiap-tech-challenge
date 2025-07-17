@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using TechChallenge.GameStore.Domain.Usuarios;
+using TechChallenge.GameStore.Domain.Repositories.Usuarios;
 
 namespace TechChallenge.GameStore.WebApi.Usuarios
 {

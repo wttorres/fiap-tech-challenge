@@ -1,6 +1,6 @@
 ﻿using TechChallenge.GameStore.Domain._Shared;
 
-namespace TechChallenge.GameStore.Domain.Usuarios
+namespace TechChallenge.GameStore.Domain.Repositories.Usuarios
 {
     public class Usuario
     {

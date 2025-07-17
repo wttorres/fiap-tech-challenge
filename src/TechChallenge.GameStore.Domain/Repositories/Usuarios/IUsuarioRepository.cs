@@ -1,4 +1,4 @@
-﻿namespace TechChallenge.GameStore.Domain.Usuarios;
+﻿namespace TechChallenge.GameStore.Domain.Repositories.Usuarios;
 
 public interface IUsuarioRepository
 {

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using TechChallenge.GameStore.Domain._Shared;
-using TechChallenge.GameStore.Domain.Usuarios;
+using TechChallenge.GameStore.Domain.Repositories.Usuarios;
 
 namespace TechChallenge.GameStore.Application.Usuarios.Cadastrar;
 
