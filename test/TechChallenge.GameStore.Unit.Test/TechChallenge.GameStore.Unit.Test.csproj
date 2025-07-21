@@ -7,17 +7,22 @@
         <ManagePackageVersionsCentrally>$(ManagePackageVersionsCentrally)</ManagePackageVersionsCentrally>
         <IsTestProject>$(IsTestProject)</IsTestProject>
     </PropertyGroup>
+    
     <ItemGroup>
-      <Folder Include="WebApi\Agregado\CasoDeUso\Fakers\" />
-      <Folder Include="WebApi\Agregado\CasoDeUso\Fixtures\" />
-      <Folder Include="WebApi\Agregado\CasoDeUso\Mocks\" />
+        <PackageReference Include="AutoBogus" />
+        <PackageReference Include="coverlet.collector" />
+        <PackageReference Include="FluentAssertions" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk"/>
+        <PackageReference Include="Moq" />
+        <PackageReference Include="NUnit.Analyzers"/>
+        <PackageReference Include="NUnit3TestAdapter"/> 
+        <PackageReference Include="xunit" /> 
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="coverlet.collector" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk"/>
-        <PackageReference Include="NUnit"/>
-        <PackageReference Include="NUnit.Analyzers"/>
-        <PackageReference Include="NUnit3TestAdapter"/> 
+      <ProjectReference Include="..\..\src\TechChallenge.GameStore.Application\TechChallenge.GameStore.Application.csproj" />
+      <ProjectReference Include="..\..\src\TechChallenge.GameStore.Domain\TechChallenge.GameStore.Domain.csproj" />
+      <ProjectReference Include="..\..\src\TechChallenge.GameStore.WebApi\TechChallenge.GameStore.WebApi.csproj" />
     </ItemGroup>
 </Project>

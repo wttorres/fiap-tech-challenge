@@ -18,6 +18,7 @@
 		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi"  />
 		<PackageReference Include="Swashbuckle.AspNetCore"  />
+		<PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
 	</ItemGroup>
 
     <ItemGroup>
