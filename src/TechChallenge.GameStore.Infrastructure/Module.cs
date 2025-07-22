@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TechChallenge.GameStore.Domain.Jogos;
 using TechChallenge.GameStore.Domain.Usuarios;
 using TechChallenge.GameStore.Infrastructure._Shared;
+using TechChallenge.GameStore.Infrastructure.Jogos;
 using TechChallenge.GameStore.Infrastructure.Usuarios;
 
 namespace TechChallenge.GameStore.Infrastructure;
@@ -12,7 +14,7 @@ public static class Module
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         AddDbContext(services, configuration);
-        AddRepositories(services, configuration);
+        AddRepositories(services, configuration);        
     }
     private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
     {
@@ -25,6 +27,7 @@ public static class Module
     private static void AddRepositories(IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+        services.AddScoped<IJogoRepository, JogoRepository>();
     }
 
 }

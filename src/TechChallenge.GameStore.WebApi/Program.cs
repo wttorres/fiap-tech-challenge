@@ -9,7 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.EnableAnnotations(); 
+    c.EnableAnnotations();
+    c.CustomSchemaIds(type => type.FullName);
 });
 
 builder.Services.AddControllers(); 
