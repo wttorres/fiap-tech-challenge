@@ -33,5 +33,9 @@ public class UsuarioConfig : IEntityTypeConfiguration<Usuario>
 
         builder.Property(u => u.CriadoEm)
             .IsRequired();
+        
+        builder.Property(u => u.Perfil)
+            .IsRequired()
+            .HasConversion<string>();
     }
 }

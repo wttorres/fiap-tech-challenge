@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Domain.Usuarios;
 using TechChallenge.GameStore.Infrastructure._Shared;
 
@@ -18,13 +19,29 @@ public class UsuarioRepository : IUsuarioRepository
         return await _context.Set<Usuario>().ToListAsync();
     }
 
-    public Task<Usuario?> ObterPorEmailAsync(string email)
+    public async Task<Usuario?> ObterPorEmailAsync(string email)
     {
-        throw new NotImplementedException();
+        return await _context.Set<Usuario>()
+            .AsNoTracking()
+            .Where(x => x.Email == email)
+            .FirstOrDefaultAsync();
     }
 
-    public Task<Usuario> AdicionarAsync(Usuario usuario)
+
+    public async Task<Result<Usuario>> AdicionarAsync(Usuario usuario)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _context.Set<Usuario>().AddAsync(usuario);
+            await _context.SaveChangesAsync();
+
+            return Result.Success(usuario);
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure<Usuario>($"Erro ao adicionar usuário: {ex.Message}");
+        }
     }
+
+
 }

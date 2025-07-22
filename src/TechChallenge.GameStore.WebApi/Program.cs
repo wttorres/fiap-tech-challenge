@@ -7,7 +7,11 @@ using TechChallenge.GameStore.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.EnableAnnotations(); 
+});
+
 builder.Services.AddControllers(); 
 builder.Services.AddInfrastructure(builder.Configuration); 
 builder.Services.AddApplication(builder.Configuration); 

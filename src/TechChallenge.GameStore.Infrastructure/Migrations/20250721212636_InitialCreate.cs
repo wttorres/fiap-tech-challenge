@@ -7,13 +7,13 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace TechChallenge.GameStore.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateUsuarioTable : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "usuarios",
+                name: "usuario",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -25,12 +25,12 @@ namespace TechChallenge.GameStore.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_usuarios", x => x.Id);
+                    table.PrimaryKey("PK_usuario", x => x.Id);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_usuarios_Email",
-                table: "usuarios",
+                name: "IX_usuario_Email",
+                table: "usuario",
                 column: "Email",
                 unique: true);
         }
@@ -39,7 +39,7 @@ namespace TechChallenge.GameStore.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "usuarios");
+                name: "usuario");
         }
     }
 }

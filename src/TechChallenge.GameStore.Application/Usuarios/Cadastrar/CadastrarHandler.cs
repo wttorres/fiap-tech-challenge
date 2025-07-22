@@ -16,16 +16,23 @@ public class CadastrarHandler : IRequestHandler<CadastrarCommand, Result<string>
     public async Task<Result<string>> Handle(CadastrarCommand request, CancellationToken cancellationToken)
     {
         var existente = await _repository.ObterPorEmailAsync(request.Email);
-       
-        if (existente != null)
+        
+        if (existente is not null)
             return Result.Failure<string>("Email já cadastrado.");
 
+        return await CadastrarAsync(request);
+    }
+
+    private async Task<Result<string>> CadastrarAsync(CadastrarCommand request)
+    {
         var resultado = Usuario.Criar(request.Nome, request.Email, request.Senha);
         if (!resultado.Sucesso)
             return Result.Failure<string>(resultado.Erro);
 
-        var usuarioSalvo = await _repository.AdicionarAsync(resultado.Valor);
-
-        return Result.Success(usuarioSalvo.Id.ToString());
+        var adicionarResult = await _repository.AdicionarAsync(resultado.Valor);
+        
+        return !adicionarResult.Sucesso 
+            ? Result.Failure<string>(adicionarResult.Erro) 
+            : Result.Success(adicionarResult.Valor.Id.ToString());
     }
 }

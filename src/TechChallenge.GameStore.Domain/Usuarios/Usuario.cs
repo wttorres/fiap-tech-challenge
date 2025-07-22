@@ -9,8 +9,10 @@ namespace TechChallenge.GameStore.Domain.Usuarios
         public string Email { get; private set; }
         public string Senha { get; private set; }
         public DateTime CriadoEm { get; private set; }
+
+        public Perfil Perfil { get; set; } = Perfil.Usuario;
         
-        private Usuario() { }
+        public Usuario() { }
 
         private Usuario(string nome, string email, string senha)
         {
