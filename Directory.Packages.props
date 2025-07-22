@@ -18,5 +18,8 @@
     <PackageVersion Include="Moq" Version="4.20.72" />
     <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="9.0.3" />
     <PackageVersion Include="xunit" Version="2.9.3" />
+    <PackageVersion Include="NUnit.Analyzers" Version="3.9.0" />
+    <PackageVersion Include="NUnit3TestAdapter" Version="4.5.0" />
+    <PackageVersion Include="coverlet.collector" Version="6.0.0" />
   </ItemGroup>
 </Project>
