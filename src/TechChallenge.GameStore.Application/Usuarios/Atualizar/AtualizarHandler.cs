@@ -24,7 +24,7 @@ public class AtualizarHandler :IRequestHandler<AtualizarCommand, Result<string>>
         if (usuario is null)
             return Result.Failure<string>("Usuário não encontrado");
 
-        var result = usuario.Atualizar(request.Nome, request.Email, request.Senha);
+        var result = usuario.Atualizar(request.Nome, request.Senha);
         if (!result.Sucesso)
             return Result.Failure<string>(result.Erro);
 

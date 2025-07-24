@@ -40,29 +40,21 @@ namespace TechChallenge.GameStore.Domain.Usuarios
             return Result.Success(usuario);
         }
 
-        public Result<Usuario> Atualizar(string? nome, string? email, string? senha)
+        public Result<Usuario> Atualizar(string? nome, string? senha)
         {
-            if (string.IsNullOrWhiteSpace(nome) && string.IsNullOrWhiteSpace(email) && string.IsNullOrWhiteSpace(senha))
+            if (string.IsNullOrWhiteSpace(nome) && string.IsNullOrWhiteSpace(senha))
                 return Result.Failure<Usuario>("Informe ao menos um campo para atualizar.");
 
             if (string.IsNullOrWhiteSpace(nome))
-                Nome = nome;
+                return Result.Failure<Usuario>("Nome é obrigatório.");
 
-            if (string.IsNullOrWhiteSpace(email))
-            {
-                if (string.IsNullOrWhiteSpace(email) || !email.Contains("@"))
-                    return Result.Failure<Usuario>("Email inválido.");
-
-                Email = email.Trim().ToLower();
-            }
-            if (!string.IsNullOrWhiteSpace(senha))
-            {
-                var senhaValidada = SenhaExtension.ValidarSenha(senha);
-                if (!senhaValidada.Sucesso)
-                    return Result.Failure<Usuario>(senhaValidada.Erro);
+            var senhaValidada = SenhaExtension.ValidarSenha(senha);
+            if (!senhaValidada.Sucesso)
+                return Result.Failure<Usuario>(senhaValidada.Erro);
                 
-                Senha = SenhaExtension.GerarHash(senha);
-            }
+            Nome = nome;
+            Senha = SenhaExtension.GerarHash(senha);
+
             return Result.Success(this);
         }
 

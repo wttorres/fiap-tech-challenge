@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using TechChallenge.GameStore.Domain._Shared;
 
@@ -18,10 +19,6 @@ public class AtualizarCommand : IRequest<Result<string>>
 
     [SwaggerSchema("Nome do usuário")]
     public string? Nome { get; set; }
-
-    [EmailAddress]
-    [SwaggerSchema("Email do usuário")]
-    public string? Email { get; set; }
 
     [SwaggerSchema("Senha do usuário (opcional)")]
     public string? Senha { get; set; }
