@@ -21,7 +21,7 @@ public class AtualizarUsuarioController : ControllerBase
     [HttpPut("{id}")]
     [SwaggerOperation(
         Summary = "Atualiza um usuário existente",
-        Description = "Atualiza nome e senha de um usuário existente. E-mail não pode ser alterado.")]
+        Description = "Atualiza nome, senha e e-mail de um usuário existente.")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Atualizar(int id, [FromBody] AtualizarCommand command)
