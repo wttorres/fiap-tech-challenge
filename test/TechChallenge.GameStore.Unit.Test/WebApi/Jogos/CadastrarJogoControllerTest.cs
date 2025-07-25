@@ -2,20 +2,20 @@
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using TechChallenge.GameStore.Unit.Test._Shared;
-using TechChallenge.GameStore.Unit.Test.WebApi.Promocoes.Fakers;
-using TechChallenge.GameStore.Unit.Test.WebApi.Promocoes.Fixtures;
+using TechChallenge.GameStore.Unit.Test.WebApi.Jogos.Fakers;
+using TechChallenge.GameStore.Unit.Test.WebApi.Jogos.Fixtures;
 using Xunit;
 
-namespace TechChallenge.GameStore.Unit.Test.WebApi.Promocoes;
+namespace TechChallenge.GameStore.Unit.Test.WebApi.Jogos;
 
-public class CadastrarPromocaoControllerTest : CadastrarPromocaoControllerFixture
+public class CadastrarJogoControllerTest : CadastrarJogoControllerFixture
 {
     [Fact]
     public async Task Cadastrar_QuandoSucesso_DeveRetornarOk()
     {
         // Arrange
-        var comando = CadastrarUsuarioCommandFaker.Valido();
-        var resultado = ResultFaker.Sucesso("PROMO123");
+        var comando = CadastrarJogoCommandFaker.Valido();
+        var resultado = ResultFaker.Sucesso("JOGO123");
 
         MediatorMock.ConfigurarEnvio(comando, resultado);
 
@@ -27,8 +27,8 @@ public class CadastrarPromocaoControllerTest : CadastrarPromocaoControllerFixtur
         okResult.Value.Should().BeEquivalentTo(new
         {
             sucesso = true,
-            mensagem = "Promoção cadastrada com sucesso.",
-            valor = "PROMO123"
+            mensagem = "Jogo cadastrado com sucesso.",
+            valor = "JOGO123"
         });
 
         MediatorMock.GarantirEnvio(comando);
@@ -38,8 +38,8 @@ public class CadastrarPromocaoControllerTest : CadastrarPromocaoControllerFixtur
     public async Task Cadastrar_QuandoFalha_DeveRetornarBadRequest()
     {
         // Arrange
-        var comando = CadastrarUsuarioCommandFaker.Valido();
-        var resultado = ResultFaker.Falha("Erro ao cadastrar promoção");
+        var comando = CadastrarJogoCommandFaker.Valido();
+        var resultado = ResultFaker.Falha("Erro ao cadastrar jogo");
 
         MediatorMock.ConfigurarEnvio(comando, resultado);
 
@@ -51,7 +51,7 @@ public class CadastrarPromocaoControllerTest : CadastrarPromocaoControllerFixtur
         badRequest.Value.Should().BeEquivalentTo(new
         {
             sucesso = false,
-            mensagem = "Erro ao cadastrar promoção",
+            mensagem = "Erro ao cadastrar jogo",
             valor = (string)null
         });
 

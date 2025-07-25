@@ -12,10 +12,17 @@ public class JogoConfiguration : IEntityTypeConfiguration<Jogo>
 
         builder.HasKey(j => j.Id);
 
-        builder.Ignore(p => p.Nome);
-        
-        builder.Property(u => u.Id)
+        builder.Property(j => j.Id)
             .IsRequired()
-            .ValueGeneratedOnAdd(); 
+            .ValueGeneratedOnAdd();
+
+        builder.Property(j => j.Nome)
+                .IsRequired()
+                .HasMaxLength(100);
+
+        builder.HasIndex(j => j.Nome);
+
+        builder.Property(j => j.Preco)
+            .IsRequired();
     }
 }

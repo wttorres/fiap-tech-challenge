@@ -1,6 +1,6 @@
 ﻿using TechChallenge.GameStore.Domain._Shared;
 
-namespace TechChallenge.GameStore.Unit.Test.WebApi.Promocoes.Fakers;
+namespace TechChallenge.GameStore.Unit.Test._Shared;
 
 public static class ResultFaker
 {
