@@ -13,7 +13,7 @@
 
     <ItemGroup>
         <PackageReference Include="MediatR" />
-        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection"/>
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
         <PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
     </ItemGroup>

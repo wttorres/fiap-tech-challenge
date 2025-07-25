@@ -18,14 +18,14 @@ public class CadastrarUsuarioController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost("Post")]
+    [HttpPost]
     [SwaggerOperation(
         Summary = "Cadastra um novo usuário",
         Description = "Realiza o cadastro de um usuário informando nome, email e senha."
     )]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Cadastrar([FromBody] CadastrarCommand command)
+    public async Task<IActionResult> Cadastrar([FromBody] CadastrarUsuarioCommand command)
     {
         var result = await _mediator.Send(command);
 

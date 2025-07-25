@@ -7,16 +7,16 @@ namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios.Cadastrar.Faker
 
 public static class CadastrarCommandFaker
 {
-    public static CadastrarCommand Valido()
+    public static CadastrarUsuarioCommand Valido()
     {
-        return new AutoFaker<CadastrarCommand>()
+        return new AutoFaker<CadastrarUsuarioCommand>()
             .RuleFor(x => x.Nome, f => f.Person.FullName)
             .RuleFor(x => x.Email, f => f.Internet.Email())
             .RuleFor(x => x.Senha, f => GerarSenhaValida())
             .Generate();
     }
 
-    public static CadastrarCommand ComEmailInvalido()
+    public static CadastrarUsuarioCommand ComEmailInvalido()
     {
         var command = Valido();
         command.Email = "email_invalido";

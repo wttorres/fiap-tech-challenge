@@ -1,7 +1,7 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore;
 using TechChallenge.GameStore.Infrastructure._Shared;
 using TechChallenge.GameStore.Infrastructure.Usuarios;
+using TechChallenge.GameStore.Unit.Test._Shared;
 
 namespace TechChallenge.GameStore.Unit.Test.Infrastructure.Usuarios.Fixtures;
 
@@ -12,11 +12,7 @@ public class UsuarioRepositoryFixture : IDisposable
 
     public UsuarioRepositoryFixture()
     {
-        var options = new DbContextOptionsBuilder<GameStoreContext>()
-            .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()) 
-            .Options;
-
-        Context = new GameStoreContext(options);
+        Context    = ContextFactory.Create();
         Repository = new UsuarioRepository(Context);
     }
 

@@ -6,7 +6,7 @@ namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios.Cadastrar.Faker
 
 public class UsuarioFaker
 {
-    public static Usuario ConverterParaUsuario(CadastrarCommand command)
+    public static Usuario ConverterParaUsuario(CadastrarUsuarioCommand command)
     {
         return new AutoFaker<Usuario>()
             .RuleFor(x => x.Nome, f => command.Nome)
