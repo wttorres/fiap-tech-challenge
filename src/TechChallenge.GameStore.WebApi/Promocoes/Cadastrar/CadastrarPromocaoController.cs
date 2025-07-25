@@ -1,38 +1,38 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.Annotations;
-using TechChallenge.GameStore.Application.Usuarios.Cadastrar;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
+using TechChallenge.GameStore.Application.Promocoes.Cadastar;
 
-namespace TechChallenge.GameStore.WebApi.Usuarios.Cadastrar;
+namespace TechChallenge.GameStore.WebApi.Promocoes.Cadastrar;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CadastrarUsuarioController : ControllerBase
+public class CadastrarPromocaoController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public CadastrarUsuarioController(IMediator mediator)
+    public CadastrarPromocaoController(IMediator mediator)
     {
         _mediator = mediator;
     }
 
     [HttpPost]
     [SwaggerOperation(
-        Summary = "Cadastra um novo usuário",
-        Description = "Realiza o cadastro de um usuário informando nome, email e senha."
+        Summary = "Cadastra uma nova promoção",
+        Description = "Realiza o cadastro de uma nova promoção de jogo."
     )]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Cadastrar([FromBody] CadastrarUsuarioCommand command)
+    public async Task<IActionResult> Cadastrar([FromBody] CadastrarPromocaoCommand command)
     {
         var result = await _mediator.Send(command);
 
         var response = new
         {
             sucesso  = result.Sucesso,
-            mensagem = result.Sucesso ? "Usuário cadastrado com sucesso." : result.Erro,
+            mensagem = result.Sucesso ? "Promoção cadastrada com sucesso." : result.Erro,
             valor    = result.Sucesso ? result.Valor : null
         };
 

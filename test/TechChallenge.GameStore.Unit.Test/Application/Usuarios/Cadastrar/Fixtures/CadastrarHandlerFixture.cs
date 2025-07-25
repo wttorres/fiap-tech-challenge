@@ -6,11 +6,11 @@ namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios.Cadastrar.Fixtu
 public class CadastrarHandlerFixture
 {
     protected UsuarioRepositoryMock UsuarioRepositoryMock { get; private set; }
-    protected CadastrarHandler Handler { get; private set; }
+    protected CadastrarUsuarioHandler UsuarioHandler { get; private set; }
 
     public CadastrarHandlerFixture()
     {
         UsuarioRepositoryMock = new UsuarioRepositoryMock();
-        Handler = new CadastrarHandler(UsuarioRepositoryMock.Object);
+        UsuarioHandler = new CadastrarUsuarioHandler(UsuarioRepositoryMock.Object);
     }
 }
