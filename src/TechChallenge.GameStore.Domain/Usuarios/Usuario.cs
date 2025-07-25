@@ -16,7 +16,7 @@ namespace TechChallenge.GameStore.Domain.Usuarios
 
         private Usuario(string nome, string email, string senha)
         {
-            Nome = nome;
+            Nome  = nome;
             Email = email;
             Senha = senha;
             CriadoEm = DateTime.UtcNow;

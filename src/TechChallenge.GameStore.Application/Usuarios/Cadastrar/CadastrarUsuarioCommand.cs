@@ -5,7 +5,7 @@ using TechChallenge.GameStore.Domain._Shared;
 
 namespace TechChallenge.GameStore.Application.Usuarios.Cadastrar;
 
-public class CadastrarCommand : IRequest<Result<string>>
+public class CadastrarUsuarioCommand : IRequest<Result<string>>
 {
     [Required]
     [SwaggerSchema("Nome completo do usuário")]

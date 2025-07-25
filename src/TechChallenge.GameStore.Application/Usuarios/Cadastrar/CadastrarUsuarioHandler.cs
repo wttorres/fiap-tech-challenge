@@ -4,16 +4,16 @@ using TechChallenge.GameStore.Domain.Usuarios;
 
 namespace TechChallenge.GameStore.Application.Usuarios.Cadastrar;
 
-public class CadastrarHandler : IRequestHandler<CadastrarCommand, Result<string>>
+public class CadastrarUsuarioHandler : IRequestHandler<CadastrarUsuarioCommand, Result<string>>
 {
     private readonly IUsuarioRepository _repository;
 
-    public CadastrarHandler(IUsuarioRepository repository)
+    public CadastrarUsuarioHandler(IUsuarioRepository repository)
     {
         _repository = repository;
     }
 
-    public async Task<Result<string>> Handle(CadastrarCommand request, CancellationToken cancellationToken)
+    public async Task<Result<string>> Handle(CadastrarUsuarioCommand request, CancellationToken cancellationToken)
     {
         var existente = await _repository.ObterPorEmailAsync(request.Email);
         
@@ -23,7 +23,7 @@ public class CadastrarHandler : IRequestHandler<CadastrarCommand, Result<string>
         return await CadastrarAsync(request);
     }
 
-    private async Task<Result<string>> CadastrarAsync(CadastrarCommand request)
+    private async Task<Result<string>> CadastrarAsync(CadastrarUsuarioCommand request)
     {
         var resultado = Usuario.Criar(request.Nome, request.Email, request.Senha);
         if (!resultado.Sucesso)

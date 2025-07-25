@@ -9,12 +9,12 @@ public class MediatorMock : Mock<IMediator>
 {
     public void ConfigurarSendParaRetornar(Result<string> result)
     {
-        Setup(x => x.Send(It.IsAny<CadastrarCommand>(), default))
+        Setup(x => x.Send(It.IsAny<CadastrarUsuarioCommand>(), default))
             .ReturnsAsync(result);
     }
 
     public void GarantirEnvioDoCommand()
     {
-        Verify(x => x.Send(It.IsAny<CadastrarCommand>(), default), Times.Once);
+        Verify(x => x.Send(It.IsAny<CadastrarUsuarioCommand>(), default), Times.Once);
     }
 }

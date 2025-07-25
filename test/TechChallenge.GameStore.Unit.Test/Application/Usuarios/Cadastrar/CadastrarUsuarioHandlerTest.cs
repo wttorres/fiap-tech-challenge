@@ -8,7 +8,7 @@ using Xunit;
 
 namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios.Cadastrar;
 
-public class CadastrarHandlerTest : CadastrarHandlerFixture
+public class CadastrarUsuarioHandlerTest : CadastrarHandlerFixture
 {
     [Fact]
     public async Task Handle_QuandoEmailJaCadastrado_DeveRetornarFalha()
@@ -18,7 +18,7 @@ public class CadastrarHandlerTest : CadastrarHandlerFixture
         UsuarioRepositoryMock.ConfigurarParaRetornarUsuarioAoObterPorEmail(UsuarioFaker.ConverterParaUsuario(command));
 
         // Act
-        var resultado = await Handler.Handle(command, default);
+        var resultado = await UsuarioHandler.Handle(command, default);
 
         // Assert
         resultado.Sucesso.Should().BeFalse();
@@ -37,7 +37,7 @@ public class CadastrarHandlerTest : CadastrarHandlerFixture
         UsuarioRepositoryMock.ConfigurarParaRetornarUsuarioAoAdicionar(Result.Success(usuario));
 
         // Act
-        var resultado = await Handler.Handle(command, default);
+        var resultado = await UsuarioHandler.Handle(command, default);
 
         // Assert
         resultado.Sucesso.Should().BeTrue();
@@ -53,7 +53,7 @@ public class CadastrarHandlerTest : CadastrarHandlerFixture
         UsuarioRepositoryMock.ConfigurarParaRetornarUsuarioAoObterPorEmail(null);
 
         // Act
-        var resultado = await Handler.Handle(command, default);
+        var resultado = await UsuarioHandler.Handle(command, default);
 
         // Assert
         resultado.Sucesso.Should().BeFalse();
@@ -72,7 +72,7 @@ public class CadastrarHandlerTest : CadastrarHandlerFixture
         UsuarioRepositoryMock.ConfigurarParaRetornarUsuarioAoAdicionar(Result.Failure<Usuario>("Erro ao adicionar"));
 
         // Act
-        var resultado = await Handler.Handle(command, default);
+        var resultado = await UsuarioHandler.Handle(command, default);
 
         // Assert
         resultado.Sucesso.Should().BeFalse();

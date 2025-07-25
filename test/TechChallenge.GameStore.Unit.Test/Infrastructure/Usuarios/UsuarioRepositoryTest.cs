@@ -11,25 +11,19 @@ using Xunit;
 
 namespace TechChallenge.GameStore.Unit.Test.Infrastructure.Usuarios;
 
-public class UsuarioRepositoryTest : IClassFixture<UsuarioRepositoryFixture>
+public class UsuarioRepositoryTest 
 {
-    private readonly UsuarioRepositoryFixture _fixture;
-
-    public UsuarioRepositoryTest(UsuarioRepositoryFixture fixture)
-    {
-        _fixture = fixture;
-    }
-
     [Fact]
     public async Task ObterPorEmailAsync_QuandoUsuarioExiste_DeveRetornarUsuario()
     {
         // Arrange
+        using var fixture = new UsuarioRepositoryFixture();
         var usuario = UsuarioFaker.Valido();
-        await _fixture.Context.Set<Usuario>().AddAsync(usuario);
-        await _fixture.Context.SaveChangesAsync();
+        await fixture.Context.Set<Usuario>().AddAsync(usuario);
+        await fixture.Context.SaveChangesAsync();
 
         // Act
-        var resultado = await _fixture.Repository.ObterPorEmailAsync(usuario.Email);
+        var resultado = await fixture.Repository.ObterPorEmailAsync(usuario.Email);
 
         // Assert
         resultado.Should().NotBeNull();
@@ -40,7 +34,8 @@ public class UsuarioRepositoryTest : IClassFixture<UsuarioRepositoryFixture>
     public async Task ObterPorEmailAsync_QuandoNaoExiste_DeveRetornarNull()
     {
         // Act
-        var resultado = await _fixture.Repository.ObterPorEmailAsync("nao@existe.com");
+        using var fixture = new UsuarioRepositoryFixture();
+        var resultado = await fixture.Repository.ObterPorEmailAsync("nao@existe.com");
 
         // Assert
         resultado.Should().BeNull();
@@ -50,15 +45,16 @@ public class UsuarioRepositoryTest : IClassFixture<UsuarioRepositoryFixture>
     public async Task AdicionarAsync_QuandoUsuarioValido_DevePersistir()
     {
         // Arrange
+        using var fixture = new UsuarioRepositoryFixture();
         var usuario = UsuarioFaker.Valido();
 
         // Act
-        var resultado = await _fixture.Repository.AdicionarAsync(usuario);
+        var resultado = await fixture.Repository.AdicionarAsync(usuario);
 
         // Assert
         resultado.Sucesso.Should().BeTrue();
 
-        var persistido = await _fixture.Context.Set<Usuario>().FirstOrDefaultAsync(x => x.Email == usuario.Email);
+        var persistido = await fixture.Context.Set<Usuario>().FirstOrDefaultAsync(x => x.Email == usuario.Email);
         persistido.Should().NotBeNull();
     }
 
@@ -66,12 +62,13 @@ public class UsuarioRepositoryTest : IClassFixture<UsuarioRepositoryFixture>
     public async Task ObterTodosAsync_QuandoExistemUsuarios_DeveRetornarLista()
     {
         // Arrange
+        using var fixture = new UsuarioRepositoryFixture();
         var usuario = UsuarioFaker.Valido();
-        await _fixture.Context.Set<Usuario>().AddAsync(usuario);
-        await _fixture.Context.SaveChangesAsync();
+        await fixture.Context.Set<Usuario>().AddAsync(usuario);
+        await fixture.Context.SaveChangesAsync();
 
         // Act
-        var lista = await _fixture.Repository.ObterTodosAsync();
+        var lista = await fixture.Repository.ObterTodosAsync();
 
         // Assert
         lista.Should().NotBeNull();
