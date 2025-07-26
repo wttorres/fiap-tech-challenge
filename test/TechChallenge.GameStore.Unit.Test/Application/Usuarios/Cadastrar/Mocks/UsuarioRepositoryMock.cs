@@ -27,4 +27,16 @@ public class UsuarioRepositoryMock : Mock<IUsuarioRepository>
     {
         Verify(x => x.AdicionarAsync(It.IsAny<Usuario>()), Times.Never);
     }
+
+    public void ConfigurarParaObterPorId(Usuario usuario)
+    {
+        Setup(r => r.ObterPorIdAsync(usuario.Id))
+            .ReturnsAsync(usuario);
+    }
+
+    public void ConfigurarParaAtualizar(Result<Usuario> resultado)
+    {
+        Setup(r => r.AtualizarAsync(It.IsAny<Usuario>()))
+            .ReturnsAsync(resultado);
+    }
 }

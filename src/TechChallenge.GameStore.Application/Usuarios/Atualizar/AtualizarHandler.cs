@@ -22,9 +22,9 @@ public class AtualizarHandler :IRequestHandler<AtualizarCommand, Result<string>>
     {
         var usuario = await _repository.ObterPorIdAsync(request.Id);
         if (usuario is null)
-            return Result.Failure<string>("Usuário não encontrado");
+            return Result.Failure<string>($"Usuário com ID {request.Id} não encontrado.");
 
-        var result = usuario.Atualizar(request.Nome, request.Senha);
+        var result = usuario.Atualizar(request?.Nome, request?.Senha);
         if (!result.Sucesso)
             return Result.Failure<string>(result.Erro);
 

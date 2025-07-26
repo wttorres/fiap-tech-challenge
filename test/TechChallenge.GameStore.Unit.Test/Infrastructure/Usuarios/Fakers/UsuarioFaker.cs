@@ -8,7 +8,7 @@ public static class UsuarioFaker
     {
         var nome  = "João Teste";
         var email = "joao@teste.com";
-        var senha = "Abc@123";
+        var senha = "Abc@1234";
 
         return Usuario.Criar(nome, email, senha).Valor!;
     }
