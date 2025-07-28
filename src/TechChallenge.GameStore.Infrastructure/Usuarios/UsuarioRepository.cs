@@ -42,6 +42,4 @@ public class UsuarioRepository : IUsuarioRepository
             return Result.Failure<Usuario>($"Erro ao adicionar usuário: {ex.Message}");
         }
     }
-
-
 }

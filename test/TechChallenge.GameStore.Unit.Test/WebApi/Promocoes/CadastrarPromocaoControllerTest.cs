@@ -1,6 +1,9 @@
 ﻿using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
+using TechChallenge.GameStore.Application.Promocoes.Cadastar;
+using TechChallenge.GameStore.Application.Promocoes.Remover;
+using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Unit.Test._Shared;
 using TechChallenge.GameStore.Unit.Test.WebApi.Promocoes.Fakers;
 using TechChallenge.GameStore.Unit.Test.WebApi.Promocoes.Fixtures;
@@ -14,13 +17,13 @@ public class CadastrarPromocaoControllerTest : CadastrarPromocaoControllerFixtur
     public async Task Cadastrar_QuandoSucesso_DeveRetornarOk()
     {
         // Arrange
-        var comando = CadastrarUsuarioCommandFaker.Valido();
-        var resultado = ResultFaker.Sucesso("PROMO123");
+        var command = CadastrarUsuarioCommandFaker.Valido();
+        var result  = ResultFaker.Sucesso("PROMO123");
 
-        MediatorMock.ConfigurarEnvio(comando, resultado);
+        MediatorMock.ConfigurarSend(command, result);
 
         // Act
-        var response = await Controller.Cadastrar(comando);
+        var response = await Controller.Cadastrar(command);
 
         // Assert
         var okResult = response.Should().BeOfType<OkObjectResult>().Subject;
@@ -31,20 +34,20 @@ public class CadastrarPromocaoControllerTest : CadastrarPromocaoControllerFixtur
             valor = "PROMO123"
         });
 
-        MediatorMock.GarantirEnvio(comando);
+        MediatorMock.GarantirSend<CadastrarPromocaoCommand, Result<string>>(x => x.Nome == command.Nome);
     }
 
     [Fact]
     public async Task Cadastrar_QuandoFalha_DeveRetornarBadRequest()
     {
         // Arrange
-        var comando = CadastrarUsuarioCommandFaker.Valido();
-        var resultado = ResultFaker.Falha("Erro ao cadastrar promoção");
-
-        MediatorMock.ConfigurarEnvio(comando, resultado);
-
+        var command = CadastrarUsuarioCommandFaker.Valido();
+        var result  = ResultFaker.Falha("Erro ao cadastrar promoção");
+        
+        MediatorMock.ConfigurarSend(command, result);
+        
         // Act
-        var response = await Controller.Cadastrar(comando);
+        var response = await Controller.Cadastrar(command);
 
         // Assert
         var badRequest = response.Should().BeOfType<BadRequestObjectResult>().Subject;
@@ -55,6 +58,6 @@ public class CadastrarPromocaoControllerTest : CadastrarPromocaoControllerFixtur
             valor = (string)null
         });
 
-        MediatorMock.GarantirEnvio(comando);
+        MediatorMock.GarantirSend<CadastrarPromocaoCommand, Result<string>>(x => x.Nome == command.Nome);
     }
 }

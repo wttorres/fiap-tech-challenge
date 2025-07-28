@@ -3,37 +3,37 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using TechChallenge.GameStore.Application.Promocoes.Cadastar;
+using TechChallenge.GameStore.Application.Promocoes.Remover;
 
-namespace TechChallenge.GameStore.WebApi.Promocoes.Cadastrar;
+namespace TechChallenge.GameStore.WebApi.Promocoes.Remover;
 
 [ApiController]
 [Route("api/[controller]")]
 [ApiExplorerSettings(GroupName = "Promocao")]
-public class CadastrarPromocaoController : ControllerBase
+public class RemoverPromocaoController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public CadastrarPromocaoController(IMediator mediator)
+    public RemoverPromocaoController(IMediator mediator)
     {
         _mediator = mediator;
     }
 
-    [HttpPost]
+    [HttpDelete]
     [SwaggerOperation(
-        Summary = "Cadastra uma nova promoção",
-        Description = "Realiza o cadastro de uma nova promoção de jogo."
+        Summary = "Excluir promoção",
+        Description = "Realiza a exclusão de uma promoção de jogo."
     )]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Cadastrar([FromBody] CadastrarPromocaoCommand command)
+    public async Task<IActionResult> Cadastrar([FromBody] RemoverPromocaoCommand command)
     {
         var result = await _mediator.Send(command);
 
         var response = new
         {
             sucesso  = result.Sucesso,
-            mensagem = result.Sucesso ? "Promoção cadastrada com sucesso." : result.Erro,
+            mensagem = result.Sucesso ? "Promoção removida com sucesso." : result.Erro,
             valor    = result.Sucesso ? result.Valor : null
         };
 

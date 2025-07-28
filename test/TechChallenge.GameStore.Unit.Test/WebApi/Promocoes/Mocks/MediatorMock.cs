@@ -1,19 +1,22 @@
-﻿using MediatR;
+﻿using System;
+using System.Threading;
+using MediatR;
 using Moq;
-using TechChallenge.GameStore.Application.Promocoes.Cadastar;
-using TechChallenge.GameStore.Domain._Shared;
 
 namespace TechChallenge.GameStore.Unit.Test.WebApi.Promocoes.Mocks;
 
 public class MediatorMock : Mock<IMediator>
 {
-    public void ConfigurarEnvio(CadastrarPromocaoCommand comando, Result<string> resultado)
+    public void ConfigurarSend<TRequest, TResponse>(TRequest esperado, TResponse resultado)
+        where TRequest : class, IRequest<TResponse>
     {
-        Setup(m => m.Send(comando, default)).ReturnsAsync(resultado);
+        Setup(m => m.Send(It.Is<TRequest>(req => req.Equals(esperado)), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(resultado);
     }
 
-    public void GarantirEnvio(CadastrarPromocaoCommand comando)
+    public void GarantirSend<TRequest, TResponse>(Func<TRequest, bool> predicado)
+        where TRequest : class, IRequest<TResponse>
     {
-        Verify(m => m.Send(comando, default), Times.Once);
+        Verify(m => m.Send(It.Is<TRequest>(req => predicado(req)), It.IsAny<CancellationToken>()), Times.Once);
     }
 }

@@ -15,7 +15,7 @@ public class PromocaoRepositoryTest
     public async Task ExisteAsync_QuandoPromocaoExiste_DeveRetornarTrue()
     {
         // Arrange
-        using var fixture = new PromocaoRepositoryFixture();
+        var fixture  = new PromocaoRepositoryFixture();
         var promocao = PromocaoFaker.ComNome("Cyber Monday");
         await fixture.Context.Set<Promocao>().AddAsync(promocao);
         await fixture.Context.SaveChangesAsync();
@@ -31,8 +31,8 @@ public class PromocaoRepositoryTest
     public async Task ExisteAsync_QuandoPromocaoNaoExiste_DeveRetornarFalse()
     {
         // Act
-        using var fixture = new PromocaoRepositoryFixture();
-        var existe = await fixture.Repository.ExisteAsync("NÃO EXISTE");
+        var fixture = new PromocaoRepositoryFixture();
+        var existe  = await fixture.Repository.ExisteAsync("NÃO EXISTE");
 
         // Assert
         existe.Should().BeFalse();
@@ -42,7 +42,7 @@ public class PromocaoRepositoryTest
     public async Task AdicionarAsync_QuandoPromocaoValida_DevePersistir()
     {
         // Arrange
-        using var fixture = new PromocaoRepositoryFixture();
+        var fixture  = new PromocaoRepositoryFixture();
         var promocao = PromocaoFaker.Valida();
 
         // Act
@@ -60,7 +60,7 @@ public class PromocaoRepositoryTest
     public async Task AdicionarAsync_QuandoSalvarFalha_DeveRetornarErro()
     {
         // Arrange
-        var context = ContextFactory.Create();
+        var context    = ContextFactory.Create();
         var repository = new PromocaoRepository(context);
 
         // Força falha descartando o contexto
@@ -72,5 +72,62 @@ public class PromocaoRepositoryTest
         // Assert
         result.Sucesso.Should().BeFalse();
         result.Erro.Should().Contain("Erro ao salvar promoção");
+    }
+    
+    [Fact]
+    public async Task ExcluirAsync_QuandoPromocaoExiste_DeveRemoverComSucesso()
+    {
+        // Arrange
+        var fixture  = new PromocaoRepositoryFixture();
+        var promocao = PromocaoFaker.Valida();
+       
+        await fixture.Context.Set<Promocao>().AddAsync(promocao);
+        await fixture.Context.SaveChangesAsync();
+
+        // Act
+        var result = await fixture.Repository.ExcluirAsync(promocao);
+
+        // Assert
+        result.Sucesso.Should().BeTrue();
+        result.Valor.Should().Be("Promoção removida com sucesso");
+
+        var exists = await fixture.Context.Set<Promocao>().FindAsync(promocao.Id);
+        exists.Should().BeNull();
+    }
+
+    [Fact]
+    public async Task ExcluirAsync_QuandoOcorrerErro_DeveRetornarFalha()
+    {
+        // Arrange
+        var context    = ContextFactory.Create();
+        var repository = new PromocaoRepository(context);
+        var promocao   = PromocaoFaker.Valida();
+        
+        context.Dispose(); // Força falha
+
+        // Act
+        var result = await repository.ExcluirAsync(promocao);
+
+        // Assert
+        result.Sucesso.Should().BeFalse();
+        result.Erro.Should().Contain("Erro ao remover promoção");
+    }
+    
+    [Fact]
+    public async Task ObterPorIdAsync_QuandoExiste_DeveRetornarEntidade()
+    {
+        // Arrange
+        using var fixture = new PromocaoRepositoryFixture();
+        var promocao      = PromocaoFaker.Valida();
+        
+        await fixture.Context.Set<Promocao>().AddAsync(promocao);
+        await fixture.Context.SaveChangesAsync();
+
+        // Act
+        var resultado = await fixture.Repository.ObterPorIdAsync(promocao.Id);
+
+        // Assert
+        resultado.Should().NotBeNull();
+        resultado!.Id.Should().Be(promocao.Id);
     }
 }

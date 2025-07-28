@@ -43,4 +43,25 @@ public class PromocaoRepository : IPromocaoRepository
             .Include(x => x.Jogo)
             .ToListAsync();
     }
+
+    public async Task<Promocao?> ObterPorIdAsync(int promocaoId)
+    {
+        return await _context.Set<Promocao>()
+            .FirstOrDefaultAsync(x => x.Id == promocaoId);
+    }
+
+    public async Task<Result<string>> ExcluirAsync(Promocao promocao)
+    {
+        try
+        {
+            _context.Set<Promocao>().Remove(promocao);
+            await _context.SaveChangesAsync();
+
+            return Result.Success("Promoção removida com sucesso");
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure<string>($"Erro ao remover promoção: {ex.Message}");
+        }
+    }
 }
