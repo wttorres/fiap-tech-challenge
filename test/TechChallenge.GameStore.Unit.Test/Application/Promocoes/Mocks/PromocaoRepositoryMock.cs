@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Moq;
+using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Domain.Jogos;
 using TechChallenge.GameStore.Domain.Promocoes;
 
@@ -26,5 +27,45 @@ public class PromocaoRepositoryMock : Mock<IPromocaoRepository>
     public void GarantirAdicao()
     {
         Verify(p => p.AdicionarAsync(It.IsAny<Promocao>()), Times.Once);
+    }
+    
+    public void ConfigurarObterPorId(Promocao? resultado)
+    {
+        Setup(x => x.ObterPorIdAsync(It.IsAny<int>())).ReturnsAsync(resultado);
+    }
+
+    public void ConfigurarExcluir(Promocao promocao, Result<string> resultado)
+    {
+        Setup(x => x.ExcluirAsync(promocao)).ReturnsAsync(resultado);
+    }
+
+    public void GarantirConsultaPorId(int id)
+    {
+        Verify(x => x.ObterPorIdAsync(id), Times.Once);
+    }
+
+    public void GarantirExclusao(Promocao promocao)
+    {
+        Verify(x => x.ExcluirAsync(promocao), Times.Once);
+    }
+    
+    public void ConfigurarObterPorJogosIds(List<PromocaoJogo> resultado)
+    {
+        Setup(x => x.ObterPorJogosIdsAsync(It.IsAny<List<int>>())).ReturnsAsync(resultado);
+    }
+
+    public void ConfigurarAtualizarAsync(Result<string> resultado)
+    {
+        Setup(x => x.AtualizarAsync(It.IsAny<Promocao>())).ReturnsAsync(resultado);
+    }
+    
+    public void ConfigurarObterPorIdAsync(Promocao? resultado)
+    {
+        Setup(x => x.ObterPorIdAsync(It.IsAny<int>())).ReturnsAsync(resultado);
+    }
+
+    public void ConfigurarObterTodasAsync(List<Promocao> resultado)
+    {
+        Setup(x => x.ObterTodasAsync()).ReturnsAsync(resultado);
     }
 }

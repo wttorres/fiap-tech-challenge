@@ -9,6 +9,7 @@ namespace TechChallenge.GameStore.WebApi.Promocoes.Cadastrar;
 
 [ApiController]
 [Route("api/[controller]")]
+[ApiExplorerSettings(GroupName = "Promocao")]
 public class CadastrarPromocaoController : ControllerBase
 {
     private readonly IMediator _mediator;
