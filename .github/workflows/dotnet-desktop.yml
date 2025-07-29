@@ -1,0 +1,35 @@
+name: Integracao Continua
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  ci:
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Instalar .NET 8
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Restaurar pacotes
+      run: dotnet restore TechChallenge.GameStore.sln
+
+    - name: Build da solução
+      run: dotnet build TechChallenge.GameStore.sln --configuration ${{ matrix.configuration }} --no-restore
+
+    - name: Executar testes
+      run: dotnet test test/TechChallenge.GameStore.Unit.Test/TechChallenge.GameStore.Unit.Test.csproj --configuration ${{ matrix.configuration }} --no-build --logger trx
