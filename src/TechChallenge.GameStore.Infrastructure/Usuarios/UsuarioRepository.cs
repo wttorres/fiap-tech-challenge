@@ -42,4 +42,25 @@ public class UsuarioRepository : IUsuarioRepository
             return Result.Failure<Usuario>($"Erro ao adicionar usuário: {ex.Message}");
         }
     }
+
+    public async Task<Usuario?> ObterPorIdAsync(int id)
+    {
+        return await _context.Set<Usuario>().FindAsync(id);
+    }
+
+    public async Task<Result<Usuario>> AtualizarAsync(Usuario usuario)
+    {
+        try
+        {
+            _context.Set<Usuario>().Update(usuario);
+            await _context.SaveChangesAsync();
+            return Result.Success(usuario);
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure<Usuario>($"Erro ao atualizar usuário: {ex.Message}");
+        }
+    }
+
+
 }

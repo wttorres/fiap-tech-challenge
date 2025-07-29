@@ -13,7 +13,7 @@ public class SenhaExtensionTest
     [InlineData("1234567!", "Senha deve conter pelo menos uma letra.")]
     [InlineData("Abcdefg!", "Senha deve conter pelo menos um número.")]
     [InlineData("Abc12345", "Senha deve conter pelo menos um caractere especial.")]
-    [InlineData("Abc@123456", "Senha deve conter no máximo 8 caracteres.")]
+    [InlineData("Abc@1", "Senha deve conter no mínimo 8 caracteres.")]
     public void ValidarSenha_QuandoInvalida_DeveRetornarErro(string senha, string mensagemEsperada)
     {
         // Act
@@ -25,9 +25,9 @@ public class SenhaExtensionTest
     }
 
     [Theory]
-    [InlineData("Abc@123")]
-    [InlineData("1a!2b@3")]
-    [InlineData("A1@aaaa")]
+    [InlineData("Abc@12345")]
+    [InlineData("1a!2b@3$4")]
+    [InlineData("A1@aaaaa")]
     public void ValidarSenha_QuandoValida_DeveRetornarSucesso(string senhaValida)
     {
         // Act
