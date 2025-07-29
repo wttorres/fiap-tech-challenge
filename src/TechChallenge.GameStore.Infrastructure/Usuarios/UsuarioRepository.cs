@@ -50,11 +50,6 @@ public class UsuarioRepository : IUsuarioRepository
         }
     }
 
-    public async Task<Usuario?> ObterPorIdAsync(int id)
-    {
-        return await _context.Set<Usuario>().FindAsync(id);
-    }
-
     public async Task<Result<Usuario>> AtualizarAsync(Usuario usuario)
     {
         try
