@@ -9,19 +9,21 @@ namespace TechChallenge.GameStore.Domain.Usuarios
         public string Email { get; private set; }
         public string Senha { get; private set; }
         public DateTime CriadoEm { get; private set; }
+        public List<BibliotecaJogo> Biblioteca { get; set; }
+
 
         public Perfil Perfil { get; set; } = Perfil.Usuario;
-        
+
         public Usuario() { }
 
         private Usuario(string nome, string email, string senha)
         {
-            Nome  = nome;
+            Nome = nome;
             Email = email;
             Senha = senha;
             CriadoEm = DateTime.UtcNow;
         }
-        
+
         public static Result<Usuario> Criar(string nome, string email, string senha)
         {
             if (string.IsNullOrWhiteSpace(nome))

@@ -4,6 +4,7 @@ namespace TechChallenge.GameStore.Domain.Usuarios;
 
 public interface IUsuarioRepository
 {
+    Task<Usuario?> ObterPorIdAsync(int id);
     Task<Usuario?> ObterPorEmailAsync(string email);
     Task<Result<Usuario>> AdicionarAsync(Usuario usuario);
 }

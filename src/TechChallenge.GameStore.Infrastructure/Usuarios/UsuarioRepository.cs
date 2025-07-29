@@ -13,7 +13,14 @@ public class UsuarioRepository : IUsuarioRepository
     {
         _context = context;
     }
-    
+
+    public async Task<Usuario?> ObterPorIdAsync(int id)
+    {
+        return await _context.Set<Usuario>()
+                             .AsNoTracking()
+                             .FirstOrDefaultAsync(u => u.Id == id);
+    }
+
     public async Task<List<Usuario>> ObterTodosAsync()
     {
         return await _context.Set<Usuario>().ToListAsync();
