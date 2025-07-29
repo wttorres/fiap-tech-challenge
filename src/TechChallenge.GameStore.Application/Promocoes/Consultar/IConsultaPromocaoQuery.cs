@@ -1,0 +1,7 @@
+﻿namespace TechChallenge.GameStore.Application.Promocoes.Consultar;
+
+public interface IConsultaPromocaoQuery
+{
+    Task<PromocaoResponse?> ObterPorIdAsync(int id);
+    Task<List<PromocaoResponse>> ObterTodasAsync();
+}

@@ -58,4 +58,14 @@ public class PromocaoRepositoryMock : Mock<IPromocaoRepository>
     {
         Setup(x => x.AtualizarAsync(It.IsAny<Promocao>())).ReturnsAsync(resultado);
     }
+    
+    public void ConfigurarObterPorIdAsync(Promocao? resultado)
+    {
+        Setup(x => x.ObterPorIdAsync(It.IsAny<int>())).ReturnsAsync(resultado);
+    }
+
+    public void ConfigurarObterTodasAsync(List<Promocao> resultado)
+    {
+        Setup(x => x.ObterTodasAsync()).ReturnsAsync(resultado);
+    }
 }

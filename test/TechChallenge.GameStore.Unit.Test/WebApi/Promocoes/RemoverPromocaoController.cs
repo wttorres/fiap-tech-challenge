@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using TechChallenge.GameStore.Application.Promocoes.Remover;
 using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Unit.Test._Shared;
-using TechChallenge.GameStore.Unit.Test.WebApi.Promocoes.Fakers;
 using TechChallenge.GameStore.Unit.Test.WebApi.Promocoes.Fixtures;
 using Xunit;
 using RemoverPromocaoCommandFaker = TechChallenge.GameStore.Unit.Test.Application.Promocoes.Fakers.RemoverPromocaoCommandFaker;

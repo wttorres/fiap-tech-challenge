@@ -28,4 +28,24 @@ public static class PromocaoFaker
 
         return result.Valor;
     }
+    
+    public static Promocao Gerar()
+    {
+        var promocao = Promocao.Criar(
+            "Promo Teste",
+            "Gerada via faker",
+            30,
+            DateTime.Today,
+            DateTime.Today.AddDays(10)
+        ).Valor;
+        
+        promocao.AdicionarJogos(new []{1,2});
+
+        foreach (var promocaoJogo in promocao.Jogos)
+        {
+            promocaoJogo.Jogo = new Jogo();
+        }
+
+        return promocao;
+    }
 }

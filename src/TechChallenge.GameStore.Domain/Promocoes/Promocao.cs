@@ -11,8 +11,7 @@ public class Promocao
     public DateTime DataInicio { get; private set; }
     public DateTime DataFim { get; private set; }
 
-    private readonly List<PromocaoJogo> _jogos = new();
-    public IReadOnlyCollection<PromocaoJogo> Jogos => _jogos;
+    public List<PromocaoJogo> Jogos { get; private set; } = new();
 
     private Promocao() { }
 
@@ -43,10 +42,10 @@ public class Promocao
     {
         foreach (var jogoId in jogosIds)
         {
-            _jogos.Add(new PromocaoJogo(jogoId, this));
+            Jogos.Add(new PromocaoJogo(jogoId, this));
         }
     }
-    
+
     public void Atualizar(string nome, string? descricao, decimal desconto, DateTime inicio, DateTime fim)
     {
         Nome = nome;
@@ -58,9 +57,8 @@ public class Promocao
 
     public void AtualizarJogos(IEnumerable<int> novosJogoIds)
     {
-        _jogos.Clear(); 
+        Jogos.Clear();
         foreach (var jogoId in novosJogoIds)
-            _jogos.Add(new PromocaoJogo(jogoId, this));
+            Jogos.Add(new PromocaoJogo(jogoId, this));
     }
-
 }

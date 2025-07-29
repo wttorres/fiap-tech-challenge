@@ -2,7 +2,6 @@
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using TechChallenge.GameStore.Application.Promocoes.Cadastar;
-using TechChallenge.GameStore.Application.Promocoes.Remover;
 using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Unit.Test._Shared;
 using TechChallenge.GameStore.Unit.Test.WebApi.Promocoes.Fakers;

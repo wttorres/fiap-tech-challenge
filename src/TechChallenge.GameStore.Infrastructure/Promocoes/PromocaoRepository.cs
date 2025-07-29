@@ -47,7 +47,18 @@ public class PromocaoRepository : IPromocaoRepository
     public async Task<Promocao?> ObterPorIdAsync(int promocaoId)
     {
         return await _context.Set<Promocao>()
+            .Include(p => p.Jogos)
+                .ThenInclude(pj => pj.Jogo)
             .FirstOrDefaultAsync(x => x.Id == promocaoId);
+    }
+    
+    public async Task<List<Promocao>> ObterTodasAsync()
+    {
+        return await _context
+            .Set<Promocao>()
+            .Include(p => p.Jogos)
+                .ThenInclude(pj => pj.Jogo)
+            .ToListAsync();
     }
 
     public async Task<Result<string>> ExcluirAsync(Promocao promocao)
@@ -79,5 +90,4 @@ public class PromocaoRepository : IPromocaoRepository
             return Result.Failure<string>($"Erro ao atualizar promoção: {ex.Message}");
         }
     }
-
 }
