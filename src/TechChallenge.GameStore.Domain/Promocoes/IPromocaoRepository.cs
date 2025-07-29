@@ -9,4 +9,5 @@ public interface IPromocaoRepository
     Task<List<PromocaoJogo>> ObterPorJogosIdsAsync(List<int> jogoIds);
     Task<Promocao?> ObterPorIdAsync(int promocaoId);
     Task<Result<string>> ExcluirAsync(Promocao promocao);
+    Task<Result<string>> AtualizarAsync(Promocao promocao);
 }

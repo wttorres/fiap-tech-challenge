@@ -46,4 +46,21 @@ public class Promocao
             _jogos.Add(new PromocaoJogo(jogoId, this));
         }
     }
+    
+    public void Atualizar(string nome, string? descricao, decimal desconto, DateTime inicio, DateTime fim)
+    {
+        Nome = nome;
+        Descricao = descricao;
+        DescontoPercentual = desconto;
+        DataInicio = inicio;
+        DataFim = fim;
+    }
+
+    public void AtualizarJogos(IEnumerable<int> novosJogoIds)
+    {
+        _jogos.Clear(); 
+        foreach (var jogoId in novosJogoIds)
+            _jogos.Add(new PromocaoJogo(jogoId, this));
+    }
+
 }

@@ -22,7 +22,7 @@ public class RemoverPromocaoController : ControllerBase
     [HttpDelete]
     [SwaggerOperation(
         Summary = "Excluir promoção",
-        Description = "Realiza a exclusão de uma promoção de jogo."
+        Description = "Realiza a exclusão de uma promoção."
     )]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

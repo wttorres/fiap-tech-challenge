@@ -64,4 +64,20 @@ public class PromocaoRepository : IPromocaoRepository
             return Result.Failure<string>($"Erro ao remover promoção: {ex.Message}");
         }
     }
+    
+    public async Task<Result<string>> AtualizarAsync(Promocao promocao)
+    {
+        try
+        {
+            _context.Set<Promocao>().Update(promocao);
+            await _context.SaveChangesAsync();
+
+            return Result.Success("Promoção atualizada com sucesso");
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure<string>($"Erro ao atualizar promoção: {ex.Message}");
+        }
+    }
+
 }

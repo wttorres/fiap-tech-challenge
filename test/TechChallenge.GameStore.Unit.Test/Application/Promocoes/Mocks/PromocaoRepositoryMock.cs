@@ -48,4 +48,14 @@ public class PromocaoRepositoryMock : Mock<IPromocaoRepository>
     {
         Verify(x => x.ExcluirAsync(promocao), Times.Once);
     }
+    
+    public void ConfigurarObterPorJogosIds(List<PromocaoJogo> resultado)
+    {
+        Setup(x => x.ObterPorJogosIdsAsync(It.IsAny<List<int>>())).ReturnsAsync(resultado);
+    }
+
+    public void ConfigurarAtualizarAsync(Result<string> resultado)
+    {
+        Setup(x => x.AtualizarAsync(It.IsAny<Promocao>())).ReturnsAsync(resultado);
+    }
 }
