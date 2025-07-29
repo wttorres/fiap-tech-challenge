@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TechChallenge.GameStore.Application.Promocoes.Consultar;
 
 namespace TechChallenge.GameStore.Application;
 
@@ -9,5 +10,7 @@ public static class Module
     {
         services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssemblyContaining(typeof(Module)));
+        
+        services.AddScoped<IConsultaPromocaoQuery, ConsultaPromocaoQuery>();
     }
 }

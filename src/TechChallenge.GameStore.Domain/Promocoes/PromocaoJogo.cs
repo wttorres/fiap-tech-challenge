@@ -10,12 +10,11 @@ public class PromocaoJogo
     public Promocao Promocao { get; private set; }
     public Jogo Jogo { get; set; }
 
-    public PromocaoJogo() { } 
-    
+    public PromocaoJogo() { }
+
     public PromocaoJogo(int jogoId, Promocao promocao)
     {
         JogoId = jogoId;
         Promocao = promocao;
     }
-
 }

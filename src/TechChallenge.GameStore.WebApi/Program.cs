@@ -16,6 +16,22 @@ builder.Services.AddControllers();
 builder.Services.AddInfrastructure(builder.Configuration); 
 builder.Services.AddApplication(builder.Configuration); 
 
+builder.Services.AddSwaggerGen(c =>
+{
+    c.EnableAnnotations();
+
+    // Agrupar endpoints por nome de controller (sem quebrar por doc)
+    c.TagActionsBy(api =>
+    {
+        var groupName = api.GroupName;
+        return !string.IsNullOrEmpty(groupName) 
+            ? new[] { groupName } 
+            : [api.ActionDescriptor.RouteValues["controller"]];
+    });
+
+    c.DocInclusionPredicate((_, _) => true);
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

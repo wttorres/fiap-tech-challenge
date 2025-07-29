@@ -14,15 +14,13 @@ public class PromocaoJogoConfiguration : IEntityTypeConfiguration<PromocaoJogo>
 
         builder
             .HasOne(pj => pj.Promocao)
-            .WithMany() 
-            .HasForeignKey(pj => pj.PromocaoId)
-            .OnDelete(DeleteBehavior.Cascade);
-        
-        builder
-            .HasOne(pj => pj.Promocao)
-            .WithMany("_jogos") 
+            .WithMany(p => p.Jogos) 
             .HasForeignKey(pj => pj.PromocaoId)
             .OnDelete(DeleteBehavior.Cascade);
 
+        builder
+            .HasOne(pj => pj.Jogo)
+            .WithMany() 
+            .HasForeignKey(pj => pj.JogoId);
     }
 }

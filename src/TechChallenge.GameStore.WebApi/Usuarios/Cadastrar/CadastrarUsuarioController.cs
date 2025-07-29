@@ -9,6 +9,7 @@ namespace TechChallenge.GameStore.WebApi.Usuarios.Cadastrar;
 
 [ApiController]
 [Route("api/[controller]")]
+[ApiExplorerSettings(GroupName = "Usuario")]
 public class CadastrarUsuarioController : ControllerBase
 {
     private readonly IMediator _mediator;

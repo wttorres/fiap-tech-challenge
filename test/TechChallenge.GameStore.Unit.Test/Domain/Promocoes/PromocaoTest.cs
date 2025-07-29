@@ -88,4 +88,44 @@ public class PromocaoTest
         promocao.Jogos.Should().HaveCount(jogosIds.Count());
         promocao.Jogos.Select(j => j.JogoId).Should().BeEquivalentTo(jogosIds);
     }
+
+    [Fact]
+    public void Atualizar_ComDadosValidos_DeveAtualizarAtributos()
+    {
+        // Arrange
+        var result = PromocaoFaker.CriarValida();
+        var promocao = result.Valor;
+
+        var (novoNome, novaDescricao, novoDesconto, novoInicio, novoFim) = PromocaoFaker.DadosValidos();
+
+        // Act
+        promocao.Atualizar(novoNome, novaDescricao, novoDesconto, novoInicio, novoFim);
+
+        // Assert
+        promocao.Nome.Should().Be(novoNome);
+        promocao.Descricao.Should().Be(novaDescricao);
+        promocao.DescontoPercentual.Should().Be(novoDesconto);
+        promocao.DataInicio.Should().Be(novoInicio);
+        promocao.DataFim.Should().Be(novoFim);
+    }
+
+    [Fact]
+    public void AtualizarJogos_ComNovosIds_DeveSubstituirJogos()
+    {
+        // Arrange
+        var result = PromocaoFaker.CriarValida();
+        var promocao = result.Valor;
+
+        var jogosAntigos = PromocaoFaker.JogosIdsValidos();
+        promocao.AdicionarJogos(jogosAntigos);
+
+        var novosIds = PromocaoFaker.JogosIdsAlternativos();
+
+        // Act
+        promocao.AtualizarJogos(novosIds);
+
+        // Assert
+        promocao.Jogos.Should().HaveCount(novosIds.Count());
+        promocao.Jogos.Select(j => j.JogoId).Should().BeEquivalentTo(novosIds);
+    }
 }
