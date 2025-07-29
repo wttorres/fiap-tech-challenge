@@ -12,8 +12,8 @@ public static class SenhaExtension
         if (string.IsNullOrWhiteSpace(senha))
             return Result.Failure<bool>("Senha é obrigatória.");
 
-        if (senha.Length > 8)
-            return Result.Failure<bool>("Senha deve conter no máximo 8 caracteres.");
+        if (senha.Length < 8)
+            return Result.Failure<bool>("Senha deve conter no mínimo 8 caracteres.");
 
         if (!System.Text.RegularExpressions.Regex.IsMatch(senha, @"[A-Za-z]"))
             return Result.Failure<bool>("Senha deve conter pelo menos uma letra.");
