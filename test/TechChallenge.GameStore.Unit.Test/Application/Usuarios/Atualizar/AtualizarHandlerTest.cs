@@ -72,8 +72,8 @@ public class AtualizarHandlerTest : AtualizarHandlerFixture
     }
 
     [Theory]
-    [InlineData(null, "Informe ao menos um campo para atualizar.")]
-    [InlineData("", "Informe ao menos um campo para atualizar.")]
+    [InlineData(null, "Informe ao menos o e-mail ou a senha para atualizar.")]
+    [InlineData("", "Informe ao menos o e-mail ou a senha para atualizar.")]
     [InlineData("1234567!", "Senha deve conter pelo menos uma letra.")]
     [InlineData("Abcdefg!", "Senha deve conter pelo menos um número.")]
     [InlineData("Abc12345", "Senha deve conter pelo menos um caractere especial.")]
