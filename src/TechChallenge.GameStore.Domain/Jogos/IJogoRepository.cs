@@ -7,4 +7,5 @@ public interface IJogoRepository
     Task<List<Jogo>> ObterAsync(IEnumerable<int> jogosIds);
     Task<Jogo?> ObterPorNome(string nome);
     Task<Result<Jogo>> AdicionarAsync(Jogo jogo);
+    Task<Result<Jogo>> AtualizarAsync(Jogo jogo); // NOVO
 }
