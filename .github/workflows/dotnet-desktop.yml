@@ -9,9 +9,6 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    strategy:
-      matrix:
-        configuration: [Debug, Release]
 
     steps:
       - name: Checkout do código
@@ -28,14 +25,11 @@ jobs:
         run: dotnet restore TechChallenge.GameStore.sln
 
       - name: Build da solução
-        run: dotnet build TechChallenge.GameStore.sln --configuration ${{ matrix.configuration }} --no-restore
+        run: dotnet build TechChallenge.GameStore.sln --configuration Release --no-restore
 
   test:
     runs-on: windows-latest
     needs: build
-    strategy:
-      matrix:
-        configuration: [Debug, Release]
 
     steps:
       - name: Checkout do código
@@ -52,4 +46,4 @@ jobs:
         run: dotnet restore TechChallenge.GameStore.sln
 
       - name: Executar testes
-        run: dotnet test test/TechChallenge.GameStore.Unit.Test/TechChallenge.GameStore.Unit.Test.csproj --configuration ${{ matrix.configuration }} --no-build --logger trx
+        run: dotnet test test/TechChallenge.GameStore.Unit.Test/TechChallenge.GameStore.Unit.Test.csproj --configuration Release --no-build --logger trx
