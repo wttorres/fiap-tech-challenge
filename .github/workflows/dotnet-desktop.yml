@@ -7,8 +7,11 @@ on:
     branches: ["main"]
 
 jobs:
-  restore:
+  build:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
 
     steps:
       - name: Checkout do código
@@ -24,42 +27,15 @@ jobs:
       - name: Restaurar pacotes
         run: dotnet restore TechChallenge.GameStore.sln
 
-      - name: Salvar arquivos restaurados
-        uses: actions/upload-artifact@v4
-        with:
-          name: restored-packages
-          path: |
-            **/obj/project.assets.json
-            **/*.csproj.nuget.dgspec.json
-            **/*.csproj.nuget.g.props
-            **/*.csproj.nuget.g.targets
-
-  build:
-    runs-on: windows-latest
-    needs: restore
-
-    steps:
-      - name: Checkout do código
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Instalar .NET 8
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.0.x
-
-      - name: Baixar arquivos restaurados
-        uses: actions/download-artifact@v4
-        with:
-          name: restored-packages
-
       - name: Build da solução
-        run: dotnet build TechChallenge.GameStore.sln --no-restore
+        run: dotnet build TechChallenge.GameStore.sln --configuration ${{ matrix.configuration }} --no-restore
 
   test:
     runs-on: windows-latest
     needs: build
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
 
     steps:
       - name: Checkout do código
@@ -72,10 +48,8 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Baixar arquivos restaurados
-        uses: actions/download-artifact@v4
-        with:
-          name: restored-packages
+      - name: Restaurar pacotes
+        run: dotnet restore TechChallenge.GameStore.sln
 
       - name: Executar testes
-        run: dotnet test test/TechChallenge.GameStore.Unit.Test/TechChallenge.GameStore.Unit.Test.csproj --no-build --logger trx
+        run: dotnet test test/TechChallenge.GameStore.Unit.Test/TechChallenge.GameStore.Unit.Test.csproj --configuration ${{ matrix.configuration }} --no-build --logger trx
