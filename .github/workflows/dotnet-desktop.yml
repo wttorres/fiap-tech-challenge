@@ -46,4 +46,4 @@ jobs:
         run: dotnet restore TechChallenge.GameStore.sln
 
       - name: Executar testes
-        run: dotnet test test/TechChallenge.GameStore.Unit.Test/TechChallenge.GameStore.Unit.Test.csproj --configuration Release --no-build --logger trx
+        run: dotnet test test/TechChallenge.GameStore.Unit.Test/TechChallenge.GameStore.Unit.Test.csproj --configuration Release --logger trx
