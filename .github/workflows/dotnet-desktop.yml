@@ -24,6 +24,16 @@ jobs:
       - name: Restaurar pacotes
         run: dotnet restore TechChallenge.GameStore.sln
 
+      - name: Salvar arquivos restaurados
+        uses: actions/upload-artifact@v4
+        with:
+          name: restored-packages
+          path: |
+            **/obj/project.assets.json
+            **/*.csproj.nuget.dgspec.json
+            **/*.csproj.nuget.g.props
+            **/*.csproj.nuget.g.targets
+
   build:
     runs-on: windows-latest
     needs: restore
@@ -38,6 +48,11 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
+
+      - name: Baixar arquivos restaurados
+        uses: actions/download-artifact@v4
+        with:
+          name: restored-packages
 
       - name: Build da solução
         run: dotnet build TechChallenge.GameStore.sln --no-restore
@@ -56,6 +71,11 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
+
+      - name: Baixar arquivos restaurados
+        uses: actions/download-artifact@v4
+        with:
+          name: restored-packages
 
       - name: Executar testes
         run: dotnet test test/TechChallenge.GameStore.Unit.Test/TechChallenge.GameStore.Unit.Test.csproj --no-build --logger trx
