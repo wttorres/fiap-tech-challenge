@@ -68,4 +68,10 @@ public class PromocaoRepositoryMock : Mock<IPromocaoRepository>
     {
         Setup(x => x.ObterTodasAsync()).ReturnsAsync(resultado);
     }
+    public void ConfigurarRetornarNenhuma()
+    {
+        Setup(p => p.ObterPorJogosIdsAsync(It.IsAny<List<int>>()))
+            .ReturnsAsync(new List<PromocaoJogo>());
+    }
+
 }

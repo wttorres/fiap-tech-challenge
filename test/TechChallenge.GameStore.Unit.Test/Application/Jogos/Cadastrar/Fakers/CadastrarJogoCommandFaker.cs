@@ -18,6 +18,6 @@ namespace TechChallenge.GameStore.Unit.Test.Application.Jogos.Cadastrar.Fakers
             var command = Valido();
             command.Nome = "";
             return command;
-        }
+        }        
     }
 }
