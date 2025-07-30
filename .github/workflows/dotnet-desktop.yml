@@ -1,35 +1,61 @@
-name: Integracao Continua
+name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-  ci:
-    strategy:
-      matrix:
-        configuration: [Debug, Release]
-
+  restore:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout do código
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+      - name: Checkout do código
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: Instalar .NET 8
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
+      - name: Instalar .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
 
-    - name: Restaurar pacotes
-      run: dotnet restore TechChallenge.GameStore.sln
+      - name: Restaurar pacotes
+        run: dotnet restore TechChallenge.GameStore.sln
 
-    - name: Build da solução
-      run: dotnet build TechChallenge.GameStore.sln --configuration ${{ matrix.configuration }} --no-restore
+  build:
+    runs-on: windows-latest
+    needs: restore
 
-    - name: Executar testes
-      run: dotnet test test/TechChallenge.GameStore.Unit.Test/TechChallenge.GameStore.Unit.Test.csproj --configuration ${{ matrix.configuration }} --no-build --logger trx
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Instalar .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Build da solução
+        run: dotnet build TechChallenge.GameStore.sln --no-restore
+
+  test:
+    runs-on: windows-latest
+    needs: build
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Instalar .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Executar testes
+        run: dotnet test test/TechChallenge.GameStore.Unit.Test/TechChallenge.GameStore.Unit.Test.csproj --no-build --logger trx
