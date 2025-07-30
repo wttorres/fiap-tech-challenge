@@ -1,4 +1,5 @@
 ﻿using TechChallenge.GameStore.Domain._Shared;
+using TechChallenge.GameStore.Domain.Compras;
 
 namespace TechChallenge.GameStore.Domain.Usuarios
 {

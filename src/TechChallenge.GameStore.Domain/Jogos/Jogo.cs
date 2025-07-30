@@ -28,4 +28,11 @@ public class Jogo
 
         return Result.Success(jogo);
     }
+
+    public void Atualizar(string nome, decimal preco)
+    {
+        Nome = nome;
+        Preco = preco;
+    }
+
 }

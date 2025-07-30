@@ -4,20 +4,23 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Linq;
 using System.Threading.Tasks;
-using TechChallenge.GameStore.Application.Jogos.Consultar;
+using TechChallenge.GameStore.Application.Compras.Consultar;
 
-namespace TechChallenge.GameStore.WebApi.Jogos.Consultar
+namespace TechChallenge.GameStore.WebApi.Compras.Consultar
 {
-    public class ConsultarJogosController : ControllerBase
+    [ApiController]
+    [Route("api/[controller]")]
+    [ApiExplorerSettings(GroupName = "Usuario")]
+    public class ConsultarBibliotecaJogosController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public ConsultarJogosController(IMediator mediator)
+        public ConsultarBibliotecaJogosController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        [HttpGet("adquiridos/{usuarioId}")]
+        [HttpGet("{usuarioId}")]
         [SwaggerOperation(
             Summary = "Lista jogos adquiridos por um usuário",
             Description = "Retorna os jogos comprados por um usuário com nome, valor pago e data da compra."
@@ -26,7 +29,7 @@ namespace TechChallenge.GameStore.WebApi.Jogos.Consultar
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> ListarJogosAdquiridos(int usuarioId)
         {
-            var result = await _mediator.Send(new ObterJogosAdquiridosQuery(usuarioId));
+            var result = await _mediator.Send(new ConsultaBibliotecaJogosQuery(usuarioId));
 
             if (!result.Sucesso || result.Valor == null || !result.Valor.Any())
                 return NotFound(new { sucesso = false, mensagem = "Nenhum jogo encontrado para o usuário." });

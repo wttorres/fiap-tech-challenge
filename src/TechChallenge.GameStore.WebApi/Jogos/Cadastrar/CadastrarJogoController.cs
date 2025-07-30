@@ -19,7 +19,7 @@ public class CadastrarJogoController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost("Post")]
+    [HttpPost]
     [SwaggerOperation(
         Summary = "Cadastra um novo jogo",
         Description = "Realiza o cadastro de um jogo informando nome, preço."

@@ -5,7 +5,7 @@ using TechChallenge.GameStore.Domain.Jogos;
 using TechChallenge.GameStore.Domain.Promocoes;
 using TechChallenge.GameStore.Domain.Compras;
 
-namespace TechChallenge.GameStore.Application.Jogos.Comprar
+namespace TechChallenge.GameStore.Application.Compras.Cadastrar
 {
     public class ComprarJogoHandler : IRequestHandler<ComprarJogoCommand, Result<string>>
     {
@@ -36,7 +36,7 @@ namespace TechChallenge.GameStore.Application.Jogos.Comprar
             if (usuario is null)
                 return Result.Failure<string>("Usuário não encontrado.");
 
-            var jogos = await _jogoRepository.ObterAsync(request.JogosIds);
+            var jogos = await _jogoRepository.ObterPorIdsAsync(request.JogosIds);
 
             if (jogos.Count != request.JogosIds.Count)
                 return Result.Failure<string>("Um ou mais jogos não foram encontrados.");
@@ -58,7 +58,7 @@ namespace TechChallenge.GameStore.Application.Jogos.Comprar
                                          p.Promocao.DataFim >= DateTime.UtcNow);
 
                 var desconto = promocao?.Promocao?.DescontoPercentual ?? 0m;
-                var precoFinal = jogo.Preco - (jogo.Preco * desconto);
+                var precoFinal = jogo.Preco - jogo.Preco * desconto;
 
                 itens.Add(new ItemCompra
                 {

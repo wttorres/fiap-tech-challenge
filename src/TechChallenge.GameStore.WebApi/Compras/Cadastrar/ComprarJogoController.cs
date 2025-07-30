@@ -3,13 +3,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Threading.Tasks;
-using TechChallenge.GameStore.Application.Jogos.Comprar;
+using TechChallenge.GameStore.Application.Compras.Cadastrar;
 
-namespace TechChallenge.GameStore.WebApi.Jogos.Comprar
+namespace TechChallenge.GameStore.WebApi.Compras.Cadastrar
 {
     [ApiController]
-    [Route("api/[controller]")]
-    [ApiExplorerSettings(GroupName = "Jogo")]
+    [Route("api/")]
+    [ApiExplorerSettings(GroupName = "Compras")]
     public class ComprarJogoController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -19,7 +19,7 @@ namespace TechChallenge.GameStore.WebApi.Jogos.Comprar
             _mediator = mediator;
         }
 
-        [HttpPost("comprar")]
+        [HttpPost("Comprar")]
         [SwaggerOperation(
             Summary = "Realiza a compra de um ou mais jogos",
             Description = "Permite que um usuário compre um ou mais jogos, atualizando sua biblioteca e histórico de compras."

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TechChallenge.GameStore.Domain.Usuarios;
+using TechChallenge.GameStore.Domain.Compras;
 using TechChallenge.GameStore.Infrastructure._Shared;
 
-namespace TechChallenge.GameStore.Infrastructure.Usuarios
+namespace TechChallenge.GameStore.Infrastructure.Compras
 {
     public class BibliotecaJogosRepository : IBibliotecaJogosRepository
     {

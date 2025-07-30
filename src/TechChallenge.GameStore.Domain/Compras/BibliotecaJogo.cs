@@ -1,6 +1,7 @@
 ﻿using TechChallenge.GameStore.Domain.Jogos;
+using TechChallenge.GameStore.Domain.Usuarios;
 
-namespace TechChallenge.GameStore.Domain.Usuarios
+namespace TechChallenge.GameStore.Domain.Compras
 {
     public class BibliotecaJogo
     {

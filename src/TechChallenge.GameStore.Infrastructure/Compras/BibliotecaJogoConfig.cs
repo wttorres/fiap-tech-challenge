@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TechChallenge.GameStore.Domain.Usuarios;
+using TechChallenge.GameStore.Domain.Compras;
 
-namespace TechChallenge.GameStore.Infrastructure.Usuarios
+namespace TechChallenge.GameStore.Infrastructure.Compras
 {
     public class BibliotecaJogoConfig : IEntityTypeConfiguration<BibliotecaJogo>
     {

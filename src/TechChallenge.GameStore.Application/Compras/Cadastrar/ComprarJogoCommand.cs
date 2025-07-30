@@ -3,7 +3,7 @@ using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
 using TechChallenge.GameStore.Domain._Shared;
 
-namespace TechChallenge.GameStore.Application.Jogos.Comprar
+namespace TechChallenge.GameStore.Application.Compras.Cadastrar
 {
     public class ComprarJogoCommand : IRequest<Result<string>>
     {
