@@ -8,4 +8,5 @@ public interface IUsuarioRepository
     Task<Result<Usuario>> AdicionarAsync(Usuario usuario);
     Task<Usuario?> ObterPorIdAsync(int id);
     Task<Result<Usuario>> AtualizarAsync(Usuario usuario);
+    Task<List<Usuario>> ObterUsuariosQueRecebemNotificacoesAsync();
 }

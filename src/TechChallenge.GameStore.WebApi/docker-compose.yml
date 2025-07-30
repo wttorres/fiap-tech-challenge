@@ -13,6 +13,13 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
+        
+  maildev:
+    image: maildev/maildev
+    container_name: maildev
+    restart: always
+    ports:
+      - "1025:1025"  # SMTP
+      - "1080:1080"  # Web UI
 volumes:
   postgres_data:
