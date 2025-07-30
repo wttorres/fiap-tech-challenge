@@ -1,23 +1,15 @@
-﻿using Bogus;
-using FluentAssertions;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using FluentAssertions;
 using System.Threading.Tasks;
 using TechChallenge.GameStore.Application.Usuarios.Atualizar;
 using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Domain.Usuarios;
-using TechChallenge.GameStore.Unit.Test.Application.Usuarios.Cadastrar.Fakers;
-using TechChallenge.GameStore.Unit.Test.Application.Usuarios.Cadastrar.Fixtures;
-using TechChallenge.GameStore.Unit.Test.Application.Usuarios.Cadastrar.Mocks;
+using TechChallenge.GameStore.Unit.Test.Application.Usuarios.Fakers;
+using TechChallenge.GameStore.Unit.Test.Application.Usuarios.Fixtures;
 using Xunit;
 
 namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios.Atualizar;
 
-public class AtualizarHandlerTest : AtualizarHandlerFixture
+public class AtualizarUsuarioHandlerTest : AtualizarHandlerFixture
 {
     [Fact]
     public async Task Handle_QuandoNomeEhValido_DeveAtualizarComSucesso()

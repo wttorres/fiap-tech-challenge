@@ -108,6 +108,7 @@ public class UsuarioRepositoryTest
 
         // Modifica o usuário
         usuario.Atualizar("Fulano Junior", null);
+        usuario.AtualizarPerfil(Perfil.Admin);
 
         // Act
         var resultado = await fixture.Repository.AtualizarAsync(usuario);
@@ -118,6 +119,7 @@ public class UsuarioRepositoryTest
         var persistido = await fixture.Context.Set<Usuario>().FirstOrDefaultAsync(x => x.Id == usuario.Id);
         persistido.Should().NotBeNull();
         persistido!.Nome.Should().Be("Fulano Junior");
+        persistido.Perfil.Should().Be(Perfil.Admin);
     }
 
     [Fact]

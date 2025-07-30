@@ -2,7 +2,7 @@
 using TechChallenge.GameStore.Application.Usuarios.Cadastrar;
 using TechChallenge.GameStore.Domain.Usuarios;
 
-namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios.Cadastrar.Fakers;
+namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios.Fakers;
 
 public class UsuarioFaker
 {

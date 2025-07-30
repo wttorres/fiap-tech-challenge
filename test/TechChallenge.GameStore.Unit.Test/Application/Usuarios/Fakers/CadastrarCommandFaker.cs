@@ -3,7 +3,7 @@ using AutoBogus;
 using Bogus;
 using TechChallenge.GameStore.Application.Usuarios.Cadastrar;
 
-namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios.Cadastrar.Fakers;
+namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios.Fakers;
 
 public static class CadastrarCommandFaker
 {
