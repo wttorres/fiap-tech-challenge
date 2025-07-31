@@ -23,7 +23,8 @@ namespace TechChallenge.GameStore.Application.Compras.Consultar
                 {
                     DataCompra = c.DataCompra,
                     NomeJogo = i.Jogo.Nome,
-                    PrecoPago = i.PrecoPago
+                    ValorBase = i.Jogo.Preco,
+                    ValorComDesconto = i.PrecoPago
                 }))
                 .ToList();
 

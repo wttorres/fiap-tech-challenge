@@ -2,7 +2,6 @@
 {
     public class JogoAdquiridoResponse
     {
-        public string Nome { get; set; }
-        public decimal PrecoPago { get; set; }        
+        public string Nome { get; set; }              
     }
 }

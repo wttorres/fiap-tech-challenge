@@ -20,8 +20,7 @@ namespace TechChallenge.GameStore.Application.Compras.Consultar
             var resposta = jogos
                 .Select(j => new JogoAdquiridoResponse
                 {
-                    Nome = j.Jogo.Nome,
-                    PrecoPago = j.Jogo.Preco                    
+                    Nome = j.Jogo.Nome                                       
                 })
                 .ToList();
 

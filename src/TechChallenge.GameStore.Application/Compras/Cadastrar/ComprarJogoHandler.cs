@@ -58,7 +58,7 @@ namespace TechChallenge.GameStore.Application.Compras.Cadastrar
                                          p.Promocao.DataFim >= DateTime.UtcNow);
 
                 var desconto = promocao?.Promocao?.DescontoPercentual ?? 0m;
-                var precoFinal = jogo.Preco - jogo.Preco * desconto;
+                var precoFinal = jogo.Preco - (jogo.Preco * (desconto / 100));
 
                 itens.Add(new ItemCompra
                 {

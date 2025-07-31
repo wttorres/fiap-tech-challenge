@@ -40,6 +40,7 @@ public class PromocaoRepository : IPromocaoRepository
     {
         return await _context.Set<PromocaoJogo>()
             .Where(j => jogoIds.Contains(j.JogoId))
+            .Include(x => x.Promocao)
             .Include(x => x.Jogo)
             .ToListAsync();
     }
