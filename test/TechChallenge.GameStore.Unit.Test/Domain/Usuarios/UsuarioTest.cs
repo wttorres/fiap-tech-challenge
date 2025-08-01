@@ -122,4 +122,34 @@ public class UsuarioTest
         resultado.Sucesso.Should().BeFalse();
         resultado.Erro.Should().Be(mensagemEsperada);
     }
+
+    [Fact]
+    public void AtualizarPerfil_QuandoPerfilValido_DeveAtualizar()
+    {
+        var usuario = Usuario.Criar("Joao da Silva", "teste@email.com", "Abc@12345").Valor;
+        var resultado = usuario.AtualizarPerfil(Perfil.Admin);
+        
+        resultado.Sucesso.Should().BeTrue();
+        usuario.Perfil.Should().Be(Perfil.Admin);
+    }
+    
+    [Fact]
+    public void AtualizarPerfil_QuandoPerfilInvalido_DeveFalhar()
+    {
+        var usuario = Usuario.Criar("Joao da Silva", "teste@email.com", "Abc@12345").Valor;
+        var resultado = usuario.AtualizarPerfil((Perfil)99);
+
+        resultado.Sucesso.Should().BeFalse();
+        resultado.Erro.Should().Contain("Perfil inválido");
+    }
+    
+    [Fact]
+    public void AtualizarPerfil_QuandoMesmoPerfil_DeveFalhar()
+    {
+        var usuario = Usuario.Criar("Joao da Silva", "teste@email.com", "Abc@12345").Valor;
+        var resultado = usuario.AtualizarPerfil(usuario.Perfil);
+
+        resultado.Sucesso.Should().BeFalse();
+        resultado.Erro.Should().Contain("já possui o perfil");
+    }
 }

@@ -1,7 +1,7 @@
 ﻿using TechChallenge.GameStore.Application.Usuarios.Cadastrar;
-using TechChallenge.GameStore.Unit.Test.Application.Usuarios.Cadastrar.Mocks;
+using TechChallenge.GameStore.Unit.Test.Application.Usuarios.Mocks;
 
-namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios.Cadastrar.Fixtures;
+namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios.Fixtures;
 
 public class CadastrarHandlerFixture
 {

@@ -2,7 +2,7 @@
 using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Domain.Usuarios;
 
-namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios.Cadastrar.Mocks;
+namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios.Mocks;
 
 public class UsuarioRepositoryMock : Mock<IUsuarioRepository>
 {
