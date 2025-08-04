@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using TechChallenge.GameStore.Application.Usuarios.Promover;
 
 namespace TechChallenge.GameStore.WebApi.Usuarios.Promover;
@@ -19,6 +20,7 @@ public class PromoverUsuarioController : ControllerBase
         _mediator = mediator;
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPut("{id}/promover")]
     [SwaggerOperation(
         Summary = "Promove o perfil de um usuário",

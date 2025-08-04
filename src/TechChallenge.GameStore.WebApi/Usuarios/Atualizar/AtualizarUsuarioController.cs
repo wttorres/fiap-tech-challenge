@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using TechChallenge.GameStore.Application.Usuarios.Atualizar;
 
 namespace TechChallenge.GameStore.WebApi.Usuarios.Atualizar;
@@ -19,6 +20,7 @@ public class AtualizarUsuarioController : ControllerBase
         _mediator = mediator;
     }
 
+    [Authorize]
     [HttpPut("{id}")]
     [SwaggerOperation(
         Summary = "Atualiza um usuário existente",

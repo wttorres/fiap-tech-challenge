@@ -4,7 +4,12 @@ public static class SenhaExtension
 {
     public static string GerarHash(string senha)
     {
-        return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(senha));
+        return BCrypt.Net.BCrypt.HashPassword(senha);
+    }
+
+    public static bool Comparar(string senhaDigitada, string senhaHashArmazenada)
+    {
+        return BCrypt.Net.BCrypt.Verify(senhaDigitada, senhaHashArmazenada);
     }
 
     public static Result<bool> ValidarSenha(string senha)

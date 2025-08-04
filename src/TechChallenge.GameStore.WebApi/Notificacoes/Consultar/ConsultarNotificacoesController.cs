@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -18,18 +19,21 @@ public class ConsultarNotificacoesController: ControllerBase
         _query = query;
     }
 
+    [Authorize]
     [HttpGet]
     [SwaggerOperation(
         Summary = "Lista todas as notificações enviadas",
         Description = "Retorna todas as notificações que foram enviadas")]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> ListarTodas()
     {
         var notificacoes = await _query.ObterTodasAsync();
         return Ok(notificacoes);
     }
     
-    [HttpGet("{id:int}")]
+    [Authorize]
+    [HttpGet("{usuarioId:int}")]
     [SwaggerOperation(
         Summary = "Obtém notificações filtrando por usuário.",
         Description = "Retorna todas as notificações enviadas para um determinado usuário")]

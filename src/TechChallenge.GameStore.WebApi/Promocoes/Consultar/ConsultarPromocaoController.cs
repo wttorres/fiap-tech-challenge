@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -18,6 +19,7 @@ public class ConsultarPromocaoController : ControllerBase
         _query = query;
     }
 
+    [Authorize]
     [HttpGet]
     [SwaggerOperation(
         Summary = "Lista todas as promoções",
@@ -28,7 +30,8 @@ public class ConsultarPromocaoController : ControllerBase
         var promocoes = await _query.ObterTodasAsync();
         return Ok(promocoes);
     }
-
+    
+    [Authorize]
     [HttpGet("{id:int}")]
     [SwaggerOperation(
         Summary = "Obtém uma promoção por ID",
