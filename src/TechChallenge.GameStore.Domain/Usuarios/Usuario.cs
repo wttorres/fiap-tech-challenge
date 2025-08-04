@@ -64,4 +64,16 @@ public class Usuario
 
         return Result.Success(this);
     }
+    
+    public Result<Usuario> AtualizarPerfil(Perfil novoPerfil)
+    {
+        if (!Enum.IsDefined(typeof(Perfil), novoPerfil))
+            return Result.Failure<Usuario>("Perfil inválido.");
+
+        if (Perfil == novoPerfil)
+            return Result.Failure<Usuario>($"O usuário já possui o perfil {novoPerfil}.");
+
+        Perfil = novoPerfil;
+        return Result.Success(this);
+    }
 }

@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using FluentAssertions;
 using TechChallenge.GameStore.Application.Usuarios.Atualizar;
 using TechChallenge.GameStore.Domain._Shared;
@@ -9,7 +9,7 @@ using Xunit;
 
 namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios;
 
-public class AtualizarHandlerTest : AtualizarHandlerFixture
+public class AtualizarUsuarioHandlerTest : AtualizarHandlerFixture
 {
     [Fact]
     public async Task Handle_QuandoNomeEhValido_DeveAtualizarComSucesso()
