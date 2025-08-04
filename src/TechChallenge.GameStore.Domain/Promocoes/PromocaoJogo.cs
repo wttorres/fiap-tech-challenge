@@ -1,10 +1,10 @@
-﻿using TechChallenge.GameStore.Domain.Jogos;
+﻿using TechChallenge.GameStore.Domain._Shared;
+using TechChallenge.GameStore.Domain.Jogos;
 
 namespace TechChallenge.GameStore.Domain.Promocoes;
 
-public class PromocaoJogo
+public class PromocaoJogo  : Base
 {
-    public int Id { get; set; }
     public int PromocaoId { get; private set; }
     public int JogoId { get; private set; }
     public Promocao Promocao { get; private set; }

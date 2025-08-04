@@ -2,9 +2,8 @@
 
 namespace TechChallenge.GameStore.Domain.Usuarios;
 
-public class Usuario
+public class Usuario : Base
 {
-    public int Id { get; private set; }
     public string Nome { get; private set; }
     public string Email { get; private set; }
     public string Senha { get; private set; }

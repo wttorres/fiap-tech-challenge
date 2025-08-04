@@ -8,7 +8,7 @@ namespace TechChallenge.GameStore.WebApi.Promocoes.Consultar;
 
 [ApiController]
 [Route("api/[controller]")]
-[ApiExplorerSettings(GroupName = "Promocao")]
+[ApiExplorerSettings(GroupName = "Promoção")]
 public class ConsultarPromocaoController : ControllerBase
 {
     private readonly IConsultaPromocaoQuery _query;

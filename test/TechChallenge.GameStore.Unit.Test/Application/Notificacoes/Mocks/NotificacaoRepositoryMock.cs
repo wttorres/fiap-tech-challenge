@@ -29,4 +29,24 @@ public class NotificacaoRepositoryMock : Mock<INotificacaoRepository>
     {
         Verify(r => r.Adicionar(It.IsAny<Notificacao>()), Times.AtLeastOnce);
     }
+    
+    public void ConfigurarObterTodasAsync(List<NotificacaoEnviada> resultado)
+    {
+        Setup(x => x.ObterTodasAsync()).ReturnsAsync(resultado);
+    }
+
+    public void ConfigurarObterPorUsuarioAsync(int usuarioId, List<NotificacaoEnviada> resultado)
+    {
+        Setup(x => x.ObterPorUsuarioAsync(usuarioId)).ReturnsAsync(resultado);
+    }
+
+    public void GarantirObterTodasAsyncChamado()
+    {
+        Verify(x => x.ObterTodasAsync(), Times.Once);
+    }
+
+    public void GarantirObterPorUsuarioAsyncChamado(int usuarioId)
+    {
+        Verify(x => x.ObterPorUsuarioAsync(usuarioId), Times.Once);
+    }
 }

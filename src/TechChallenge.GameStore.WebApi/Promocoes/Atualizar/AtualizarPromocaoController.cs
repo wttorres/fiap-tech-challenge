@@ -9,7 +9,7 @@ namespace TechChallenge.GameStore.WebApi.Promocoes.Atualizar;
 
 [ApiController]
 [Route("api/[controller]")]
-[ApiExplorerSettings(GroupName = "Promocao")]
+[ApiExplorerSettings(GroupName = "Promoção")]
 public class AtualizarPromocaoController : ControllerBase
 {
     private readonly IMediator _mediator;
