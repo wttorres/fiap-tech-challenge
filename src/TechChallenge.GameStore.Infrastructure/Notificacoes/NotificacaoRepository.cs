@@ -28,5 +28,32 @@ public class NotificacaoRepository : INotificacaoRepository
         return usuarioIds.Except(jaEnviados).ToList();
     }
 
-    public Task SaveChangesAsync() => _context.SaveChangesAsync();
+    public Task SaveChangesAsync()
+    {
+        return _context.SaveChangesAsync();
+    }
+
+    public async Task<List<NotificacaoEnviada>> ObterTodasAsync()
+    {
+        return await _context
+            .Set<NotificacaoEnviada>()
+            .Include(x => x.Notificacao)
+            .Include(x => x.PromocaoJogo)
+                .ThenInclude(x => x.Promocao)
+                .ThenInclude(x => x.Jogos)
+                    .ThenInclude(x => x.Jogo)
+            .ToListAsync();
+    }
+
+    public async Task<List<NotificacaoEnviada>> ObterPorUsuarioAsync(int usuarioId)
+    {
+        return await _context.Set<NotificacaoEnviada>()
+            .Include(x => x.Notificacao)
+            .Include(x => x.PromocaoJogo)
+                .ThenInclude(x => x.Promocao)
+                .ThenInclude(x => x.Jogos)
+                    .ThenInclude(x => x.Jogo)
+            .Where(x => x.UsuarioId == usuarioId)
+            .ToListAsync();
+    }
 }
