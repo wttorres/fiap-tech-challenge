@@ -3,7 +3,6 @@ using FluentAssertions;
 using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Domain.Usuarios;
 using TechChallenge.GameStore.Unit.Test.Application.Usuarios.Fakers;
-using TechChallenge.GameStore.Unit.Test.Application.Usuarios.Fakers;
 using TechChallenge.GameStore.Unit.Test.Application.Usuarios.Fixtures;
 using Xunit;
 

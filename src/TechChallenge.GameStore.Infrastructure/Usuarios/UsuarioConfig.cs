@@ -37,5 +37,8 @@ public class UsuarioConfig : IEntityTypeConfiguration<Usuario>
         builder.Property(u => u.Perfil)
             .IsRequired()
             .HasConversion<string>();
+        
+        builder.Property(u => u.ReceberNotificacoes)
+            .IsRequired();
     }
 }

@@ -1,5 +1,5 @@
-﻿using FluentAssertions;
 using System.Threading.Tasks;
+using FluentAssertions;
 using TechChallenge.GameStore.Application.Usuarios.Atualizar;
 using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Domain.Usuarios;
@@ -7,7 +7,7 @@ using TechChallenge.GameStore.Unit.Test.Application.Usuarios.Fakers;
 using TechChallenge.GameStore.Unit.Test.Application.Usuarios.Fixtures;
 using Xunit;
 
-namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios.Atualizar;
+namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios;
 
 public class AtualizarUsuarioHandlerTest : AtualizarHandlerFixture
 {

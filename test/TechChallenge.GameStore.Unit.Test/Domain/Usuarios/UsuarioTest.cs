@@ -90,10 +90,13 @@ public class UsuarioTest
         var nome = "João da Silva";
         var email = "joao@email.com";
         var senha = "Abc@1234";
-
         var usuario = Usuario.Criar(nome, email, senha).Valor;
 
         var resultado = usuario.Atualizar("Novo Nome", null);
+
+        resultado.Sucesso.Should().BeTrue();
+        resultado.Valor.Email.Should().Be(email);
+        resultado.Valor.Nome.Should().Be("Novo Nome");
     }
 
     [Fact]

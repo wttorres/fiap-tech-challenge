@@ -2,10 +2,12 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TechChallenge.GameStore.Domain.Jogos;
+using TechChallenge.GameStore.Domain.Notificacoes;
 using TechChallenge.GameStore.Domain.Promocoes;
 using TechChallenge.GameStore.Domain.Usuarios;
 using TechChallenge.GameStore.Infrastructure._Shared;
 using TechChallenge.GameStore.Infrastructure.Jogos;
+using TechChallenge.GameStore.Infrastructure.Notificacoes;
 using TechChallenge.GameStore.Infrastructure.Promocoes;
 using TechChallenge.GameStore.Infrastructure.Usuarios;
 
@@ -17,6 +19,8 @@ public static class Module
     {
         AddDbContext(services, configuration);
         AddRepositories(services);
+        
+        services.AddScoped<IEmailSender, EmailSender>();
     }
     private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
     {
@@ -31,6 +35,7 @@ public static class Module
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         services.AddScoped<IPromocaoRepository, PromocaoRepository>();
         services.AddScoped<IJogoRepository, JogoRepository>();
+        services.AddScoped<INotificacaoRepository, NotificacaoRepository>();
     }
 
 }

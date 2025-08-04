@@ -12,8 +12,8 @@ using TechChallenge.GameStore.Infrastructure._Shared;
 namespace TechChallenge.GameStore.Infrastructure.Migrations
 {
     [DbContext(typeof(GameStoreContext))]
-    [Migration("20250725160104_MigracaoInicial")]
-    partial class MigracaoInicial
+    [Migration("20250731012912_Inicial")]
+    partial class Inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,9 +33,73 @@ namespace TechChallenge.GameStore.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("numeric");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("Nome");
+
                     b.ToTable("jogo", (string)null);
+                });
+
+            modelBuilder.Entity("TechChallenge.GameStore.Domain.Notificacoes.Notificacao", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DataEnvio")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Mensagem")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<string>("Titulo")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("notificacao", (string)null);
+                });
+
+            modelBuilder.Entity("TechChallenge.GameStore.Domain.Notificacoes.NotificacaoEnviada", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("NotificacaoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("PromocaoJogoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NotificacaoId");
+
+                    b.HasIndex("PromocaoJogoId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("notificacao_enviada", (string)null);
                 });
 
             modelBuilder.Entity("TechChallenge.GameStore.Domain.Promocoes.Promocao", b =>
@@ -71,15 +135,23 @@ namespace TechChallenge.GameStore.Infrastructure.Migrations
 
             modelBuilder.Entity("TechChallenge.GameStore.Domain.Promocoes.PromocaoJogo", b =>
                 {
-                    b.Property<int>("PromocaoId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("JogoId")
                         .HasColumnType("integer");
 
-                    b.HasKey("PromocaoId", "JogoId");
+                    b.Property<int>("PromocaoId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("JogoId");
+
+                    b.HasIndex("PromocaoId");
 
                     b.ToTable("promocao_jogo", (string)null);
                 });
@@ -109,6 +181,9 @@ namespace TechChallenge.GameStore.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<bool>("ReceberNotificacoes")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Senha")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -122,6 +197,33 @@ namespace TechChallenge.GameStore.Infrastructure.Migrations
                     b.ToTable("usuario", (string)null);
                 });
 
+            modelBuilder.Entity("TechChallenge.GameStore.Domain.Notificacoes.NotificacaoEnviada", b =>
+                {
+                    b.HasOne("TechChallenge.GameStore.Domain.Notificacoes.Notificacao", "Notificacao")
+                        .WithMany("Enviadas")
+                        .HasForeignKey("NotificacaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TechChallenge.GameStore.Domain.Promocoes.PromocaoJogo", "PromocaoJogo")
+                        .WithMany()
+                        .HasForeignKey("PromocaoJogoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TechChallenge.GameStore.Domain.Usuarios.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Notificacao");
+
+                    b.Navigation("PromocaoJogo");
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("TechChallenge.GameStore.Domain.Promocoes.PromocaoJogo", b =>
                 {
                     b.HasOne("TechChallenge.GameStore.Domain.Jogos.Jogo", "Jogo")
@@ -131,7 +233,7 @@ namespace TechChallenge.GameStore.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("TechChallenge.GameStore.Domain.Promocoes.Promocao", "Promocao")
-                        .WithMany("_jogos")
+                        .WithMany("Jogos")
                         .HasForeignKey("PromocaoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -141,9 +243,14 @@ namespace TechChallenge.GameStore.Infrastructure.Migrations
                     b.Navigation("Promocao");
                 });
 
+            modelBuilder.Entity("TechChallenge.GameStore.Domain.Notificacoes.Notificacao", b =>
+                {
+                    b.Navigation("Enviadas");
+                });
+
             modelBuilder.Entity("TechChallenge.GameStore.Domain.Promocoes.Promocao", b =>
                 {
-                    b.Navigation("_jogos");
+                    b.Navigation("Jogos");
                 });
 #pragma warning restore 612, 618
         }

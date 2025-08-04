@@ -13,7 +13,7 @@ public class Promocao
 
     public List<PromocaoJogo> Jogos { get; private set; } = new();
 
-    private Promocao() { }
+    public Promocao() { }
 
     public static Result<Promocao> Criar(string nome, string? descricao, decimal desconto, DateTime inicio, DateTime fim)
     {

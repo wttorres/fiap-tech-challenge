@@ -1,7 +1,7 @@
-﻿using FluentAssertions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentAssertions;
 using TechChallenge.GameStore.Domain.Jogos;
 using TechChallenge.GameStore.Infrastructure.Jogos;
 using TechChallenge.GameStore.Unit.Test._Shared;
