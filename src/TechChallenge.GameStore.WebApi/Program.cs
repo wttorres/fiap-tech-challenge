@@ -16,7 +16,7 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddControllers(); 
 builder.Services.AddInfrastructure(builder.Configuration); 
-builder.Services.AddApplication(builder.Configuration); 
+builder.Services.AddApplication(); 
 builder.Services.AddWebApi(); 
 
 builder.Services.AddSwaggerGen(c =>

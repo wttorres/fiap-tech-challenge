@@ -37,5 +37,4 @@ public static class Module
         services.AddScoped<IJogoRepository, JogoRepository>();
         services.AddScoped<INotificacaoRepository, NotificacaoRepository>();
     }
-
 }
