@@ -24,7 +24,6 @@ public class PromoverUsuarioHandlerTest
     {
         //Arrange
         var usuario = Usuario.Criar("Joao da Silva", "teste@email.com", "Abc@12345").Valor;
-        //usuario.Perfil = Perfil.Usuario;
         
         _repositoryMock
             .Setup(x => x.ObterPorIdAsync(usuario.Id))

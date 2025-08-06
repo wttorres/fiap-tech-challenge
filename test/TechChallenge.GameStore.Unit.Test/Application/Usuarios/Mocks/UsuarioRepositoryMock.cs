@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using System.Collections.Generic;
+using Moq;
 using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Domain.Usuarios;
 
@@ -32,6 +33,12 @@ public class UsuarioRepositoryMock : Mock<IUsuarioRepository>
     {
         Setup(r => r.ObterPorIdAsync(usuario.Id))
             .ReturnsAsync(usuario);
+    }
+
+    public void ConfigurarParaObterUsuarios(IEnumerable<Usuario> usuarios)
+    {
+        Setup(x => x.ObterTodosAsync())
+            .ReturnsAsync((List<Usuario>) usuarios);
     }
 
     public void ConfigurarParaAtualizar(Result<Usuario> resultado)
