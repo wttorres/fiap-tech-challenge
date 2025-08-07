@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Swashbuckle.AspNetCore.Annotations;
 using MediatR;
 using TechChallenge.GameStore.Domain._Shared;

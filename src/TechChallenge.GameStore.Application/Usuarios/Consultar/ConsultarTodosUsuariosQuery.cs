@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System.Collections.Generic;
+using MediatR;
 using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Domain.Usuarios;
 

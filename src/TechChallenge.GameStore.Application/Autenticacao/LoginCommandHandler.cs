@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Domain.Usuarios;
 using TechChallenge.GameStore.Infrastructure.Autenticacao;
@@ -16,7 +18,7 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginResponse?>
         _jwtTokenService   = jwtTokenService;
     }
 
-    public async Task<LoginResponse?> Handle(LoginCommand request, CancellationToken cancellationToken)
+    public async Task<LoginResponse> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
         var usuario = await _usuarioRepository.ObterPorEmailAsync(request.Email);
         if (usuario is null) return null;

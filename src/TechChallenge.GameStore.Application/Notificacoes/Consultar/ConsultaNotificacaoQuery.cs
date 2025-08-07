@@ -1,4 +1,7 @@
-﻿using TechChallenge.GameStore.Domain.Notificacoes;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using TechChallenge.GameStore.Domain.Notificacoes;
 
 namespace TechChallenge.GameStore.Application.Notificacoes.Consultar;
 

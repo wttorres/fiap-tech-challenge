@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using TechChallenge.GameStore.Application;
 using TechChallenge.GameStore.Infrastructure;
 using TechChallenge.GameStore.WebApi;
+using TechChallenge.GameStore.WebApi._Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers(); 

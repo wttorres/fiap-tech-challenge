@@ -1,12 +1,12 @@
-﻿using MediatR;
+﻿using System.Threading.Tasks;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using TechChallenge.GameStore.Application.Compras.Cadastrar;
+using TechChallenge.GameStore.Application.Compras.Comprar;
 
-namespace TechChallenge.GameStore.WebApi.Compras.Cadastrar;
+namespace TechChallenge.GameStore.WebApi.Compras.Comprar;
 
 [ApiController]
 [Route("api/")]

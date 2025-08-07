@@ -1,9 +1,10 @@
-﻿using MediatR;
-using Swashbuckle.AspNetCore.Annotations;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using MediatR;
+using Swashbuckle.AspNetCore.Annotations;
 using TechChallenge.GameStore.Domain._Shared;
 
-namespace TechChallenge.GameStore.Application.Compras.Cadastrar
+namespace TechChallenge.GameStore.Application.Compras.Comprar
 {
     public class ComprarJogoCommand : IRequest<Result<string>>
     {

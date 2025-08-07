@@ -1,6 +1,6 @@
 ﻿using AutoBogus;
 using System.Collections.Generic;
-using TechChallenge.GameStore.Application.Compras.Cadastrar;
+using TechChallenge.GameStore.Application.Compras.Comprar;
 
 namespace TechChallenge.GameStore.Unit.Test.Application.Compras.Fakers;
 

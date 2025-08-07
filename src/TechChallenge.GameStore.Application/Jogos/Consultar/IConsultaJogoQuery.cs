@@ -1,4 +1,5 @@
-﻿using TechChallenge.GameStore.Application.Promocoes.Consultar;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace TechChallenge.GameStore.Application.Jogos.Consultar
 {

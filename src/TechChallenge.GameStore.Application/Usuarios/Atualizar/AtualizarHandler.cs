@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Domain.Usuarios;
 

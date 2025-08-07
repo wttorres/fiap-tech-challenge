@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Domain.Promocoes;
 using TechChallenge.GameStore.Infrastructure._Shared;

@@ -1,12 +1,17 @@
-﻿using MediatR;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 using TechChallenge.GameStore.Domain._Shared;
-using TechChallenge.GameStore.Domain.Usuarios;
-using TechChallenge.GameStore.Domain.Jogos;
-using TechChallenge.GameStore.Domain.Promocoes;
 using TechChallenge.GameStore.Domain.Compras;
 using TechChallenge.GameStore.Domain.Compras.Interfaces;
+using TechChallenge.GameStore.Domain.Jogos;
+using TechChallenge.GameStore.Domain.Promocoes;
+using TechChallenge.GameStore.Domain.Usuarios;
 
-namespace TechChallenge.GameStore.Application.Compras.Cadastrar
+namespace TechChallenge.GameStore.Application.Compras.Comprar
 {
     public class ComprarJogoHandler : IRequestHandler<ComprarJogoCommand, Result<string>>
     {

@@ -1,4 +1,7 @@
-﻿using MediatR;
+﻿using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Domain.Jogos;
 using TechChallenge.GameStore.Domain.Promocoes;

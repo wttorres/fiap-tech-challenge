@@ -1,4 +1,7 @@
-﻿namespace TechChallenge.GameStore.Domain.Compras.Interfaces
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace TechChallenge.GameStore.Domain.Compras.Interfaces
 {
     public interface IBibliotecaJogosRepository
     {

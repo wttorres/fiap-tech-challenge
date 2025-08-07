@@ -1,4 +1,7 @@
-﻿namespace TechChallenge.GameStore.Domain.Notificacoes;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace TechChallenge.GameStore.Domain.Notificacoes;
 
 public interface INotificacaoRepository
 {

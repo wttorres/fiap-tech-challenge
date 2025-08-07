@@ -1,4 +1,4 @@
-﻿using TechChallenge.GameStore.Application.Compras.Cadastrar;
+﻿using TechChallenge.GameStore.Application.Compras.Comprar;
 using TechChallenge.GameStore.Unit.Test.Application.Compras.Mocks;
 using TechChallenge.GameStore.Unit.Test.Application.Promocoes.Mocks;
 using TechChallenge.GameStore.Unit.Test.Application.Usuarios.Mocks;

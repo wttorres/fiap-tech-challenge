@@ -1,4 +1,6 @@
-﻿using TechChallenge.GameStore.Domain._Shared;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using TechChallenge.GameStore.Domain._Shared;
 
 namespace TechChallenge.GameStore.Domain.Promocoes;
 

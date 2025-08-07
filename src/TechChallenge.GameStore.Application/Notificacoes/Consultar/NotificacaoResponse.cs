@@ -1,4 +1,7 @@
-﻿namespace TechChallenge.GameStore.Application.Notificacoes.Consultar;
+﻿using System;
+using System.Collections.Generic;
+
+namespace TechChallenge.GameStore.Application.Notificacoes.Consultar;
 
 public class NotificacaoResponse
 {
