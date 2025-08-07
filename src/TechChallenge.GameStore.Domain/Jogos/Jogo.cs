@@ -27,4 +27,11 @@ public class Jogo : Base
 
         return Result.Success(jogo);
     }
+
+    public void Atualizar(string nome, decimal preco)
+    {
+        Nome = nome;
+        Preco = preco;
+    }
+
 }

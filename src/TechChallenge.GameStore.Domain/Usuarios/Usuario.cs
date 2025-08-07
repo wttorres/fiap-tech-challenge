@@ -1,4 +1,6 @@
-﻿using TechChallenge.GameStore.Domain._Shared;
+﻿using System.Collections.Generic;
+using TechChallenge.GameStore.Domain._Shared;
+using TechChallenge.GameStore.Domain.Compras;
 
 namespace TechChallenge.GameStore.Domain.Usuarios;
 
@@ -9,6 +11,7 @@ public class Usuario : Base
     public string Senha { get; private set; }
     public DateTime CriadoEm { get; private set; }
     public bool ReceberNotificacoes { get; private set; }
+    public List<BibliotecaJogo> Biblioteca { get; set; }
 
     public Perfil Perfil { get; set; } = Perfil.Usuario;
 

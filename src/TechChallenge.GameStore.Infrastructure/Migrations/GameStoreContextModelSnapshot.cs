@@ -22,6 +22,68 @@ namespace TechChallenge.GameStore.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("TechChallenge.GameStore.Domain.Compras.BibliotecaJogo", b =>
+                {
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("JogoId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("UsuarioId", "JogoId");
+
+                    b.HasIndex("JogoId");
+
+                    b.ToTable("BibliotecaJogos", (string)null);
+                });
+
+            modelBuilder.Entity("TechChallenge.GameStore.Domain.Compras.HistoricoCompra", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DataCompra")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("HistoricoCompras", (string)null);
+                });
+
+            modelBuilder.Entity("TechChallenge.GameStore.Domain.Compras.ItemCompra", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("HistoricoCompraId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("JogoId")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("PrecoPago")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HistoricoCompraId");
+
+                    b.HasIndex("JogoId");
+
+                    b.ToTable("ItensCompra", (string)null);
+                });
+
             modelBuilder.Entity("TechChallenge.GameStore.Domain.Jogos.Jogo", b =>
                 {
                     b.Property<int>("Id")
@@ -194,6 +256,55 @@ namespace TechChallenge.GameStore.Infrastructure.Migrations
                     b.ToTable("usuario", (string)null);
                 });
 
+            modelBuilder.Entity("TechChallenge.GameStore.Domain.Compras.BibliotecaJogo", b =>
+                {
+                    b.HasOne("TechChallenge.GameStore.Domain.Jogos.Jogo", "Jogo")
+                        .WithMany()
+                        .HasForeignKey("JogoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TechChallenge.GameStore.Domain.Usuarios.Usuario", "Usuario")
+                        .WithMany("Biblioteca")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Jogo");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("TechChallenge.GameStore.Domain.Compras.HistoricoCompra", b =>
+                {
+                    b.HasOne("TechChallenge.GameStore.Domain.Usuarios.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("TechChallenge.GameStore.Domain.Compras.ItemCompra", b =>
+                {
+                    b.HasOne("TechChallenge.GameStore.Domain.Compras.HistoricoCompra", "HistoricoCompra")
+                        .WithMany("Itens")
+                        .HasForeignKey("HistoricoCompraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TechChallenge.GameStore.Domain.Jogos.Jogo", "Jogo")
+                        .WithMany()
+                        .HasForeignKey("JogoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HistoricoCompra");
+
+                    b.Navigation("Jogo");
+                });
+
             modelBuilder.Entity("TechChallenge.GameStore.Domain.Notificacoes.NotificacaoEnviada", b =>
                 {
                     b.HasOne("TechChallenge.GameStore.Domain.Notificacoes.Notificacao", "Notificacao")
@@ -240,6 +351,11 @@ namespace TechChallenge.GameStore.Infrastructure.Migrations
                     b.Navigation("Promocao");
                 });
 
+            modelBuilder.Entity("TechChallenge.GameStore.Domain.Compras.HistoricoCompra", b =>
+                {
+                    b.Navigation("Itens");
+                });
+
             modelBuilder.Entity("TechChallenge.GameStore.Domain.Notificacoes.Notificacao", b =>
                 {
                     b.Navigation("Enviadas");
@@ -248,6 +364,11 @@ namespace TechChallenge.GameStore.Infrastructure.Migrations
             modelBuilder.Entity("TechChallenge.GameStore.Domain.Promocoes.Promocao", b =>
                 {
                     b.Navigation("Jogos");
+                });
+
+            modelBuilder.Entity("TechChallenge.GameStore.Domain.Usuarios.Usuario", b =>
+                {
+                    b.Navigation("Biblioteca");
                 });
 #pragma warning restore 612, 618
         }

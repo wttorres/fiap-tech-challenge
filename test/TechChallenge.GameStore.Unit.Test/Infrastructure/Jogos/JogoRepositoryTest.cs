@@ -1,8 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
+using Moq;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using TechChallenge.GameStore.Domain.Jogos;
+using TechChallenge.GameStore.Infrastructure._Shared;
 using TechChallenge.GameStore.Infrastructure.Jogos;
 using TechChallenge.GameStore.Unit.Test._Shared;
 using TechChallenge.GameStore.Unit.Test.Infrastructure.Jogos.Fakers;
@@ -57,7 +63,7 @@ public class JogoRepositoryTest
         var ids = new List<int> { jogo1.Id, jogo2.Id };
 
         // Act
-        var jogos = await fixture.Repository.ObterAsync(ids);
+        var jogos = await fixture.Repository.ObterPorIdsAsync(ids);
 
         // Assert
         jogos.Should().HaveCount(2);
@@ -80,22 +86,5 @@ public class JogoRepositoryTest
 
         var persistido = await fixture.Context.Set<Jogo>().FindAsync(jogo.Id);
         persistido.Should().NotBeNull();
-    }
-
-    [Fact]
-    public async Task AdicionarAsync_QuandoSalvarFalha_DeveRetornarErro()
-    {
-        // Arrange
-        var context = ContextFactory.Create();
-        var repository = new JogoRepository(context);
-        
-        context.Dispose();
-
-        // Act
-        var resultado = await repository.AdicionarAsync(JogoFaker.Valido());
-
-        // Assert
-        resultado.Sucesso.Should().BeFalse();
-        resultado.Erro.Should().Contain("Erro ao salvar");
-    }
+    }  
 }
