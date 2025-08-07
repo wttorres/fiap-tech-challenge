@@ -8,6 +8,6 @@ public class JogoRepositoryMock : Mock<IJogoRepository>
 {
     public void ConfigurarObterAsync(List<int> ids, List<Jogo> jogos)
     {
-        Setup(j => j.ObterAsync(ids)).ReturnsAsync(jogos);
+        Setup(j => j.ObterPorIdsAsync(ids)).ReturnsAsync(jogos);
     }
 }

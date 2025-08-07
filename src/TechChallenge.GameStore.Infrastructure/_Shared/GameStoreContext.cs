@@ -11,7 +11,7 @@ public class GameStoreContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder. ApplyConfigurationsFromAssembly(typeof(GameStoreContext).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(GameStoreContext).Assembly);
         base.OnModelCreating(modelBuilder);
     }
     

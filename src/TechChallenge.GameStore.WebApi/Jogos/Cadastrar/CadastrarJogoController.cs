@@ -21,7 +21,7 @@ public class CadastrarJogoController : ControllerBase
     }
 
     [Authorize(Roles = "Admin")]
-    [HttpPost("Post")]
+    [HttpPost]
     [SwaggerOperation(
         Summary = "Cadastra um novo jogo",
         Description = "Realiza o cadastro de um jogo informando nome, preço."

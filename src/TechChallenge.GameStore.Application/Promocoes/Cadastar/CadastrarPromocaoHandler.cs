@@ -38,7 +38,7 @@ public class CadastrarPromocaoHandler : IRequestHandler<CadastrarPromocaoCommand
         if (request.JogosIds is { Count: 0 })
             return Result.Failure<string>("Promoção deve conter pelo menos um jogo.");
         
-        var jogos = await _jogoRepository.ObterAsync(request.JogosIds);
+        var jogos = await _jogoRepository.ObterPorIdsAsync(request.JogosIds);
         if (request.JogosIds != null && jogos.Count != request.JogosIds.Count)
             return Result.Failure<string>("Um ou mais jogos informados não existem.");
         

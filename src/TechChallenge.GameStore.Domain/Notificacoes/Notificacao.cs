@@ -1,11 +1,11 @@
+using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Domain.Jogos;
 using TechChallenge.GameStore.Domain.Promocoes;
 
 namespace TechChallenge.GameStore.Domain.Notificacoes;
 
-public class Notificacao
+public class Notificacao : Base
 {
-    public int Id { get; private set; }
     public string Titulo { get; private set; }
     public string Mensagem { get; private set; }
     public DateTime DataEnvio { get; private set; }

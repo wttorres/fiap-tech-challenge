@@ -3,12 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using TechChallenge.GameStore.Domain.Compras;
 using TechChallenge.GameStore.Domain.Jogos;
 using TechChallenge.GameStore.Domain.Notificacoes;
 using TechChallenge.GameStore.Domain.Promocoes;
 using TechChallenge.GameStore.Domain.Usuarios;
 using TechChallenge.GameStore.Infrastructure._Shared;
 using TechChallenge.GameStore.Infrastructure.Autenticacao;
+using TechChallenge.GameStore.Infrastructure.Compras;
 using TechChallenge.GameStore.Infrastructure.Jogos;
 using TechChallenge.GameStore.Infrastructure.Notificacoes;
 using TechChallenge.GameStore.Infrastructure.Promocoes;
@@ -62,5 +64,7 @@ public static class Module
         services.AddScoped<IPromocaoRepository, PromocaoRepository>();
         services.AddScoped<IJogoRepository, JogoRepository>();
         services.AddScoped<INotificacaoRepository, NotificacaoRepository>();
+        services.AddScoped<IHistoricoCompraRepository, HistoricoCompraRepository>();
+        services.AddScoped<IBibliotecaJogosRepository, BibliotecaJogosRepository>();
     }
 }

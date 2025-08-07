@@ -13,7 +13,14 @@ public class UsuarioRepository : IUsuarioRepository
     {
         _context = context;
     }
-    
+
+    public async Task<Usuario?> ObterPorIdAsync(int id)
+    {
+        return await _context.Set<Usuario>()
+                             .AsNoTracking()
+                             .FirstOrDefaultAsync(u => u.Id == id);
+    }
+
     public async Task<List<Usuario>> ObterTodosAsync()
     {
         return await _context.Set<Usuario>().ToListAsync();
@@ -41,11 +48,6 @@ public class UsuarioRepository : IUsuarioRepository
         {
             return Result.Failure<Usuario>($"Erro ao adicionar usuário: {ex.Message}");
         }
-    }
-
-    public async Task<Usuario?> ObterPorIdAsync(int id)
-    {
-        return await _context.Set<Usuario>().FindAsync(id);
     }
 
     public async Task<Result<Usuario>> AtualizarAsync(Usuario usuario)
