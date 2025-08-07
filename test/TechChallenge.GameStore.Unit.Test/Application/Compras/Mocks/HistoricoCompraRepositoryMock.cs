@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TechChallenge.GameStore.Domain.Compras;
+using TechChallenge.GameStore.Domain.Compras.Interfaces;
 
 namespace TechChallenge.GameStore.Unit.Test.Application.Compras.Mocks
 {

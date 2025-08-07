@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using TechChallenge.GameStore.Application.Usuarios.Promover;
 
 namespace TechChallenge.GameStore.WebApi.Usuarios.Promover;
@@ -19,18 +20,16 @@ public class PromoverUsuarioController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPut("{id}/promover")]
+    [Authorize(Roles = "Admin")]
+    [HttpPut("promover")]
     [SwaggerOperation(
         Summary = "Promove o perfil de um usuário",
         Description = "Promove um usuário existente para o perfil de Admin ou Usuário.")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Promover(int id, [FromBody] PromoverUsuarioCommand command)
+    public async Task<IActionResult> Promover([FromBody] PromoverUsuarioCommand command)
     {
-        if (id != command.Id)
-            return BadRequest("O ID do usuário na URL não corresponde ao ID no corpo da requisição.");
-
         var result = await _mediator.Send(command);
 
         var response = new

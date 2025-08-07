@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using TechChallenge.GameStore.Application.Jogos.Cadastrar;
 
 namespace TechChallenge.GameStore.WebApi.Jogos.Cadastrar;
@@ -19,6 +20,7 @@ public class CadastrarJogoController : ControllerBase
         _mediator = mediator;
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [SwaggerOperation(
         Summary = "Cadastra um novo jogo",

@@ -4,6 +4,7 @@ using TechChallenge.GameStore.Domain.Usuarios;
 using TechChallenge.GameStore.Domain.Jogos;
 using TechChallenge.GameStore.Domain.Promocoes;
 using TechChallenge.GameStore.Domain.Compras;
+using TechChallenge.GameStore.Domain.Compras.Interfaces;
 
 namespace TechChallenge.GameStore.Application.Compras.Cadastrar
 {

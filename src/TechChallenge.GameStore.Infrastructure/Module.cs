@@ -1,13 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Text;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using TechChallenge.GameStore.Domain.Compras;
+using TechChallenge.GameStore.Domain.Compras.Interfaces;
 using TechChallenge.GameStore.Domain.Jogos;
 using TechChallenge.GameStore.Domain.Notificacoes;
 using TechChallenge.GameStore.Domain.Promocoes;
 using TechChallenge.GameStore.Domain.Usuarios;
 using TechChallenge.GameStore.Infrastructure._Shared;
+using TechChallenge.GameStore.Infrastructure.Autenticacao;
 using TechChallenge.GameStore.Infrastructure.Compras;
+using TechChallenge.GameStore.Infrastructure.Compras.Imp;
 using TechChallenge.GameStore.Infrastructure.Jogos;
 using TechChallenge.GameStore.Infrastructure.Notificacoes;
 using TechChallenge.GameStore.Infrastructure.Promocoes;
@@ -21,9 +26,32 @@ public static class Module
     {
         AddDbContext(services, configuration);
         AddRepositories(services);
+        AddAuthentication(services, configuration);
         
         services.AddScoped<IEmailSender, EmailSender>();
     }
+
+    private static void AddAuthentication(IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddAuthentication("Bearer")
+            .AddJwtBearer("Bearer", options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer   = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer              = configuration["Jwt:Issuer"],
+                    ValidAudience            = configuration["Jwt:Audience"],
+                    IssuerSigningKey         = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]!))
+                };
+            });
+
+        services.AddAuthorization();
+        services.AddScoped<IJwtTokenService, JwtTokenService>();
+    }
+
     private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("DefaultConnection");

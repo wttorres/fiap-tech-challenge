@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using AutoBogus;
-using TechChallenge.GameStore.Application.HistoricoCompras;
+using TechChallenge.GameStore.Application.Compras.Consultar;
 
-namespace TechChallenge.GameStore.Unit.Test.WebApi.HistoricoCompras.Fakers;
+namespace TechChallenge.GameStore.Unit.Test.WebApi.Compras.Fakers;
 
 public static class HistoricoCompraResponseFaker
 {

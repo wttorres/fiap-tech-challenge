@@ -11,13 +11,11 @@
     </ItemGroup>
     
     <ItemGroup> 
+        <PackageReference Include="BCrypt.Net-Next" /> 
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" /> 
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" />
-    </ItemGroup>
-    
-    <ItemGroup>
-      <Folder Include="Migrations\" />
     </ItemGroup>
     
     <ItemGroup>

@@ -1,5 +1,4 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using TechChallenge.GameStore.Domain._Shared;
 using Xunit;
 
@@ -39,9 +38,9 @@ public class SenhaExtensionTest
     }
 
     [Theory]
-    [InlineData("minhaSenha123")]
-    [InlineData("Outra@Senha")]
-    public void GerarHash_DeveRetornarHashBase64(string senha)
+    [InlineData("minhaSenha123!")]
+    [InlineData("Outra@Senha456")]
+    public void GerarHash_DeveGerarHashValidoQuePodeSerComparado(string senha)
     {
         // Act
         var hash = SenhaExtension.GerarHash(senha);
@@ -49,7 +48,7 @@ public class SenhaExtensionTest
         // Assert
         hash.Should().NotBeNullOrWhiteSpace();
 
-        var decoded = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(hash));
-        decoded.Should().Be(senha);
+        var comparacao = SenhaExtension.Comparar(senha, hash);
+        comparacao.Should().BeTrue("o hash gerado deve ser válido para a senha original");
     }
 }

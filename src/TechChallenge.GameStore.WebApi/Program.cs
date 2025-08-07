@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,25 +17,6 @@ builder.Services.AddControllers();
 builder.Services.AddInfrastructure(builder.Configuration); 
 builder.Services.AddApplication(); 
 builder.Services.AddWebApi(); 
-
-builder.Services.AddSwaggerGen(c =>
-{
-    c.EnableAnnotations();
-    c.TagActionsBy(api =>
-    {
-        var groupName = api.GroupName;
-        return !string.IsNullOrEmpty(groupName) 
-            ? new[] { groupName } 
-            : [api.ActionDescriptor.RouteValues["controller"]];
-    });
-
-    c.DocInclusionPredicate((_, _) => true);
-});
-builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-    });
 
 var app = builder.Build();
 
