@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace TechChallenge.GameStore.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Inicial : Migration
+    public partial class MigracaoInicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -103,6 +103,50 @@ namespace TechChallenge.GameStore.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BibliotecaJogos",
+                columns: table => new
+                {
+                    UsuarioId = table.Column<int>(type: "integer", nullable: false),
+                    JogoId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BibliotecaJogos", x => new { x.UsuarioId, x.JogoId });
+                    table.ForeignKey(
+                        name: "FK_BibliotecaJogos_jogo_JogoId",
+                        column: x => x.JogoId,
+                        principalTable: "jogo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BibliotecaJogos_usuario_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "usuario",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HistoricoCompras",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UsuarioId = table.Column<int>(type: "integer", nullable: false),
+                    DataCompra = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HistoricoCompras", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_HistoricoCompras_usuario_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "usuario",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "notificacao_enviada",
                 columns: table => new
                 {
@@ -134,6 +178,53 @@ namespace TechChallenge.GameStore.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "ItensCompra",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    HistoricoCompraId = table.Column<int>(type: "integer", nullable: false),
+                    JogoId = table.Column<int>(type: "integer", nullable: false),
+                    PrecoPago = table.Column<decimal>(type: "numeric", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ItensCompra", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ItensCompra_HistoricoCompras_HistoricoCompraId",
+                        column: x => x.HistoricoCompraId,
+                        principalTable: "HistoricoCompras",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ItensCompra_jogo_JogoId",
+                        column: x => x.JogoId,
+                        principalTable: "jogo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BibliotecaJogos_JogoId",
+                table: "BibliotecaJogos",
+                column: "JogoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HistoricoCompras_UsuarioId",
+                table: "HistoricoCompras",
+                column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ItensCompra_HistoricoCompraId",
+                table: "ItensCompra",
+                column: "HistoricoCompraId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ItensCompra_JogoId",
+                table: "ItensCompra",
+                column: "JogoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_jogo_Nome",
@@ -176,7 +267,16 @@ namespace TechChallenge.GameStore.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "BibliotecaJogos");
+
+            migrationBuilder.DropTable(
+                name: "ItensCompra");
+
+            migrationBuilder.DropTable(
                 name: "notificacao_enviada");
+
+            migrationBuilder.DropTable(
+                name: "HistoricoCompras");
 
             migrationBuilder.DropTable(
                 name: "notificacao");

@@ -40,7 +40,7 @@ public class AtualizarPromocaoHandler : IRequestHandler<AtualizarPromocaoCommand
     
     private async Task<Result<string>> ValidarJogosExistentes(List<int> jogosIds)
     {
-        var jogos = await _jogoRepository.ObterAsync(jogosIds);
+        var jogos = await _jogoRepository.ObterPorIdsAsync(jogosIds);
         
         return jogos.Count == jogosIds.Count
             ? Result.Success("Jogos válidos")

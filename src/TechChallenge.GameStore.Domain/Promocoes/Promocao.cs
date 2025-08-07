@@ -2,9 +2,8 @@
 
 namespace TechChallenge.GameStore.Domain.Promocoes;
 
-public class Promocao
+public class Promocao : Base
 {
-    public int Id { get; private set; }
     public string Nome { get; private set; }
     public string? Descricao { get; private set; }
     public decimal DescontoPercentual { get; private set; }

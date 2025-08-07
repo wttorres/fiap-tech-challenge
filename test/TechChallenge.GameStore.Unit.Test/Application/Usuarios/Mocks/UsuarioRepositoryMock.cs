@@ -28,10 +28,10 @@ public class UsuarioRepositoryMock : Mock<IUsuarioRepository>
     {
         Verify(x => x.AdicionarAsync(It.IsAny<Usuario>()), Times.Never);
     }
-
-    public void ConfigurarParaObterPorId(Usuario usuario)
+    
+    public void ConfigurarParaObterPorId(Usuario? usuario)
     {
-        Setup(r => r.ObterPorIdAsync(usuario.Id))
+        Setup(r => r.ObterPorIdAsync(It.IsAny<int>()))
             .ReturnsAsync(usuario);
     }
 
