@@ -21,30 +21,27 @@ public class PromoverUsuarioController : ControllerBase
     }
 
     [Authorize(Roles = "Admin")]
-    [HttpPut("{id}/promover")]
+    [HttpPut("promover")]
     [SwaggerOperation(
         Summary = "Promove o perfil de um usuário",
         Description = "Promove um usuário existente para o perfil de Admin ou Usuário.")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Promover(int id, [FromBody] PromoverUsuarioCommand command)
+    public async Task<IActionResult> Promover([FromBody] PromoverUsuarioCommand command)
     {
-        if (id != command.Id)
-            return BadRequest("O ID do usuário na URL não corresponde ao ID no corpo da requisição.");
-
-        var resultado = await _mediator.Send(command);
+        var result = await _mediator.Send(command);
 
         var response = new
         {
-            sucesso = resultado.Sucesso,
-            mensagem = resultado.Sucesso ? "Usuário promovido com sucesso." : resultado.Erro,
-            valor = resultado.Sucesso ? resultado.Valor : null
+            sucesso = result.Sucesso,
+            mensagem = result.Sucesso ? "Usuário promovido com sucesso." : result.Erro,
+            valor = result.Sucesso ? result.Valor : null
         };
 
-        return resultado.Sucesso 
+        return result.Sucesso 
             ? Ok(response)
-            : resultado.Erro == "Usuário não encontrado."
+            : result.Erro == "Usuário não encontrado."
                 ? NotFound(response)
                 : BadRequest(response);
     }

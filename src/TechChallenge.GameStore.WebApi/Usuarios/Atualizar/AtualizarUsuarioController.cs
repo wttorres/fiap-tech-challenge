@@ -21,17 +21,14 @@ public class AtualizarUsuarioController : ControllerBase
     }
 
     [Authorize]
-    [HttpPut("{id}")]
+    [HttpPut]
     [SwaggerOperation(
         Summary = "Atualiza um usuário existente",
         Description = "Atualiza nome e senha de um usuário existente. E-mail não pode ser alterado.")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Atualizar(int id, [FromBody] AtualizarCommand command)
+    public async Task<IActionResult> Atualizar([FromBody] AtualizarCommand command)
     {
-        if (id != command.Id)
-            return BadRequest("ID da URL e do corpo não correspondem.");
-
         var result = await _mediator.Send(command);
 
         var response = new

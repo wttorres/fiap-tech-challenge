@@ -12,8 +12,8 @@ using TechChallenge.GameStore.Infrastructure._Shared;
 namespace TechChallenge.GameStore.Infrastructure.Migrations
 {
     [DbContext(typeof(GameStoreContext))]
-    [Migration("20250807192543_MigracaoInicial")]
-    partial class MigracaoInicial
+    [Migration("20250807221028_TechChallengeFaseUm")]
+    partial class TechChallengeFaseUm
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -12,6 +12,7 @@ using TechChallenge.GameStore.Domain.Usuarios;
 using TechChallenge.GameStore.Infrastructure._Shared;
 using TechChallenge.GameStore.Infrastructure.Autenticacao;
 using TechChallenge.GameStore.Infrastructure.Compras;
+using TechChallenge.GameStore.Infrastructure.Compras.Imp;
 using TechChallenge.GameStore.Infrastructure.Jogos;
 using TechChallenge.GameStore.Infrastructure.Notificacoes;
 using TechChallenge.GameStore.Infrastructure.Promocoes;

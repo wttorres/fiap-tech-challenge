@@ -6,8 +6,8 @@ services:
     container_name: postgres-db
     restart: always
     environment:
-      POSTGRES_USER: wtorres
-      POSTGRES_PASSWORD: 123456
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
       POSTGRES_DB: gamestoredb
     ports:
       - "5432:5432"

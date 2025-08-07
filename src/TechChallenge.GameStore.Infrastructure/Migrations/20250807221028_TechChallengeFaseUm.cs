@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace TechChallenge.GameStore.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class MigracaoInicial : Migration
+    public partial class TechChallengeFaseUm : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

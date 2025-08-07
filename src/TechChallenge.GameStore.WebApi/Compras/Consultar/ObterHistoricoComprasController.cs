@@ -11,7 +11,7 @@ namespace TechChallenge.GameStore.WebApi.Compras.Consultar;
 
 [ApiController]
 [Route("api/Compras")]
-[ApiExplorerSettings(GroupName = "Usuário")]
+[ApiExplorerSettings(GroupName = "Compras")]
 public class ObterHistoricoComprasController : ControllerBase
 {
     private readonly IMediator _mediator;

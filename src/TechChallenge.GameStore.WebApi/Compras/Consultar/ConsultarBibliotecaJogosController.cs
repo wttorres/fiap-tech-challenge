@@ -11,7 +11,7 @@ namespace TechChallenge.GameStore.WebApi.Compras.Consultar;
 
 [ApiController]
 [Route("api/BibliotecaJogos")]
-[ApiExplorerSettings(GroupName = "Usuário")]
+[ApiExplorerSettings(GroupName = "Compras")]
 public class ConsultarBibliotecaJogosController : ControllerBase
 {
     private readonly IMediator _mediator;
