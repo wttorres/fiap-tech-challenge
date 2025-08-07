@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using TechChallenge.GameStore.Domain.Compras;
+using TechChallenge.GameStore.Domain.Compras.Interfaces;
 using TechChallenge.GameStore.Domain.Jogos;
 using TechChallenge.GameStore.Domain.Notificacoes;
 using TechChallenge.GameStore.Domain.Promocoes;
@@ -24,25 +25,25 @@ public static class Module
     {
         AddDbContext(services, configuration);
         AddRepositories(services);
-        AddAuthemtication(services, configuration);
+        AddAuthentication(services, configuration);
         
         services.AddScoped<IEmailSender, EmailSender>();
     }
 
-    private static void AddAuthemtication(IServiceCollection services, IConfiguration configuration)
+    private static void AddAuthentication(IServiceCollection services, IConfiguration configuration)
     {
         services.AddAuthentication("Bearer")
             .AddJwtBearer("Bearer", options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = true,
+                    ValidateIssuer   = true,
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = configuration["Jwt:Issuer"],
-                    ValidAudience = configuration["Jwt:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]!))
+                    ValidIssuer              = configuration["Jwt:Issuer"],
+                    ValidAudience            = configuration["Jwt:Audience"],
+                    IssuerSigningKey         = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]!))
                 };
             });
 

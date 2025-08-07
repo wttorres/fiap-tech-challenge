@@ -6,7 +6,7 @@ using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Domain.Usuarios;
 using Xunit;
 
-namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios.Promover;
+namespace TechChallenge.GameStore.Unit.Test.Application.Usuarios;
 
 public class PromoverUsuarioHandlerTest
 {

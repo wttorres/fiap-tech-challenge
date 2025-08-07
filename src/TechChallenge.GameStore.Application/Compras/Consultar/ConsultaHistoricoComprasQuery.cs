@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using TechChallenge.GameStore.Domain._Shared;
-using static TechChallenge.GameStore.Application.HistoricoCompras.HistoricoCompraResponse;
+using static TechChallenge.GameStore.Application.Compras.Consultar.HistoricoCompraResponse;
 
 namespace TechChallenge.GameStore.Application.Compras.Consultar
 {

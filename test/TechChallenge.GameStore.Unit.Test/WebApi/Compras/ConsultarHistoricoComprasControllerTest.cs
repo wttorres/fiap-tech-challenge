@@ -4,10 +4,10 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using TechChallenge.GameStore.Application.Compras.Consultar;
 using TechChallenge.GameStore.Domain._Shared;
-using TechChallenge.GameStore.Unit.Test.WebApi.HistoricoCompras.Fakers;
-using TechChallenge.GameStore.Unit.Test.WebApi.HistoricoCompras.Fixtures;
+using TechChallenge.GameStore.Unit.Test.WebApi.Compras.Fakers;
+using TechChallenge.GameStore.Unit.Test.WebApi.Compras.Fixtures;
 using Xunit;
-using static TechChallenge.GameStore.Application.HistoricoCompras.HistoricoCompraResponse;
+using static TechChallenge.GameStore.Application.Compras.Consultar.HistoricoCompraResponse;
 
 namespace TechChallenge.GameStore.Unit.Test.WebApi.Compras;
 

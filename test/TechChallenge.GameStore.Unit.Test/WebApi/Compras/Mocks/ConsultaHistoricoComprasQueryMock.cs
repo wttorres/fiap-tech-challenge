@@ -4,7 +4,7 @@ using System.Threading;
 using MediatR;
 using TechChallenge.GameStore.Application.Compras.Consultar;
 using TechChallenge.GameStore.Domain._Shared;
-using static TechChallenge.GameStore.Application.HistoricoCompras.HistoricoCompraResponse;
+using static TechChallenge.GameStore.Application.Compras.Consultar.HistoricoCompraResponse;
 
 namespace TechChallenge.GameStore.Unit.Test.WebApi.Compras.Mocks;
 

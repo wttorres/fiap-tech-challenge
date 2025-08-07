@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TechChallenge.GameStore.Domain.Compras;
+using TechChallenge.GameStore.Domain.Compras.Interfaces;
 using TechChallenge.GameStore.Infrastructure._Shared;
 
 namespace TechChallenge.GameStore.Infrastructure.Compras

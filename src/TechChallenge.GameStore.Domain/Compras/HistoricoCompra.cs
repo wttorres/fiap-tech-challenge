@@ -1,10 +1,10 @@
-﻿using TechChallenge.GameStore.Domain.Usuarios;
+﻿using TechChallenge.GameStore.Domain._Shared;
+using TechChallenge.GameStore.Domain.Usuarios;
 
 namespace TechChallenge.GameStore.Domain.Compras
 {
-    public class HistoricoCompra
+    public class HistoricoCompra : Base
     {
-        public int Id { get; set; }
         public int UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
         public DateTime DataCompra { get; set; }

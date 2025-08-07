@@ -1,8 +1,7 @@
 ﻿using TechChallenge.GameStore.Unit.Test.WebApi.Compras.Mocks;
-using TechChallenge.GameStore.Unit.Test.WebApi.HistoricoCompras.Mocks;
 using TechChallenge.GameStore.WebApi.Compras.Consultar;
 
-namespace TechChallenge.GameStore.Unit.Test.WebApi.HistoricoCompras.Fixtures;
+namespace TechChallenge.GameStore.Unit.Test.WebApi.Compras.Fixtures;
 
 public abstract class ConsultarHistoricoComprasControllerFixture
 {

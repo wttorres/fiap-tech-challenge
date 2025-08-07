@@ -1,12 +1,12 @@
-﻿using Moq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using MediatR;
+using Moq;
 using TechChallenge.GameStore.Application.Compras.Consultar;
 using TechChallenge.GameStore.Domain._Shared;
-using static TechChallenge.GameStore.Application.HistoricoCompras.HistoricoCompraResponse;
+using static TechChallenge.GameStore.Application.Compras.Consultar.HistoricoCompraResponse;
 
-namespace TechChallenge.GameStore.Unit.Test.WebApi.HistoricoCompras.Mocks;
+namespace TechChallenge.GameStore.Unit.Test.WebApi.Compras.Mocks;
 
 public class MediatorMockHistoricoCompras : Mock<IMediator>
 {

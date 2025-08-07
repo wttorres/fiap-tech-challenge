@@ -1,4 +1,4 @@
-﻿namespace TechChallenge.GameStore.Application.HistoricoCompras
+﻿namespace TechChallenge.GameStore.Application.Compras.Consultar
 {
     public class HistoricoCompraResponse
     {

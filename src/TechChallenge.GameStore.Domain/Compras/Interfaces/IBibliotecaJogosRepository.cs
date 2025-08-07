@@ -1,4 +1,4 @@
-﻿namespace TechChallenge.GameStore.Domain.Compras
+﻿namespace TechChallenge.GameStore.Domain.Compras.Interfaces
 {
     public interface IBibliotecaJogosRepository
     {
