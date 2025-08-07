@@ -1,4 +1,5 @@
-﻿using AutoBogus;
+﻿using System.Collections.Generic;
+using AutoBogus;
 using TechChallenge.GameStore.Application.Usuarios.Cadastrar;
 using TechChallenge.GameStore.Domain.Usuarios;
 
@@ -13,5 +14,15 @@ public class UsuarioFaker
             .RuleFor(x => x.Email, f => command.Email)
             .RuleFor(x => x.Senha, f => command.Senha)
             .Generate();
+    }
+
+    public static List<Usuario> ConverterParaUsuarios()
+    {
+        return new List<Usuario>
+        {
+            new AutoFaker<Usuario>(),
+            new AutoFaker<Usuario>(),
+            new AutoFaker<Usuario>(),
+        };
     }
 }

@@ -31,18 +31,18 @@ public class PromoverUsuarioController : ControllerBase
         if (id != command.Id)
             return BadRequest("O ID do usuário na URL não corresponde ao ID no corpo da requisição.");
 
-        var resultado = await _mediator.Send(command);
+        var result = await _mediator.Send(command);
 
         var response = new
         {
-            sucesso = resultado.Sucesso,
-            mensagem = resultado.Sucesso ? "Usuário promovido com sucesso." : resultado.Erro,
-            valor = resultado.Sucesso ? resultado.Valor : null
+            sucesso = result.Sucesso,
+            mensagem = result.Sucesso ? "Usuário promovido com sucesso." : result.Erro,
+            valor = result.Sucesso ? result.Valor : null
         };
 
-        return resultado.Sucesso 
+        return result.Sucesso 
             ? Ok(response)
-            : resultado.Erro == "Usuário não encontrado."
+            : result.Erro == "Usuário não encontrado."
                 ? NotFound(response)
                 : BadRequest(response);
     }
