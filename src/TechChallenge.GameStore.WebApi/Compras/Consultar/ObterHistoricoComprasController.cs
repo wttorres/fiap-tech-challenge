@@ -10,7 +10,7 @@ using TechChallenge.GameStore.Application.Compras.Consultar;
 namespace TechChallenge.GameStore.WebApi.Compras.Consultar;
 
 [ApiController]
-[Route("api/Compras")]
+[Route("api/compras")]
 [ApiExplorerSettings(GroupName = "Compras")]
 public class ObterHistoricoComprasController : ControllerBase
 {

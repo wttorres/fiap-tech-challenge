@@ -9,7 +9,7 @@ using TechChallenge.GameStore.Application.Usuarios.Consultar;
 namespace TechChallenge.GameStore.WebApi.Usuarios.Consultar;
 
 [Authorize]
-[Route("api/[controller]")]
+[Route("api/usuarios")]
 [ApiController]
 [ApiExplorerSettings(GroupName = "Usuário")]
 public class ConsultarUsuarioController : ControllerBase

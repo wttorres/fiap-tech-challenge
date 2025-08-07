@@ -8,8 +8,8 @@ using TechChallenge.GameStore.Application.Jogos.Consultar;
 namespace TechChallenge.GameStore.WebApi.Jogos.Consultar;
 
 [ApiController]
-[Route("api/[controller]")]
-[ApiExplorerSettings(GroupName = "Jogo")]
+[Route("api/jogos")]
+[ApiExplorerSettings(GroupName = "Jogos")]
 public class ConsultarJogoController : ControllerBase
 {
     private readonly IConsultaJogoQuery _consulta;

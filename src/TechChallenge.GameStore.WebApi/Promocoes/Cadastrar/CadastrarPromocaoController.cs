@@ -9,7 +9,7 @@ using TechChallenge.GameStore.Application.Promocoes.Cadastar;
 namespace TechChallenge.GameStore.WebApi.Promocoes.Cadastrar;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/promocoes")]
 [ApiExplorerSettings(GroupName = "Promoção")]
 public class CadastrarPromocaoController : ControllerBase
 {

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 namespace TechChallenge.GameStore.WebApi.Usuarios.Cadastrar;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/usuarios")]
 [ApiExplorerSettings(GroupName = "Usuário")]
 public class CadastrarUsuarioController : ControllerBase
 {
