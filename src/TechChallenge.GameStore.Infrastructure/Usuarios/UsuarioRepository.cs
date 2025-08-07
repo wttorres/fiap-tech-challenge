@@ -64,5 +64,10 @@ public class UsuarioRepository : IUsuarioRepository
         }
     }
 
-
+    public async Task<List<Usuario>> ObterUsuariosQueRecebemNotificacoesAsync()
+    {
+        return await _context.Usuarios
+            .Where(u => u.ReceberNotificacoes)
+            .ToListAsync();
+    }
 }

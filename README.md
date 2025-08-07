@@ -8,23 +8,23 @@ O objetivo é criar uma API REST em .NET 8 que permita gerenciar usuários e seu
 ## Tecnologias Utilizadas
 
 | Tecnologia                | Documentação                                                                      |
-| ------------------------- | --------------------------------------------------------------------------------- |
+|---------------------------| --------------------------------------------------------------------------------- |
 | **.NET 8**                | [Documentação Oficial](https://learn.microsoft.com/en-us/dotnet/)                 |
 | **Entity Framework Core** | [Documentação Oficial](https://learn.microsoft.com/en-us/ef/core/)                |
 | **PostgreSQL**            | [Documentação Oficial](https://www.postgresql.org/docs/)                          |
 | **Swashbuckle (Swagger)** | [Documentação Oficial](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) |
 | **MediatR**               | [Documentação Oficial](https://github.com/jbogard/MediatR)                        |
-| **BCrypt.Net-Next**       | [Documentação Oficial](https://github.com/BcryptNet/bcrypt.net)                   |
 | **NUnit**                 | [Documentação Oficial](https://nunit.org/)                                        |
+| **MailDev**               | [Documentação Oficial](https://github.com/maildev/maildev)                          |
 
 ### Pré-requisitos
 
-| Requisito        | Link para Download                                             |
-| ---------------- | -------------------------------------------------------------- |
-| `.NET SDK 8.0`   | [Baixar aqui](https://dotnet.microsoft.com/en-us/download)     |
-| `PostgreSQL 14+` | [Baixar aqui](https://www.postgresql.org/download/)            |
-| `Docker`         | [Baixar aqui](https://www.docker.com/products/docker-desktop/) |
-| `Docker Compose` | [Baixar aqui](https://docs.docker.com/compose/install/)        |
+| Requisito        | Link para Download   |
+| ---------------- |----------------------|
+| `.NET SDK 8.0`   | [Baixar aqui](https://dotnet.microsoft.com/en-us/download)   |
+| `PostgreSQL 14+` | [Baixar aqui](https://www.postgresql.org/download/)   |
+| `Docker`         | [Baixar aqui](https://www.docker.com/products/docker-desktop/)   |
+| `Docker Compose` | [Baixar aqui](https://docs.docker.com/compose/install/)   |
 
 #### 🚀 Passo a Passo para Executar a API
 
@@ -86,10 +86,20 @@ docker-compose up -d
 
 ## Variáveis de Ambiente
 
-| Variável                               | Descrição                                         | Obrigatório | Valor Padrão                                                        |
-| -------------------------------------- | ------------------------------------------------- | ----------- |---------------------------------------------------------------------|
-| `ConnectionStrings__DefaultConnection` | String de conexão com o banco de dados PostgreSQL | Sim         | `Host=localhost;Port=5432;Database=gamestoredb;Username=;Password=` |
+| Variável                               | Descrição                                                                 | Obrigatório | Valor Padrão                                                        |
+| -------------------------------------- | ------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------- |
+| `ConnectionStrings__DefaultConnection` | String de conexão com o banco de dados PostgreSQL                         | Sim         | `Host=localhost;Port=5432;Database=gamestoredb;Username=;Password=` |
+| `Email__Remetente`                     | Endereço de e-mail usado como remetente nas notificações                  | Sim         | `no-reply@gamestore.fiap`                                           |
+| `Email__Smtp__Host`                    | Endereço do servidor SMTP                                                 | Sim         | `localhost`                                                         |
+| `Email__Smtp__Porta`                   | Porta do servidor SMTP                                                    | Sim         | `1025`                                                              |
+| `Email__Smtp__Usuario`                 | Nome de usuário do servidor SMTP (se necessário)                          | Não         | `""`                                                                |
+| `Email__Smtp__Senha`                   | Senha do servidor SMTP (se necessário)                                    | Não         | `""`                                                                |
+| `ENVIA_NOTIFICACAO_INTERVALO_MINUTOS`  | Intervalo, em minutos, entre cada execução do job de envio de notificação | Sim         | `10`                                                                |
 
+## Melhorias futuras
+
+1. Incluir cache para tornar a aplicação mais eficiente;
+2. (...)
 
 ## Dependências Externas
 

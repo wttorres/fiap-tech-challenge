@@ -7,8 +7,8 @@ using TechChallenge.GameStore.Unit.Test.Application.Compras.Fakers;
 using TechChallenge.GameStore.Unit.Test.Application.Compras.Fixtures;
 using TechChallenge.GameStore.Unit.Test.Application.Compras.Mocks;
 using TechChallenge.GameStore.Unit.Test.Application.Promocoes.Mocks;
-using TechChallenge.GameStore.Unit.Test.Application.Usuarios.Cadastrar.Fakers;
-using TechChallenge.GameStore.Unit.Test.Application.Usuarios.Cadastrar.Mocks;
+using TechChallenge.GameStore.Unit.Test.Application.Usuarios.Fakers;
+using TechChallenge.GameStore.Unit.Test.Application.Usuarios.Mocks;
 using TechChallenge.GameStore.Unit.Test.Infrastructure.Jogos.Fakers;
 using Xunit;
 

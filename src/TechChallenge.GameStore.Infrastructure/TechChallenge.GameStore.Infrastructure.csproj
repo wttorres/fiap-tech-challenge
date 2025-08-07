@@ -19,5 +19,10 @@
     <ItemGroup>
       <Folder Include="Migrations\" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <Compile Remove="Migrations\20250730020650_AddNotificacao.cs" />
+      <Compile Remove="Migrations\20250730020650_AddNotificacao.Designer.cs" />
+    </ItemGroup>
 
 </Project>

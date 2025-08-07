@@ -9,7 +9,7 @@ namespace TechChallenge.GameStore.WebApi.Compras.Cadastrar
 {
     [ApiController]
     [Route("api/")]
-    [ApiExplorerSettings(GroupName = "Compras")]
+    [ApiExplorerSettings(GroupName = "Jogo")]
     public class ComprarJogoController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -19,7 +19,7 @@ namespace TechChallenge.GameStore.WebApi.Compras.Cadastrar
             _mediator = mediator;
         }
 
-        [HttpPost("Comprar")]
+        [HttpPost("ComprarJogo")]
         [SwaggerOperation(
             Summary = "Realiza a compra de um ou mais jogos",
             Description = "Permite que um usuário compre um ou mais jogos, atualizando sua biblioteca e histórico de compras."

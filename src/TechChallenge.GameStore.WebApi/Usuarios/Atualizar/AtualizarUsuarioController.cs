@@ -7,8 +7,9 @@ using TechChallenge.GameStore.Application.Usuarios.Atualizar;
 
 namespace TechChallenge.GameStore.WebApi.Usuarios.Atualizar;
 
-[Route("api/[controller]")]
 [ApiController]
+[Route("api/[controller]")]
+[ApiExplorerSettings(GroupName = "Usuário")]
 public class AtualizarUsuarioController : ControllerBase
 {
     private readonly IMediator _mediator;

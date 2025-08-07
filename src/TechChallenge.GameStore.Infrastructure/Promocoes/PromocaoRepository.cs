@@ -36,6 +36,18 @@ public class PromocaoRepository : IPromocaoRepository
         }
     }
 
+    public async Task<List<Promocao>> ObterPromocoesAtivasComJogosAsync()
+    {
+        var dataAtual = DateTime.UtcNow;
+
+        return await _context.Set<Promocao>()
+            .Include(p => p.Jogos)
+                .ThenInclude(pj => pj.Jogo)
+            .Where(p => p.DataInicio <= dataAtual && p.DataFim >= dataAtual)
+            .AsNoTracking()
+            .ToListAsync();
+    }
+
     public async Task<List<PromocaoJogo>> ObterPorJogosIdsAsync(List<int> jogoIds)
     {
         return await _context.Set<PromocaoJogo>()

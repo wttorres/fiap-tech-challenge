@@ -1,8 +1,10 @@
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TechChallenge.GameStore.Application;
 using TechChallenge.GameStore.Infrastructure;
+using TechChallenge.GameStore.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,13 +16,12 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddControllers(); 
 builder.Services.AddInfrastructure(builder.Configuration); 
-builder.Services.AddApplication(builder.Configuration); 
+builder.Services.AddApplication(); 
+builder.Services.AddWebApi(); 
 
 builder.Services.AddSwaggerGen(c =>
 {
     c.EnableAnnotations();
-
-    // Agrupar endpoints por nome de controller (sem quebrar por doc)
     c.TagActionsBy(api =>
     {
         var groupName = api.GroupName;
@@ -31,6 +32,11 @@ builder.Services.AddSwaggerGen(c =>
 
     c.DocInclusionPredicate((_, _) => true);
 });
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 var app = builder.Build();
 

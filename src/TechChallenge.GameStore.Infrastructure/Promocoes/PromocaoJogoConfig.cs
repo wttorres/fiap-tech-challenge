@@ -10,17 +10,27 @@ public class PromocaoJogoConfiguration : IEntityTypeConfiguration<PromocaoJogo>
     {
         builder.ToTable("promocao_jogo");
 
-        builder.HasKey(pj => new { pj.PromocaoId, pj.JogoId });
+        builder.HasKey(pj => pj.Id);
+
+        builder.Property(pj => pj.Id)
+            .IsRequired()
+            .ValueGeneratedOnAdd();
+
+        builder.Property(pj => pj.PromocaoId)
+            .IsRequired();
+
+        builder.Property(pj => pj.JogoId)
+            .IsRequired();
 
         builder
             .HasOne(pj => pj.Promocao)
-            .WithMany(p => p.Jogos) 
+            .WithMany(p => p.Jogos)
             .HasForeignKey(pj => pj.PromocaoId)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder
             .HasOne(pj => pj.Jogo)
-            .WithMany() 
+            .WithMany()
             .HasForeignKey(pj => pj.JogoId);
     }
 }

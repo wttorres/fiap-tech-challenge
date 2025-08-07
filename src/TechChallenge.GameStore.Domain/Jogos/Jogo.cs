@@ -4,6 +4,7 @@ namespace TechChallenge.GameStore.Domain.Jogos;
 
 public class Jogo
 {
+    //Teste
     public int Id { get; private set; }
     public string Nome { get; private set; }
     public decimal Preco { get; private set; }

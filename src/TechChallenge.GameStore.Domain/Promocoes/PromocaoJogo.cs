@@ -4,9 +4,9 @@ namespace TechChallenge.GameStore.Domain.Promocoes;
 
 public class PromocaoJogo
 {
+    public int Id { get; set; }
     public int PromocaoId { get; private set; }
     public int JogoId { get; private set; }
-
     public Promocao Promocao { get; private set; }
     public Jogo Jogo { get; set; }
 
@@ -16,5 +16,10 @@ public class PromocaoJogo
     {
         JogoId = jogoId;
         Promocao = promocao;
+    }
+
+    public void AdicionarJogo(Jogo jogo)
+    {
+        Jogo = jogo;
     }
 }
