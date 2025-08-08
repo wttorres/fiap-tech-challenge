@@ -9,7 +9,7 @@ using TechChallenge.GameStore.Application.Usuarios.Promover;
 namespace TechChallenge.GameStore.WebApi.Usuarios.Promover;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/usuarios")]
 [ApiExplorerSettings(GroupName = "Usuário")]
 public class PromoverUsuarioController : ControllerBase
 {

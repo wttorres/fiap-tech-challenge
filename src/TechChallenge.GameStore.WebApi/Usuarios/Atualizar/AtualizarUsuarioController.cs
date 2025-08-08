@@ -9,7 +9,7 @@ using TechChallenge.GameStore.Application.Usuarios.Atualizar;
 namespace TechChallenge.GameStore.WebApi.Usuarios.Atualizar;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/usuarios")]
 [ApiExplorerSettings(GroupName = "Usuário")]
 public class AtualizarUsuarioController : ControllerBase
 {

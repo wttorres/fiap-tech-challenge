@@ -10,8 +10,8 @@ using TechChallenge.GameStore.Application.Compras.Consultar;
 namespace TechChallenge.GameStore.WebApi.Compras.Consultar;
 
 [ApiController]
-[Route("api/BibliotecaJogos")]
-[ApiExplorerSettings(GroupName = "Compras")]
+[Route("api/usuarios")]
+[ApiExplorerSettings(GroupName = "Usuário")]
 public class ConsultarBibliotecaJogosController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -22,7 +22,7 @@ public class ConsultarBibliotecaJogosController : ControllerBase
     }
 
     [Authorize]
-    [HttpGet("{usuarioId}")]
+    [HttpGet("{usuarioId}/jogos")]
     [SwaggerOperation(
         Summary = "Lista jogos adquiridos por um usuário",
         Description = "Retorna os jogos comprados por um usuário com nome, valor pago e data da compra."

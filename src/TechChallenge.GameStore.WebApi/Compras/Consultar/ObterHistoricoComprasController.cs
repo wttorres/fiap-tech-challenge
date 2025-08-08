@@ -10,8 +10,8 @@ using TechChallenge.GameStore.Application.Compras.Consultar;
 namespace TechChallenge.GameStore.WebApi.Compras.Consultar;
 
 [ApiController]
-[Route("api/Compras")]
-[ApiExplorerSettings(GroupName = "Compras")]
+[Route("api/usuarios")]
+[ApiExplorerSettings(GroupName = "Usuário")]
 public class ObterHistoricoComprasController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -22,7 +22,7 @@ public class ObterHistoricoComprasController : ControllerBase
     }
 
     [Authorize]
-    [HttpGet("{usuarioId}")]
+    [HttpGet("{usuarioId}/compras")]
     [SwaggerOperation(
         Summary = "Lista o histórico de compras de um usuário",
         Description = "Retorna todas as compras feitas por um usuário, com os jogos adquiridos e valores pagos."

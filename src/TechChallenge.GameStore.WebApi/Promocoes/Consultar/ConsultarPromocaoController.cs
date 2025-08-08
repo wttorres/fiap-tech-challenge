@@ -8,7 +8,7 @@ using TechChallenge.GameStore.Application.Promocoes.Consultar;
 namespace TechChallenge.GameStore.WebApi.Promocoes.Consultar;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/promocoes")]
 [ApiExplorerSettings(GroupName = "Promoção")]
 public class ConsultarPromocaoController : ControllerBase
 {
@@ -32,7 +32,7 @@ public class ConsultarPromocaoController : ControllerBase
     }
     
     [Authorize]
-    [HttpGet("{id:int}")]
+    [HttpGet("{promocaoId:int}")]
     [SwaggerOperation(
         Summary = "Obtém uma promoção por ID",
         Description = "Retorna os dados da promoção e seus jogos vinculados.")]

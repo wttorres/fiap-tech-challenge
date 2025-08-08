@@ -9,8 +9,8 @@ using TechChallenge.GameStore.Application.Jogos.Atualizar;
 namespace TechChallenge.GameStore.WebApi.Jogos.Atualizar;
 
 [ApiController]
-[Route("api/[controller]")]
-[ApiExplorerSettings(GroupName = "Jogo")]
+[Route("api/jogos")]
+[ApiExplorerSettings(GroupName = "Jogos")]
 public class AtualizarJogoController : ControllerBase
 {
     private readonly IMediator _mediator;
