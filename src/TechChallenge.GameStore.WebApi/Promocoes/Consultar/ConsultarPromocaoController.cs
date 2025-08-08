@@ -32,7 +32,7 @@ public class ConsultarPromocaoController : ControllerBase
     }
     
     [Authorize]
-    [HttpGet("{id:int}")]
+    [HttpGet("{promocaoId:int}")]
     [SwaggerOperation(
         Summary = "Obtém uma promoção por ID",
         Description = "Retorna os dados da promoção e seus jogos vinculados.")]

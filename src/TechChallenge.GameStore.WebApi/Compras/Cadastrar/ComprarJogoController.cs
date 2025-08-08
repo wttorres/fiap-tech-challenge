@@ -9,8 +9,8 @@ using TechChallenge.GameStore.Application.Compras.Cadastrar;
 namespace TechChallenge.GameStore.WebApi.Compras.Cadastrar;
 
 [ApiController]
-[Route("api/compras")]
-[ApiExplorerSettings(GroupName = "Compras")]
+[Route("api/jogos/compras")]
+[ApiExplorerSettings(GroupName = "Jogos")]
 public class ComprarJogoController : ControllerBase
 {
     private readonly IMediator _mediator;

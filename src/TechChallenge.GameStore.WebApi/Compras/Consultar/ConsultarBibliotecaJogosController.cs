@@ -10,8 +10,8 @@ using TechChallenge.GameStore.Application.Compras.Consultar;
 namespace TechChallenge.GameStore.WebApi.Compras.Consultar;
 
 [ApiController]
-[Route("api/compras")]
-[ApiExplorerSettings(GroupName = "Compras")]
+[Route("api/usuarios")]
+[ApiExplorerSettings(GroupName = "Usuário")]
 public class ConsultarBibliotecaJogosController : ControllerBase
 {
     private readonly IMediator _mediator;

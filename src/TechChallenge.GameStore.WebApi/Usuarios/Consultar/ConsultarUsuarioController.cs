@@ -40,7 +40,7 @@ public class ConsultarUsuarioController : ControllerBase
     }
 
     [Authorize]
-    [HttpGet("{id}")]
+    [HttpGet("{usuarioId}")]
     [SwaggerOperation(
         Summary = "Consulta usuário pelo ID",
         Description = "Realiza a consulta do usuário pelo ID cadastrado"

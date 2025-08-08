@@ -20,7 +20,7 @@ public class ConsultarJogoController : ControllerBase
     }
 
     [Authorize]
-    [HttpGet("{id}")]
+    [HttpGet("{jogoId}")]
     [SwaggerOperation(
         Summary = "Consulta um jogo por ID",
         Description = "Retorna os dados de um jogo específico."
