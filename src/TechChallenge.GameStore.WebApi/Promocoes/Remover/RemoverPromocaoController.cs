@@ -9,7 +9,7 @@ using TechChallenge.GameStore.Application.Promocoes.Remover;
 namespace TechChallenge.GameStore.WebApi.Promocoes.Remover;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/promocoes")]
 [ApiExplorerSettings(GroupName = "Promoção")]
 public class RemoverPromocaoController : ControllerBase
 {

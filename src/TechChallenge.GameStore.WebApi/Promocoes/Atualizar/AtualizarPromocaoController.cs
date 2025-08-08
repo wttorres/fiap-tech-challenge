@@ -9,7 +9,7 @@ using TechChallenge.GameStore.Application.Promocoes.Atualizar;
 namespace TechChallenge.GameStore.WebApi.Promocoes.Atualizar;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/promocoes")]
 [ApiExplorerSettings(GroupName = "Promoção")]
 public class AtualizarPromocaoController : ControllerBase
 {

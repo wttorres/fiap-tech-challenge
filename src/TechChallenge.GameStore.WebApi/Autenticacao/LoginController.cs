@@ -8,7 +8,7 @@ using TechChallenge.GameStore.Application.Autenticacao;
 namespace TechChallenge.GameStore.WebApi.Autenticacao;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/login")]
 [ApiExplorerSettings(GroupName = "Login")]
 public class LoginController : ControllerBase
 {

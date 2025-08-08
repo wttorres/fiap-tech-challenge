@@ -8,7 +8,7 @@ using TechChallenge.GameStore.Application.Notificacoes.Consultar;
 namespace TechChallenge.GameStore.WebApi.Notificacoes.Consultar;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/notificacoes")]
 [ApiExplorerSettings(GroupName = "Notificação")]
 public class ConsultarNotificacoesController: ControllerBase
 {
