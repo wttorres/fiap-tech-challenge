@@ -1,5 +1,5 @@
 ﻿using TechChallenge.GameStore.Unit.Test.WebApi.Compras.Mocks;
-using TechChallenge.GameStore.WebApi.Compras.Cadastrar;
+using TechChallenge.GameStore.WebApi.Compras.Comprar;
 
 namespace TechChallenge.GameStore.Unit.Test.WebApi.Compras.Fixtures;
 

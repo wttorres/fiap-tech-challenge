@@ -1,16 +1,8 @@
 ﻿using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
-using Moq;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
-using FluentAssertions;
 using TechChallenge.GameStore.Domain.Jogos;
-using TechChallenge.GameStore.Infrastructure._Shared;
-using TechChallenge.GameStore.Infrastructure.Jogos;
-using TechChallenge.GameStore.Unit.Test._Shared;
 using TechChallenge.GameStore.Unit.Test.Infrastructure.Jogos.Fakers;
 using TechChallenge.GameStore.Unit.Test.Infrastructure.Jogos.Fixtures;
 using Xunit;

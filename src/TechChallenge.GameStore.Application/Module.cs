@@ -2,7 +2,6 @@
 using TechChallenge.GameStore.Application.Jogos.Consultar;
 using TechChallenge.GameStore.Application.Notificacoes.Consultar;
 using TechChallenge.GameStore.Application.Promocoes.Consultar;
-using TechChallenge.GameStore.Application.Compras.Consultar;
 
 namespace TechChallenge.GameStore.Application;
 

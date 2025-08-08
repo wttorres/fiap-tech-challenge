@@ -1,6 +1,5 @@
 ﻿using System;
 using TechChallenge.GameStore.Infrastructure._Shared;
-using TechChallenge.GameStore.Infrastructure.Compras;
 using TechChallenge.GameStore.Infrastructure.Compras.Imp;
 using TechChallenge.GameStore.Unit.Test._Shared;
 

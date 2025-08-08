@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TechChallenge.GameStore.Domain.Notificacoes;
 using TechChallenge.GameStore.Infrastructure._Shared;
 

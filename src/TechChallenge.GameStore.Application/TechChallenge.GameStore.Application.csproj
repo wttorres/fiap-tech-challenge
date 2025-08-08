@@ -1,13 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
+        <TargetFramework>$(TargetFramework)</TargetFramework>
+        <Nullable>$(Nullable)</Nullable>
+        <ImplicitUsings>$(ImplicitUsings)</ImplicitUsings>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TechChallenge.GameStore.Domain\TechChallenge.GameStore.Domain.csproj" />
       <ProjectReference Include="..\TechChallenge.GameStore.Infrastructure\TechChallenge.GameStore.Infrastructure.csproj" />
     </ItemGroup>
 

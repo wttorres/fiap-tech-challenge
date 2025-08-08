@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using TechChallenge.GameStore.Domain._Shared;
 using TechChallenge.GameStore.Domain.Jogos;
 using TechChallenge.GameStore.Domain.Promocoes;

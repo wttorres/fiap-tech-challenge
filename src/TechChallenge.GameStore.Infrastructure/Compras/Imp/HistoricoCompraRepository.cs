@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TechChallenge.GameStore.Domain.Compras;
 using TechChallenge.GameStore.Domain.Compras.Interfaces;
 using TechChallenge.GameStore.Infrastructure._Shared;

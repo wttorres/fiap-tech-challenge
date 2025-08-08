@@ -86,15 +86,18 @@ docker-compose up -d
 
 ## Variáveis de Ambiente
 
-| Variável                               | Descrição                                                                 | Obrigatório | Valor Padrão                                                        |
-| -------------------------------------- | ------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------- |
-| `ConnectionStrings__DefaultConnection` | String de conexão com o banco de dados PostgreSQL                         | Sim         | `Host=localhost;Port=5432;Database=gamestoredb;Username=;Password=` |
-| `Email__Remetente`                     | Endereço de e-mail usado como remetente nas notificações                  | Sim         | `no-reply@gamestore.fiap`                                           |
-| `Email__Smtp__Host`                    | Endereço do servidor SMTP                                                 | Sim         | `localhost`                                                         |
-| `Email__Smtp__Porta`                   | Porta do servidor SMTP                                                    | Sim         | `1025`                                                              |
-| `Email__Smtp__Usuario`                 | Nome de usuário do servidor SMTP (se necessário)                          | Não         | `""`                                                                |
-| `Email__Smtp__Senha`                   | Senha do servidor SMTP (se necessário)                                    | Não         | `""`                                                                |
-| `ENVIA_NOTIFICACAO_INTERVALO_MINUTOS`  | Intervalo, em minutos, entre cada execução do job de envio de notificação | Sim         | `10`                                                                |
+| Variável                               | Descrição                                                     | Obrigatório | Valor Padrão                                                        |
+| -------------------------------------- | ------------------------------------------------------------- | ----------- | ------------------------------------------------------------------- |
+| `ConnectionStrings__DefaultConnection` | String de conexão com o banco de dados PostgreSQL             | Sim         | `Host=localhost;Port=5432;Database=gamestoredb;Username=;Password=` |
+| `Email__Remetente`                     | Endereço de e-mail usado como remetente nas notificações      | Sim         | `no-reply@gamestore.fiap`                                           |
+| `Email__Smtp__Host`                    | Endereço do servidor SMTP                                     | Sim         | `localhost`                                                         |
+| `Email__Smtp__Porta`                   | Porta do servidor SMTP                                        | Sim         | `1025`                                                              |
+| `Email__Smtp__Usuario`                 | Nome de usuário do servidor SMTP (se necessário)              | Não         | `""`                                                                |
+| `Email__Smtp__Senha`                   | Senha do servidor SMTP (se necessário)                        | Não         | `""`                                                                |
+| `ENVIA_NOTIFICACAO_INTERVALO_MINUTOS`  | Intervalo, em minutos, para execução do envio de notificações | Sim         | `10`                                                                |
+| `Jwt__Key`                             | Chave secreta usada para assinar e validar tokens JWT         | Sim         | `""`                                                                |
+| `Jwt__Audience`                        | Público-alvo (audience) aceito nos tokens JWT                 | Sim         | `""`                                                                |
+| `Jwt__Issuer`                          | Emissor (issuer) dos tokens JWT, utilizado para validação     | Sim         | `""`                                                                |
 
 ## Melhorias futuras
 

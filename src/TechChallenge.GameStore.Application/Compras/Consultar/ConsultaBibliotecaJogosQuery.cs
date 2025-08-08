@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System.Collections.Generic;
+using MediatR;
 using TechChallenge.GameStore.Domain._Shared;
 
 namespace TechChallenge.GameStore.Application.Compras.Consultar

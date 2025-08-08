@@ -1,6 +1,9 @@
-﻿using MediatR;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 using TechChallenge.GameStore.Domain._Shared;
-using TechChallenge.GameStore.Domain.Compras;
 using TechChallenge.GameStore.Domain.Compras.Interfaces;
 
 namespace TechChallenge.GameStore.Application.Compras.Consultar

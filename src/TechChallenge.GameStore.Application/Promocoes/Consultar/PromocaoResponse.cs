@@ -1,4 +1,7 @@
-﻿namespace TechChallenge.GameStore.Application.Promocoes.Consultar;
+﻿using System;
+using System.Collections.Generic;
+
+namespace TechChallenge.GameStore.Application.Promocoes.Consultar;
 
 public class PromocaoResponse
 {

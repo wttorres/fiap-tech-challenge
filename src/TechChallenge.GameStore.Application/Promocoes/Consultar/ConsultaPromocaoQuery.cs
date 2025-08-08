@@ -1,4 +1,7 @@
-﻿using TechChallenge.GameStore.Domain.Promocoes;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using TechChallenge.GameStore.Domain.Promocoes;
 
 namespace TechChallenge.GameStore.Application.Promocoes.Consultar;
 
@@ -11,7 +14,7 @@ public class ConsultaPromocaoQuery : IConsultaPromocaoQuery
         _repository = repository;
     }
 
-    public async Task<PromocaoResponse?> ObterPorIdAsync(int id)
+    public async Task<PromocaoResponse> ObterPorIdAsync(int id)
     {
         var promocao = await _repository.ObterPorIdAsync(id);
 

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Moq;
-using TechChallenge.GameStore.Application.Compras.Cadastrar;
+using TechChallenge.GameStore.Application.Compras.Comprar;
 using TechChallenge.GameStore.Domain._Shared;
 
 namespace TechChallenge.GameStore.Unit.Test.WebApi.Compras.Mocks;

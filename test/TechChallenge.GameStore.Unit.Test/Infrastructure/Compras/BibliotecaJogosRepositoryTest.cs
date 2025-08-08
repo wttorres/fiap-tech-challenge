@@ -1,14 +1,9 @@
 ﻿using FluentAssertions;
-using System.Linq;
 using System.Threading.Tasks;
 using TechChallenge.GameStore.Domain.Compras;
 using TechChallenge.GameStore.Domain.Jogos;
-using TechChallenge.GameStore.Domain.Usuarios;
-using TechChallenge.GameStore.Infrastructure.Compras;
-using TechChallenge.GameStore.Unit.Test._Shared;
 using TechChallenge.GameStore.Unit.Test.Infrastructure.Compras.Fakers;
 using TechChallenge.GameStore.Unit.Test.Infrastructure.Compras.Fixtures;
-using TechChallenge.GameStore.Unit.Test.Infrastructure.Jogos.Fakers;
 using Xunit;
 
 namespace TechChallenge.GameStore.Unit.Test.Infrastructure.Compras;
