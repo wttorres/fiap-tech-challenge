@@ -24,15 +24,22 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Install dotnet-ef
-        run: dotnet tool install --global dotnet-ef --version 8.*
+      # PASSO 1 (AJUSTADO): Instala a ferramenta e adiciona ao PATH do workflow
+      - name: Install and Configure .NET EF Tool
+        run: |
+          dotnet tool install --global dotnet-ef --version 8.*
+          echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
 
+      # PASSO 2 (ADICIONADO): Restaura as dependências do projeto
+      - name: Restore Dependencies
+        run: dotnet restore ${{ env.PROJECT_PATH }}
+
+      # PASSO 3 (AJUSTADO): A linha "export PATH" foi removida, pois agora é desnecessária
       - name: Build EF Migration Bundle
         run: |
-          export PATH="$PATH:/home/runner/.dotnet/tools"
           dotnet ef migrations bundle \
-            --project $PROJECT_PATH \
-            --startup-project $STARTUP_PATH \
+            --project ${{ env.PROJECT_PATH }} \
+            --startup-project ${{ env.STARTUP_PATH }} \
             --configuration Release \
             --output efbundle
 
