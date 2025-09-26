@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using TechChallenge.GameStore.Domain.Usuarios;
 
 namespace TechChallenge.GameStore.Infrastructure._Shared;
@@ -17,7 +18,24 @@ public class GameStoreContext : DbContext
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.EnableSensitiveDataLogging();
+        if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")
+                ?.Equals("Development", StringComparison.OrdinalIgnoreCase) == true)
+        {
+            optionsBuilder.EnableSensitiveDataLogging();
+        }
+
+        if (!optionsBuilder.IsConfigured)
+        {
+            var cs =
+                Environment.GetEnvironmentVariable("POSTGRES_CONNECTION_STRING") ??
+                Environment.GetEnvironmentVariable("CONNECTION_STRING")??
+                Environment.GetEnvironmentVariable("DefaultConnection");
+
+            if (!string.IsNullOrWhiteSpace(cs))
+                optionsBuilder.UseNpgsql(cs);
+        }
+
         base.OnConfiguring(optionsBuilder);
     }
+
 }
