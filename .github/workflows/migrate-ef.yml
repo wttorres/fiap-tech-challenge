@@ -24,7 +24,7 @@ jobs:
           dotnet build --configuration Release --no-restore
 
       - name: Install dotnet-ef
-        run: dotnet tool update --global dotnet-ef
+        run: dotnet tool install --global dotnet-ef
 
       - name: Run EF Core migrations
         env:
