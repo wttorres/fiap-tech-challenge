@@ -24,13 +24,13 @@ jobs:
           dotnet build --configuration Release --no-restore
 
       - name: Install dotnet-ef
-        run: dotnet tool install --global dotnet-ef
+        run: dotnet tool install --global dotnet-ef --version 8.*
 
       - name: Run EF Core migrations
         env:
           DefaultConnection: ${{ secrets.POSTGRES_CONNECTION_STRING }}
         run: |
-          export PATH="$PATH:~/.dotnet/tools"
+          export PATH="$PATH:$HOME/.dotnet/tools"
           dotnet ef database update \
             --project src/TechChallenge.GameStore.Infrastructure \
             --startup-project src/TechChallenge.GameStore.WebApi
