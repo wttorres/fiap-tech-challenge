@@ -53,7 +53,12 @@ public static class Module
     private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("DefaultConnection");
-
+        
+        if(string.IsNullOrWhiteSpace(connectionString))
+            connectionString = configuration.GetConnectionString("CONNECTION_STRING");
+        if(string.IsNullOrWhiteSpace(connectionString))
+            connectionString = configuration.GetConnectionString("POSTGRES_CONNECTION_STRING");
+        
         services.AddDbContext<GameStoreContext>(options =>
             options.UseNpgsql(connectionString));
     }
