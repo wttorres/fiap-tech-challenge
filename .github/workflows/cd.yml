@@ -14,35 +14,6 @@ env:
   STARTUP_PATH: ./src/TechChallenge.GameStore.WebApi/TechChallenge.GameStore.WebApi.csproj
 
 jobs:
-  migrate-db:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup .NET 8
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
-
-      - name: Install dotnet-ef
-        run: dotnet tool install --global dotnet-ef --version 8.*
-
-      - name: Build EF Migration Bundle
-        run: |
-          export PATH="$PATH:/home/runner/.dotnet/tools"
-          dotnet ef migrations bundle \
-            --project $PROJECT_PATH \
-            --startup-project $STARTUP_PATH \
-            --configuration Release \
-            --output efbundle
-
-      - name: Apply migrations
-        env:
-          CONNECTION_STRING: ${{ secrets.POSTGRES_CONNECTION_STRING }}
-        run: |
-          chmod +x ./efbundle
-          ./efbundle --connection "$CONNECTION_STRING"
-
   build-and-push:
     needs: [migrate-db]
     runs-on: ubuntu-latest
