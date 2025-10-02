@@ -1,5 +1,6 @@
 ﻿name: EF Core Migrate
-
+env:
+  POSTGRES_CONNECTION_STRING: ${{ secrets.POSTGRES_CONNECTION_STRING }}
 on:
   push:
     branches: [ "main" ]
@@ -32,8 +33,6 @@ jobs:
             ls -la "$HOME/.dotnet/tools"
 
       - name: Run EF Core migrations
-        env:
-          DefaultConnection: ${{ secrets.POSTGRES_CONNECTION_STRING }}
         run: |
           "$HOME/.dotnet/tools/dotnet-ef" database update \
             --project src/TechChallenge.GameStore.Infrastructure \

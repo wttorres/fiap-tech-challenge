@@ -23,18 +23,7 @@ public class GameStoreContext : DbContext
         {
             optionsBuilder.EnableSensitiveDataLogging();
         }
-
-        if (!optionsBuilder.IsConfigured)
-        {
-            var cs =
-                Environment.GetEnvironmentVariable("POSTGRES_CONNECTION_STRING") ??
-                Environment.GetEnvironmentVariable("CONNECTION_STRING")??
-                Environment.GetEnvironmentVariable("DefaultConnection");
-
-            if (!string.IsNullOrWhiteSpace(cs))
-                optionsBuilder.UseNpgsql(cs);
-        }
-
+        
         base.OnConfiguring(optionsBuilder);
     }
 
