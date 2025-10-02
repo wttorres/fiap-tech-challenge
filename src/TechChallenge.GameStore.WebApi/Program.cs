@@ -6,6 +6,7 @@ using TechChallenge.GameStore.Application;
 using TechChallenge.GameStore.Infrastructure;
 using TechChallenge.GameStore.WebApi;
 using TechChallenge.GameStore.WebApi._Shared;
+using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +32,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
+app.UseHttpMetrics();
 app.UseAuthorization();
-app.MapControllers(); 
+app.MapControllers();
+app.MapMetrics("/metrics");
 app.Run();
