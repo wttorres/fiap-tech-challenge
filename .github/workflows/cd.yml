@@ -12,31 +12,57 @@ env:
   IMAGE_NAME: gamestore
   PROJECT_PATH: ./src/TechChallenge.GameStore.WebApi/TechChallenge.GameStore.WebApi.csproj
   STARTUP_PATH: ./src/TechChallenge.GameStore.WebApi/TechChallenge.GameStore.WebApi.csproj
+  POSTGRES_CONNECTION_STRING: ${{ secrets.POSTGRES_CONNECTION_STRING }}
 
 jobs:
-  build-and-push:
+  migrations:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Login to ACR (user/password)
+      - name: Instalar .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore & Build
+        run: |
+          dotnet restore
+          dotnet build --configuration Release --no-restore
+
+      - name: Instalar EF Core
+        run: dotnet tool install --global dotnet-ef --version 8.*
+
+      - name: Rodar migrations
+        run: |
+          "$HOME/.dotnet/tools/dotnet-ef" database update \
+            --project src/TechChallenge.GameStore.Infrastructure \
+            --startup-project src/TechChallenge.GameStore.WebApi
+
+  build-and-push:
+    runs-on: ubuntu-latest
+    needs: migrations
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to ACR
         uses: docker/login-action@v3
         with:
           registry: ${{ secrets.REGISTRY }}
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
-      - name: Set up Buildx
+      - name: Setup Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Compute Tags
+      - name: Compute image tags
         id: meta
-        env:
-          REGISTRY: ${{ secrets.REGISTRY }}
-        run: |
-          IMG="${REGISTRY}/${{ env.IMAGE_NAME }}"
-          echo "latest=${IMG}:latest" >> $GITHUB_OUTPUT
-          echo "sha=${IMG}:sha-${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ secrets.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest
+            type=sha,format=short
 
       - name: Build & Push
         uses: docker/build-push-action@v6
@@ -44,7 +70,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: |
-            ${{ steps.meta.outputs.latest }}
-            ${{ steps.meta.outputs.sha }}
+          tags: ${{ steps.meta.outputs.tags }}
           provenance: false
