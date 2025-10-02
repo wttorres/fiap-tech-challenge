@@ -1,0 +1,53 @@
+
+# VARIAVEIS
+variables:
+- name: buildConfiguration
+  value: Release
+- name: dotNetSdkVersion
+  value: 8.x
+- name: solution
+  value: '**/*.sln' 
+- name: webProject
+  value: 'src/TechChallenge.GameStore.WebApi/TechChallenge.GameStore.WebApi.csproj' 
+- name: testProject
+  value: 'test/TechChallenge.GameStore.Unit.Test/TechChallenge.GameStore.Unit.Test.csproj' 
+- name: dockerRegistryServiceConnection
+  value: 'FGC-ACR-DockerRegistry' 
+- name: imageRepository
+  value: 'fiap/gamestore-webapi' 
+- name: dockerfilePath
+  value: 'devops/Dockerfile' 
+
+# =================================================================
+# 2. STAGE: BUILD & TESTES
+# =================================================================
+stages:
+- stage: Build
+  displayName: 1 - Build, Testes e Publicação da Imagem
+  jobs:
+  - job: BuildAndTest
+    displayName: Construir, Testar e Publicar Imagem
+    pool:
+      name: Default 
+    steps:
+    - task: UseDotNet@2
+      displayName: Instalar .NET $(dotNetSdkVersion)
+      inputs:
+        version: $(dotNetSdkVersion)
+    - task: DotNetCoreCLI@2
+      displayName: Restore
+      inputs:
+        command: restore
+        projects: $(solution)
+    - task: DotNetCoreCLI@2
+      displayName: Build Solution
+      inputs:
+        command: build
+        projects: $(solution)
+        arguments: '--configuration $(buildConfiguration) --no-restore'
+    - task: DotNetCoreCLI@2
+      displayName: Run Unit Tests
+      inputs:
+        command: test
+        projects: $(testProject) 
+        arguments: '--configuration $(buildConfiguration) --no-build --verbosity normal'

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -52,7 +53,9 @@ public static class Module
 
     private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString("DefaultConnection");
+        var fromEnv          = Environment.GetEnvironmentVariable("POSTGRES_CONNECTION_STRING");
+        var fromConfig       = configuration["CONNECTION_STRING"];
+        var connectionString = !string.IsNullOrWhiteSpace(fromEnv) ? fromEnv : fromConfig;
 
         services.AddDbContext<GameStoreContext>(options =>
             options.UseNpgsql(connectionString));

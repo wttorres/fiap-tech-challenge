@@ -1,23 +1,21 @@
 # TechChallenge GameStore
-API REST para gerenciamento de usuários e funcionalidades básicas de uma loja de jogos, desenvolvida como parte do Tech Challenge da FIAP. A aplicação foca em boas práticas, arquitetura em camadas e uso do Entity Framework Core com PostgreSQL.
+
+A PI REST para gerenciamento de usuários e funcionalidades básicas de uma loja de jogos, desenvolvida como parte do Tech Challenge da FIAP. A aplicação foca em boas práticas, arquitetura em camadas e uso do Entity Framework Core com PostgreSQL.
 
 ## Sobre o Projeto
 
 O objetivo é criar uma API REST em .NET 8 que permita gerenciar usuários e seus jogos, garantindo persistência de dados, qualidade de software e boas práticas de desenvolvimento. O projeto foi estruturado como um monolito, facilitando o desenvolvimento ágil deste MVP.
 
-## Tecnologias Utilizadas
+### Arquitetura
 
-| Tecnologia                | Documentação                                                                      |
-|---------------------------| --------------------------------------------------------------------------------- |
-| **.NET 8**                | [Documentação Oficial](https://learn.microsoft.com/en-us/dotnet/)                 |
-| **Entity Framework Core** | [Documentação Oficial](https://learn.microsoft.com/en-us/ef/core/)                |
-| **PostgreSQL**            | [Documentação Oficial](https://www.postgresql.org/docs/)                          |
-| **Swashbuckle (Swagger)** | [Documentação Oficial](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) |
-| **MediatR**               | [Documentação Oficial](https://github.com/jbogard/MediatR)                        |
-| **NUnit**                 | [Documentação Oficial](https://nunit.org/)                                        |
-| **MailDev**               | [Documentação Oficial](https://github.com/maildev/maildev)                          |
+A aplicação segue o padrão **Clean Architecture**, adotando o estilo _Layered_ (em camadas) com foco em baixo acoplamento e alta coesão.
 
-### Pré-requisitos
+- `Api`: camada de entrada responsável por expor a API REST e receber as requisições externas.
+- `Application`: orquestra a execução dos casos de uso, coordenando interações entre Domain e Infrastructure.
+- `Domain`: núcleo da aplicação, contendo as entidades de negócio e regras de domínio.
+- `Infrastructure`: provê implementação de repositórios, persistência e integrações externas.
+
+#### Pré-requisitos
 
 | Requisito        | Link para Download   |
 | ---------------- |----------------------|
@@ -26,7 +24,7 @@ O objetivo é criar uma API REST em .NET 8 que permita gerenciar usuários e seu
 | `Docker`         | [Baixar aqui](https://www.docker.com/products/docker-desktop/)   |
 | `Docker Compose` | [Baixar aqui](https://docs.docker.com/compose/install/)   |
 
-#### 🚀 Passo a Passo para Executar a API
+## 🚀 Passo a Passo para Executar a API
 
 <details><summary>1. Clone o projeto</summary>
 
@@ -83,6 +81,17 @@ docker-compose up -d
     ```
 </details>
 
+## Tecnologias Utilizadas
+
+| Tecnologia                | Documentação                                                                      |
+|---------------------------| --------------------------------------------------------------------------------- |
+| **.NET 8**                | [Documentação Oficial](https://learn.microsoft.com/en-us/dotnet/)                 |
+| **Entity Framework Core** | [Documentação Oficial](https://learn.microsoft.com/en-us/ef/core/)                |
+| **PostgreSQL**            | [Documentação Oficial](https://www.postgresql.org/docs/)                          |
+| **Swashbuckle (Swagger)** | [Documentação Oficial](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) |
+| **MediatR**               | [Documentação Oficial](https://github.com/jbogard/MediatR)                        |
+| **NUnit**                 | [Documentação Oficial](https://nunit.org/)                                        |
+| **MailDev**               | [Documentação Oficial](https://github.com/maildev/maildev)                          |
 
 ## Variáveis de Ambiente
 
@@ -103,12 +112,3 @@ docker-compose up -d
 
 1. Incluir cache para tornar a aplicação mais eficiente;
 2. (...)
-
-## Dependências Externas
-
-| Dependência                                  | Descrição                                                            |
-| -------------------------------------------- | -------------------------------------------------------------------- |
-| [PostgreSQL](https://www.postgresql.org/)    | Banco de dados relacional utilizado para persistência das entidades. |
-| [Docker](https://www.docker.com/) (opcional) | Usado para facilitar a execução do banco de dados localmente.        |
-
----
