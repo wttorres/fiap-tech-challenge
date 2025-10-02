@@ -13,6 +13,9 @@ env:
   PROJECT_PATH: ./src/TechChallenge.GameStore.WebApi/TechChallenge.GameStore.WebApi.csproj
   STARTUP_PATH: ./src/TechChallenge.GameStore.WebApi/TechChallenge.GameStore.WebApi.csproj
   POSTGRES_CONNECTION_STRING: ${{ secrets.POSTGRES_CONNECTION_STRING }}
+  JWT_KEY: ${{ secrets.JWT_KEY }}
+  JWT_ISSUER: ${{ secrets.JWT_ISSUER }}
+  JWT_ADIENCE: ${{ secrets.JWT_ADIENCE }}
 
 jobs:
   migrations:
