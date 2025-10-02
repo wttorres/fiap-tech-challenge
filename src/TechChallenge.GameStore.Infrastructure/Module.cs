@@ -56,7 +56,7 @@ public static class Module
         var fromEnv          = Environment.GetEnvironmentVariable("POSTGRES_CONNECTION_STRING");
         var fromConfig       = configuration["CONNECTION_STRING"];
         var connectionString = !string.IsNullOrWhiteSpace(fromEnv) ? fromEnv : fromConfig;
-            
+
         services.AddDbContext<GameStoreContext>(options =>
             options.UseNpgsql(connectionString));
     }
