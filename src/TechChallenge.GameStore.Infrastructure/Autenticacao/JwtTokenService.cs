@@ -11,10 +11,16 @@ namespace TechChallenge.GameStore.Infrastructure.Autenticacao;
 public class JwtTokenService : IJwtTokenService
 {
     private readonly IConfiguration _configuration;
+    private readonly string _jtwKey;
+    private readonly string _jwtAudience;
+    private readonly string _jwtIssue;
 
     public JwtTokenService(IConfiguration configuration)
     {
         _configuration = configuration;
+        _jtwKey        = Environment.GetEnvironmentVariable("JWT_KEY") ?? configuration["JWT_KEY"];
+        _jwtAudience   = Environment.GetEnvironmentVariable("JWT_AUDIENCE") ?? configuration["JWT_AUDIENCE"];
+        _jwtIssue      = Environment.GetEnvironmentVariable("JWT_ISSUER") ?? configuration["JWT_ISSUER"];
     }
 
     public string GerarToken(Usuario usuario)
@@ -26,12 +32,12 @@ public class JwtTokenService : IJwtTokenService
             new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString())
         };
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jtwKey!));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(
-            issuer: _configuration["Jwt:Issuer"],
-            audience: _configuration["Jwt:Audience"],
+            issuer: _jwtIssue,
+            audience: _jwtAudience,
             claims: claims,
             expires: DateTime.UtcNow.AddHours(2),
             signingCredentials: creds

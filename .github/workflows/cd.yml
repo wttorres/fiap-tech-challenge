@@ -16,7 +16,7 @@ env:
   POSTGRES_CONNECTION_STRING: ${{ secrets.POSTGRES_CONNECTION_STRING }}
   JWT_KEY: ${{ secrets.JWT_KEY }}
   JWT_ISSUER: ${{ secrets.JWT_ISSUER }}
-  JWT_ADIENCE: ${{ secrets.JWT_ADIENCE }}
+  JWT_AUDIENCE: ${{ secrets.JWT_AUDIENCE }}
 
 jobs:
   migrations:
@@ -46,6 +46,8 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     needs: migrations
+    outputs:
+      image_tag: ${{ steps.out.outputs.tag }}
     steps:
       - uses: actions/checkout@v4
 
@@ -89,7 +91,7 @@ jobs:
       REGISTRY: ${{ secrets.REGISTRY }}
       APP:      ${{ secrets.AZURE_CONTAINERAPP }}
       RG:       ${{ secrets.AZURE_RG }}
-      IMG_TAG:  ${{ needs.build-and-push.outputs.tag }}
+      IMG_TAG:  ${{ needs.build-and-push.outputs.image_tag }}
     steps:
       - name: Azure login (OIDC)
         uses: azure/login@v2
@@ -97,7 +99,18 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          allow-no-subscriptions: true
 
+      - name: Set subscription explicitly
+        run: az account set --subscription "${{ secrets.AZURE_SUBSCRIPTION_ID }}" 
+
+      - name: Who am I / Subscription sanity check
+        run: |
+          az account show -o jsonc
+          echo "SUB: ${{ secrets.AZURE_SUBSCRIPTION_ID }}  RG: ${{ secrets.AZURE_RG }}  APP: ${{ secrets.AZURE_CONTAINERAPP }}"
+          az group show -n "${{ secrets.AZURE_RG }}" -o table
+          az containerapp show -g "${{ secrets.AZURE_RG }}" -n "${{ secrets.AZURE_CONTAINERAPP }}" -o table
+          
       - name: Atualizar secrets no Container App
         run: |
           az containerapp secret set -g "$RG" -n "$APP" \
