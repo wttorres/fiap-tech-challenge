@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,11 +24,13 @@ builder.Services.AddWebApi();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI();
+
+app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
 
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
