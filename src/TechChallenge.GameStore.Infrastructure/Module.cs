@@ -33,7 +33,7 @@ public static class Module
     private static void AddAuthentication(IServiceCollection services, IConfiguration configuration)
     {
         var fromEnvJwtIssuer   = Environment.GetEnvironmentVariable("JWT_ISSUER") ?? configuration["JWT_ISSUER"];
-        var fromEnvJwtAudience = Environment.GetEnvironmentVariable("JWT_ADIENCE") ?? configuration["JWT_ADIENCE"];
+        var fromEnvJwtAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE") ?? configuration["JWT_ADIENCE"];
         var fromEnvJwtKey      = Environment.GetEnvironmentVariable("JWT_KEY") ?? configuration["JWT_KEY"];
         
         services.AddAuthentication("Bearer")
