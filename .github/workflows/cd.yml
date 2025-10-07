@@ -1,13 +1,9 @@
 name: CD - Build & Push
 
-on:  
+on:
   workflow_run:
     workflows: [ "CI - Tests" ]
-    types:
-      - completed
-  push:
-    branches: [ "main" ]
-  workflow_dispatch:
+    types: [ completed ]
 
 permissions:
   contents: read
@@ -24,6 +20,12 @@ env:
 
 jobs:
   migrations:
+    if: >
+      ${{
+        github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.event == 'push' &&
+        github.event.workflow_run.head_branch == 'main'
+      }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -48,6 +50,12 @@ jobs:
             --startup-project src/TechChallenge.GameStore.WebApi
 
   build-and-push:
+    if: >
+      ${{
+        github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.event == 'push' &&
+        github.event.workflow_run.head_branch == 'main'
+      }}
     runs-on: ubuntu-latest
     needs: migrations
     outputs:
@@ -89,6 +97,12 @@ jobs:
           echo "tag=$TAG" >> $GITHUB_OUTPUT
 
   deploy:
+    if: >
+      ${{
+        github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.event == 'push' &&
+        github.event.workflow_run.head_branch == 'main'
+      }}
     runs-on: ubuntu-latest
     needs: build-and-push
     env:
@@ -106,7 +120,7 @@ jobs:
           allow-no-subscriptions: true
 
       - name: Set subscription explicitly
-        run: az account set --subscription "${{ secrets.AZURE_SUBSCRIPTION_ID }}" 
+        run: az account set --subscription "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
 
       - name: Who am I / Subscription sanity check
         run: |
@@ -114,7 +128,7 @@ jobs:
           echo "SUB: ${{ secrets.AZURE_SUBSCRIPTION_ID }}  RG: ${{ secrets.AZURE_RG }}  APP: ${{ secrets.AZURE_CONTAINERAPP }}"
           az group show -n "${{ secrets.AZURE_RG }}" -o table
           az containerapp show -g "${{ secrets.AZURE_RG }}" -n "${{ secrets.AZURE_CONTAINERAPP }}" -o table
-          
+
       - name: Atualizar secrets no Container App
         run: |
           az containerapp secret set -g "$RG" -n "$APP" \
