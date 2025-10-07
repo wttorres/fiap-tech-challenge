@@ -7,43 +7,41 @@ on:
     branches: ["main"]
 
 jobs:
-  build:
-    runs-on: windows-latest
-
+  build_and_test:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout do código
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Instalar .NET 8
+      - name: Setup .NET 8
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
-      - name: Restaurar pacotes
+      - name: Restore
         run: dotnet restore TechChallenge.GameStore.sln
 
-      - name: Build da solução
+      - name: Build
         run: dotnet build TechChallenge.GameStore.sln --configuration Release --no-restore
 
-  test:
-    runs-on: windows-latest
-    needs: build
+      - name: Test with coverage (single run)
+        run: |
+          dotnet test test/TechChallenge.GameStore.Unit.Test/TechChallenge.GameStore.Unit.Test.csproj \
+            --configuration Release --no-build --logger "trx;LogFileName=test-results.trx" \
+            /p:CollectCoverage=true \
+            /p:CoverletOutput=./TestResults/coverage.opencover.xml \
+            /p:CoverletOutputFormat=opencover
 
-    steps:
-      - name: Checkout do código
-        uses: actions/checkout@v4
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          fetch-depth: 0
-
-      - name: Instalar .NET 8
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.0.x
-
-      - name: Restaurar pacotes
-        run: dotnet restore TechChallenge.GameStore.sln
-
-      - name: Executar testes
-        run: dotnet test test/TechChallenge.GameStore.Unit.Test/TechChallenge.GameStore.Unit.Test.csproj --configuration Release --logger trx
+          projectBaseDir: .
+            
+      - name: SonarCloud Quality Gate
+        uses: SonarSource/sonarcloud-quality-gate-action@v1
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
