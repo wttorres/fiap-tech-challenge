@@ -24,13 +24,35 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
+      - name: Install SonarScanner for .NET
+        run: dotnet tool install --global dotnet-sonarscanner
+
+      # remove o arquivo do scanner genérico que é incompatível com o scanner
+      - name: Remove sonar-project.properties (only for .NET scanner)
+        run: rm -f sonar-project.properties
+
+      # análise .NET
+      - name: SonarCloud Begin
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          dotnet-sonarscanner begin \
+            /k:"wttorres_fiap-tech-challenge" \
+            /o:"wttorres" \
+            /d:sonar.host.url="https://sonarcloud.io" \
+            /d:sonar.token="${SONAR_TOKEN}" \
+            /d:sonar.projectBaseDir="${{ github.workspace }}" \
+            /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" \
+            /d:sonar.coverage.exclusions="**/*Program.cs,**/*Startup.cs,**/*Migrations/**" \
+            /d:sonar.exclusions="**/.github/**,**/ci/**,**/cd/**,**/build/**"
+
       - name: Restore
         run: dotnet restore TechChallenge.GameStore.sln
 
       - name: Build
         run: dotnet build TechChallenge.GameStore.sln --configuration Release --no-restore
 
-      - name: Test with coverage (single run)
+      - name: Test with coverage (OpenCover)
         run: |
           dotnet test test/TechChallenge.GameStore.Unit.Test/TechChallenge.GameStore.Unit.Test.csproj \
             --configuration Release --no-build --logger "trx;LogFileName=test-results.trx" \
@@ -38,14 +60,16 @@ jobs:
             /p:CoverletOutput=${{ github.workspace }}/test/TechChallenge.GameStore.Unit.Test/TestResults/coverage.opencover.xml \
             /p:CoverletOutputFormat=opencover
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
+      # finaliza e envia a análise para o SonarCloud
+      - name: SonarCloud End
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          projectBaseDir: .
+        run: dotnet-sonarscanner end /d:sonar.token="${SONAR_TOKEN}"
 
-      - name: SonarCloud Quality Gate
+      # apontar para o caminho do .NET
+      - name: SonarCloud Quality Gate 
         uses: SonarSource/sonarqube-quality-gate-action@v1
-        env:
+        with:
+          scanMetadataReportFile: .sonarqube/out/.sonar/report-task.txt
+        env: 
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
