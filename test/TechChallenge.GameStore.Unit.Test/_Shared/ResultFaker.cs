@@ -9,4 +9,11 @@ public static class ResultFaker
 
     public static Result<string> Falha(string erro)
         => Result.Failure<string>(erro);
+    
+    public static Result<bool> Sucesso()
+        => Result.Success(true);
+    
+    public static Result<bool> FalhaBool(string erro)
+        => Result.Failure<bool>(erro);
+
 }

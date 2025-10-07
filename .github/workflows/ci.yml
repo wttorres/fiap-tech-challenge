@@ -44,7 +44,7 @@ jobs:
             /d:sonar.projectBaseDir="${{ github.workspace }}" \
             /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" \
             /d:sonar.coverage.exclusions="**/*Program.cs,**/*Startup.cs,**/*Migrations/**" \
-            /d:sonar.exclusions="**/.github/**,**/ci/**,**/cd/**,**/build/**"
+            /d:sonar.exclusions="**/.github/**,**/ci/**,**/cd/**,**/build/**,**/test/**"
 
       - name: Restore
         run: dotnet restore TechChallenge.GameStore.sln

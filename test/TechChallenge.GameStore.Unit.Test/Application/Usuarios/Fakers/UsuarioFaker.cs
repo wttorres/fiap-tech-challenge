@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoBogus;
 using TechChallenge.GameStore.Application.Usuarios.Cadastrar;
 using TechChallenge.GameStore.Domain.Usuarios;
@@ -24,5 +25,12 @@ public class UsuarioFaker
             new AutoFaker<Usuario>(),
             new AutoFaker<Usuario>(),
         };
+    }
+    
+    public static List<Usuario> ListaNaoOrdenadaPorId()
+    {
+        var lista = new AutoFaker<Usuario>()
+            .Generate(5);
+        return lista.OrderByDescending(u => u.Id).ToList();
     }
 }

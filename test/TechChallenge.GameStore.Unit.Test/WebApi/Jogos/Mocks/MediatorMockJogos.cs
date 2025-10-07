@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Moq;
+using TechChallenge.GameStore.Application.Jogos.Atualizar;
 using TechChallenge.GameStore.Application.Jogos.Cadastrar;
 using TechChallenge.GameStore.Domain._Shared;
 
@@ -16,4 +17,15 @@ public class MediatorMockJogos : Mock<IMediator>
     {
         Verify(m => m.Send(comando, default), Times.Once);
     }
+    
+    public void ConfigurarEnvio(AtualizarJogoCommand comando, Result<bool> resultado)
+    {
+        Setup(m => m.Send(comando, default)).ReturnsAsync(resultado);
+    }
+
+    public void GarantirEnvio(AtualizarJogoCommand comando)
+    {
+        Verify(m => m.Send(comando, default), Times.Once);
+    }
+    
 }

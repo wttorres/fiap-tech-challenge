@@ -1,7 +1,9 @@
-﻿using System.Text.Json;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
 
 namespace TechChallenge.GameStore.WebApi._Shared;
 
+[ExcludeFromCodeCoverage]
 public class ErrorDetails
 {
     public int StatusCode { get; set; }
