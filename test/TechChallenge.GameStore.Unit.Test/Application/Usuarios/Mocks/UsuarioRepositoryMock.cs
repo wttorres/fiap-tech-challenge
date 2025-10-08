@@ -46,4 +46,14 @@ public class UsuarioRepositoryMock : Mock<IUsuarioRepository>
         Setup(r => r.AtualizarAsync(It.IsAny<Usuario>()))
             .ReturnsAsync(resultado);
     }
+    
+    public void ConfigurarObterTodos(List<Usuario> usuarios)
+    {
+        Setup(x => x.ObterTodosAsync()).ReturnsAsync(usuarios);
+    }
+
+    public void GarantirObterTodosChamado()
+    {
+        Verify(x => x.ObterTodosAsync(), Times.Once);
+    }
 }

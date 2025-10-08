@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -6,6 +7,7 @@ using TechChallenge.GameStore.WebApi.Notificacoes.Enviar;
 
 namespace TechChallenge.GameStore.WebApi;
 
+[ExcludeFromCodeCoverage]
 public static class Module
 {
     public static void AddWebApi(this IServiceCollection services)

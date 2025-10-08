@@ -17,7 +17,7 @@ public class CadastrarUsuarioControllerTest : CadastrarUsuarioControllerFixture
         var command = CadastrarCommandFaker.Valido();
         var result = Result.Success("123");
 
-        MediatorMock.ConfigurarSendParaRetornar(result);
+        MediatorMock.ConfigurarCadastroSendParaRetornar(result);
 
         // Act
         var response = await Controller.Cadastrar(command);
@@ -32,7 +32,7 @@ public class CadastrarUsuarioControllerTest : CadastrarUsuarioControllerFixture
             valor = "123"
         });
 
-        MediatorMock.GarantirEnvioDoCommand();
+        MediatorMock.GarantirEnvioDoCadastroCommand();
     }
 
     [Fact]
@@ -42,7 +42,7 @@ public class CadastrarUsuarioControllerTest : CadastrarUsuarioControllerFixture
         var command = CadastrarCommandFaker.Valido();
         var result = Result.Failure<string>("Falha ao cadastrar");
 
-        MediatorMock.ConfigurarSendParaRetornar(result);
+        MediatorMock.ConfigurarCadastroSendParaRetornar(result);
 
         // Act
         var response = await Controller.Cadastrar(command);
@@ -57,6 +57,6 @@ public class CadastrarUsuarioControllerTest : CadastrarUsuarioControllerFixture
             valor = (string?)null
         });
 
-        MediatorMock.GarantirEnvioDoCommand();
+        MediatorMock.GarantirEnvioDoCadastroCommand();
     }
 }

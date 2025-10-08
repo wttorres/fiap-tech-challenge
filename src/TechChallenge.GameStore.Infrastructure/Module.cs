@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +20,7 @@ using TechChallenge.GameStore.Infrastructure.Usuarios;
 
 namespace TechChallenge.GameStore.Infrastructure;
 
+[ExcludeFromCodeCoverage]
 public static class Module
 {
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
